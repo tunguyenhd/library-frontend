@@ -1,0 +1,3222 @@
+<!doctype html>
+<html lang="vi">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>HTML Knowledge</title>
+
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+   <body>
+      <main class="html-page">
+         <aside class="html-sidebar">
+            <a href="../index.html" class="back-btn">← Trang chủ</a>
+
+            <h2>HTML</h2>
+
+            <nav class="html-menu" aria-label="Mục lục kiến thức HTML">
+               <div class="html-menu-group">
+                  <h3 class="html-menu-title"># Cấu trúc HTML cơ bản</h3>
+                  <a href="#doctype">DOCTYPE</a>
+                  <a href="#html">Thẻ html</a>
+                  <a href="#head">Thẻ head</a>
+                  <a href="#meta-charset">Meta charset</a>
+                  <a href="#meta-viewport">Meta viewport</a>
+                  <a href="#title">Thẻ title</a>
+                  <a href="#body">Thẻ body</a>
+               </div>
+
+               <div class="html-menu-group">
+                  <h3 class="html-menu-title"># Văn bản &amp; Block elements</h3>
+                  <a href="#heading">Heading</a>
+                  <a href="#paragraph">Paragraph</a>
+                  <a href="#comment">Comment</a>
+                  <a href="#div">Thẻ div</a>
+                  <a href="#ordered-list">Ordered list</a>
+                  <a href="#blockquote">Blockquote</a>
+                  <a href="#pre">Thẻ pre</a>
+                  <a href="#entities">HTML entities</a>
+               </div>
+
+               <div class="html-menu-group">
+                  <h3 class="html-menu-title"># Văn bản inline, liên kết &amp; hình ảnh</h3>
+                  <a href="#span">Span</a>
+                  <a href="#bold">Bold</a>
+                  <a href="#strong">Strong</a>
+                  <a href="#italic">Italic</a>
+                  <a href="#emphasis">Emphasis</a>
+                  <a href="#underline">Underline</a>
+                  <a href="#inserted-text">Inserted text</a>
+                  <a href="#strikethrough">Strikethrough</a>
+                  <a href="#deleted-text">Deleted text</a>
+                  <a href="#line-break">Line break</a>
+                  <a href="#link">Link</a>
+                  <a href="#link-target">Target trong link</a>
+                  <a href="#internal-link">Link nội bộ</a>
+                  <a href="#image">Image</a>
+                  <a href="#absolute-path">Absolute path</a>
+                  <a href="#relative-path">Relative path</a>
+               </div>
+
+               <div class="html-menu-group">
+                  <h3 class="html-menu-title"># Table</h3>
+                  <a href="#table">Table</a>
+                  <a href="#table-row">Table row</a>
+                  <a href="#table-heading">Table heading</a>
+                  <a href="#table-data">Table data</a>
+                  <a href="#table-head">Table head</a>
+                  <a href="#table-body">Table body</a>
+                  <a href="#table-foot">Table foot</a>
+                  <a href="#colspan">Colspan</a>
+                  <a href="#rowspan">Rowspan</a>
+                  <a href="#cellspacing">Cellspacing</a>
+                  <a href="#cellpadding">Cellpadding</a>
+                  <a href="#product-table">Table sản phẩm</a>
+               </div>
+
+               <div class="html-menu-group">
+                  <h3 class="html-menu-title"># Form &amp; Semantic HTML5</h3>
+                  <a href="#form">Form</a>
+                  <a href="#form-action">Action</a>
+                  <a href="#method-get">Method GET</a>
+                  <a href="#method-post">Method POST</a>
+                  <a href="#input">Input</a>
+                  <a href="#name">Name</a>
+                  <a href="#placeholder">Placeholder</a>
+                  <a href="#label">Label</a>
+                  <a href="#required">Required</a>
+                  <a href="#value">Value</a>
+                  <a href="#button">Button</a>
+                  <a href="#textarea">Textarea</a>
+                  <a href="#select">Select</a>
+                  <a href="#option">Option</a>
+                  <a href="#optgroup">Optgroup</a>
+                  <a href="#semantic-html5">Semantic HTML5</a>
+               </div>
+
+               <div class="html-menu-group">
+                  <h3 class="html-menu-title"># Input types &amp; thuộc tính form</h3>
+                  <a href="#text-input">Text input</a>
+                  <a href="#email-input">Email input</a>
+                  <a href="#password-input">Password input</a>
+                  <a href="#number-input">Number input</a>
+                  <a href="#file-input">File input</a>
+                  <a href="#radio-input">Radio input</a>
+                  <a href="#checkbox-input">Checkbox input</a>
+                  <a href="#submit-button">Submit button</a>
+                  <a href="#reset-button">Reset button</a>
+                  <a href="#min-max-step">Min, Max, Step</a>
+                  <a href="#checked">Checked</a>
+                  <a href="#disabled">Disabled</a>
+                  <a href="#readonly">Readonly</a>
+               </div>
+
+               <div class="html-menu-group">
+                  <h3 class="html-menu-title"># Thuộc tính HTML thường dùng</h3>
+                  <a href="#attribute-id">Id</a>
+                  <a href="#attribute-class">Class</a>
+                  <a href="#attribute-style">Style</a>
+                  <a href="#attribute-href">Href</a>
+                  <a href="#attribute-src">Src</a>
+                  <a href="#attribute-alt">Alt</a>
+                  <a href="#attribute-title">Title</a>
+                  <a href="#attribute-target">Target</a>
+                  <a href="#attribute-name">Name</a>
+                  <a href="#attribute-value">Value</a>
+                  <a href="#attribute-placeholder">Placeholder</a>
+                  <a href="#attribute-required">Required</a>
+                  <a href="#attribute-selected">Selected</a>
+                  <a href="#attribute-multiple">Multiple</a>
+                  <a href="#attribute-width">Width</a>
+                  <a href="#attribute-height">Height</a>
+               </div>
+
+               <div class="html-menu-group">
+                  <h3 class="html-menu-title"># Semantic HTML5 chi tiết</h3>
+                  <a href="#semantic-header">Header</a>
+                  <a href="#semantic-nav">Nav</a>
+                  <a href="#semantic-main">Main</a>
+                  <a href="#semantic-section">Section</a>
+                  <a href="#semantic-article">Article</a>
+                  <a href="#semantic-figure">Figure</a>
+                  <a href="#semantic-figcaption">Figcaption</a>
+               </div>
+
+               <div class="html-menu-group">
+                  <h3 class="html-menu-title"># Thực hành HTML</h3>
+                  <a href="#practice-personal-page">Trang giới thiệu cá nhân</a>
+                  <a href="#practice-internal-menu">Menu điều hướng nội bộ</a>
+                  <a href="#practice-product-table">Bảng sản phẩm</a>
+                  <a href="#practice-registration-form">Form đăng ký</a>
+                  <a href="#practice-html5-layout">Layout HTML5 cơ bản</a>
+                  <a href="#practice-html-knowledge-page">Trang lưu kiến thức HTML</a>
+               </div>
+            </nav>
+         </aside>
+
+         <section class="html-content">
+            <section class="html-group">
+               <span>Nhóm 1</span>
+               <h2>Cấu trúc HTML cơ bản</h2>
+
+               <article class="html-card" id="doctype">
+                  <h3>DOCTYPE</h3>
+
+                  <p class="card-desc">
+                     DOCTYPE dùng để khai báo cho trình duyệt biết tài liệu hiện tại đang sử dụng phiên bản HTML nào. Với HTML5, cú pháp DOCTYPE rất ngắn gọn và luôn được đặt ở
+                     dòng đầu tiên của file HTML.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+&lt;head&gt;
+  &lt;title&gt;Trang HTML đầu tiên&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Xin chào HTML&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="html">
+                  <h3>Thẻ html</h3>
+
+                  <p class="card-desc">
+                     Thẻ html là thẻ gốc của toàn bộ tài liệu HTML. Tất cả nội dung của trang web đều nằm bên trong thẻ này. Bên trong thẻ html thường có hai phần chính là head và
+                     body.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;html lang="vi"&gt;
+  ...
+&lt;/html&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;html lang="vi"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Code Knowledge&lt;/title&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;Học HTML&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="head">
+                  <h3>Thẻ head</h3>
+
+                  <p class="card-desc">
+                     Thẻ head chứa các thông tin cấu hình của trang web. Nội dung trong head thường không hiển thị trực tiếp trên giao diện, nhưng rất quan trọng cho trình duyệt,
+                     SEO, CSS và khả năng responsive.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;title&gt;Tên trang&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+  &lt;title&gt;HTML Knowledge&lt;/title&gt;
+  &lt;link rel="stylesheet" href="../css/style.css" /&gt;
+&lt;/head&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="meta-charset">
+                  <h3>Meta charset</h3>
+
+                  <p class="card-desc">
+                     Meta charset dùng để khai báo bảng mã ký tự cho trang web. Thường sử dụng UTF-8 để trình duyệt hiển thị đúng tiếng Việt và các ký tự đặc biệt.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;meta charset="UTF-8" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;title&gt;Trang tiếng Việt&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="meta-viewport">
+                  <h3>Meta viewport</h3>
+
+                  <p class="card-desc">
+                     Meta viewport giúp website hiển thị tốt trên nhiều kích thước màn hình, đặc biệt là điện thoại. Đây là thẻ gần như luôn có trong các trang web hiện đại.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;head&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+&lt;/head&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="title">
+                  <h3>Thẻ title</h3>
+
+                  <p class="card-desc">Thẻ title dùng để đặt tiêu đề cho trang web. Nội dung của title sẽ hiển thị trên tab trình duyệt và có ảnh hưởng đến SEO.</p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;title&gt;Tên trang web&lt;/title&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;head&gt;
+  &lt;title&gt;Code Knowledge - HTML&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="body">
+                  <h3>Thẻ body</h3>
+
+                  <p class="card-desc">
+                     Thẻ body chứa toàn bộ nội dung hiển thị ra trình duyệt, ví dụ như tiêu đề, đoạn văn, hình ảnh, liên kết, bảng, form và các thành phần giao diện khác.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;body&gt;
+  Nội dung hiển thị trên trình duyệt
+&lt;/body&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;body&gt;
+  &lt;h1&gt;HTML Knowledge&lt;/h1&gt;
+  &lt;p&gt;Đây là trang lưu kiến thức HTML.&lt;/p&gt;
+  &lt;a href="../index.html"&gt;Quay về trang chủ&lt;/a&gt;
+&lt;/body&gt;</code></pre>
+                  </div>
+               </article>
+            </section>
+
+            <section class="html-group">
+               <span>Nhóm 2</span>
+               <h2>Văn bản & Block elements</h2>
+
+               <article class="html-card" id="heading">
+                  <h3>Heading</h3>
+
+                  <p class="card-desc">
+                     Heading là nhóm thẻ tiêu đề trong HTML, gồm từ h1 đến h6.
+                     Trong đó h1 là tiêu đề quan trọng nhất, h6 là tiêu đề có cấp thấp nhất.
+                     Heading giúp phân cấp nội dung rõ ràng hơn cho người đọc và công cụ tìm kiếm.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;h1&gt;Tiêu đề cấp 1&lt;/h1&gt;
+&lt;h2&gt;Tiêu đề cấp 2&lt;/h2&gt;
+&lt;h3&gt;Tiêu đề cấp 3&lt;/h3&gt;
+&lt;h4&gt;Tiêu đề cấp 4&lt;/h4&gt;
+&lt;h5&gt;Tiêu đề cấp 5&lt;/h5&gt;
+&lt;h6&gt;Tiêu đề cấp 6&lt;/h6&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;h1&gt;Học lập trình Front-End&lt;/h1&gt;
+&lt;h2&gt;HTML cơ bản&lt;/h2&gt;
+&lt;h3&gt;Cấu trúc HTML&lt;/h3&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="paragraph">
+                  <h3>Paragraph</h3>
+
+                  <p class="card-desc">
+                     Thẻ p dùng để tạo đoạn văn bản trong HTML.
+                     Mỗi đoạn nội dung nên được đặt trong một thẻ p riêng để cấu trúc văn bản rõ ràng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;p&gt;Nội dung đoạn văn bản&lt;/p&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;
+  HTML là ngôn ngữ dùng để xây dựng cấu trúc nội dung của trang web.
+&lt;/p&gt;
+
+&lt;p&gt;
+  CSS dùng để định dạng giao diện, màu sắc, bố cục và hiệu ứng.
+&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="comment">
+                  <h3>Comment</h3>
+
+                  <p class="card-desc">
+                     Comment dùng để ghi chú trong code HTML.
+                     Nội dung comment không hiển thị ra trình duyệt.
+                     Comment thường dùng để giải thích code hoặc chia khu vực trong file HTML.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;!-- Nội dung ghi chú --&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;!-- Phần tiêu đề trang --&gt;
+&lt;h1&gt;Code Knowledge&lt;/h1&gt;
+
+&lt;!-- Phần mô tả --&gt;
+&lt;p&gt;Website lưu kiến thức lập trình Front-End.&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="div">
+                  <h3>Thẻ div</h3>
+
+                  <p class="card-desc">
+                     Thẻ div là một block element dùng để nhóm các phần tử HTML lại với nhau.
+                     Div không mang ý nghĩa nội dung cụ thể, thường được dùng để chia layout hoặc bọc nội dung để CSS.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;div&gt;
+  Nội dung bên trong div
+&lt;/div&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;div class="course-card"&gt;
+  &lt;h2&gt;HTML cơ bản&lt;/h2&gt;
+  &lt;p&gt;Học cách xây dựng cấu trúc trang web bằng HTML.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="ordered-list">
+                  <h3>Ordered list</h3>
+
+                  <p class="card-desc">
+                     Ordered list là danh sách có thứ tự.
+                     Thẻ ol dùng để tạo danh sách, còn thẻ li dùng để tạo từng mục trong danh sách.
+                     Trình duyệt sẽ tự đánh số cho các mục.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;ol&gt;
+  &lt;li&gt;Mục thứ nhất&lt;/li&gt;
+  &lt;li&gt;Mục thứ hai&lt;/li&gt;
+  &lt;li&gt;Mục thứ ba&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;h2&gt;Lộ trình học Front-End&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Học HTML&lt;/li&gt;
+  &lt;li&gt;Học CSS&lt;/li&gt;
+  &lt;li&gt;Học JavaScript&lt;/li&gt;
+  &lt;li&gt;Học ReactJS&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="blockquote">
+                  <h3>Blockquote</h3>
+
+                  <p class="card-desc">
+                     Thẻ blockquote dùng để hiển thị một đoạn trích dẫn dài.
+                     Nội dung bên trong blockquote thường được trình duyệt hiển thị thụt vào so với nội dung bình thường.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;blockquote&gt;
+  Nội dung trích dẫn
+&lt;/blockquote&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;blockquote&gt;
+  &lt;p&gt;Học lập trình là quá trình luyện tập tư duy giải quyết vấn đề.&lt;/p&gt;
+&lt;/blockquote&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="pre">
+                  <h3>Thẻ pre</h3>
+
+                  <p class="card-desc">
+                     Thẻ pre dùng để hiển thị nội dung và giữ nguyên khoảng trắng, tab, xuống dòng như trong mã nguồn.
+                     Thẻ này thường được dùng khi muốn hiển thị code hoặc nội dung cần giữ nguyên định dạng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;pre&gt;
+  Nội dung được giữ nguyên định dạng
+&lt;/pre&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;pre&gt;
+Dòng 1
+    Dòng 2 có khoảng trắng phía trước
+        Dòng 3 có khoảng trắng nhiều hơn
+&lt;/pre&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="entities">
+                  <h3>HTML entities</h3>
+
+                  <p class="card-desc">
+                     HTML entities dùng để hiển thị các ký tự đặc biệt trong HTML.
+                     Một số ký tự như dấu nhỏ hơn, lớn hơn hoặc nhiều khoảng trắng liên tiếp cần viết bằng entity để trình duyệt hiển thị đúng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Một số entities thường dùng</div>
+                     <pre><code>&amp;lt;    hiển thị dấu &lt;
+&amp;gt;    hiển thị dấu &gt;
+&amp;nbsp;  hiển thị khoảng trắng
+&amp;amp;   hiển thị dấu &amp;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;Hiển thị thẻ h1 dưới dạng văn bản:&lt;/p&gt;
+
+&lt;pre&gt;
+&amp;lt;h1&amp;gt;HTML Knowledge&amp;lt;/h1&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Nguyễn Văn A&amp;nbsp;&amp;nbsp;&amp;nbsp;Front-End Developer&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+            </section>
+
+            <section class="html-group">
+               <span>Nhóm 3</span>
+               <h2>Văn bản inline, liên kết &amp; hình ảnh</h2>
+
+               <article class="html-card" id="span">
+                  <h3>Span</h3>
+
+                  <p class="card-desc">
+                     Span là thẻ inline dùng để bọc một phần nhỏ trong nội dung văn bản. Bản thân span không làm thay đổi giao diện nếu chưa có CSS. Thẻ này thường được dùng khi muốn định dạng hoặc xử lý riêng một đoạn chữ.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;span&gt;Nội dung văn bản&lt;/span&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;Khóa học &lt;span class="highlight"&gt;Fullstack&lt;/span&gt; tại F8.&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="bold">
+                  <h3>Bold</h3>
+
+                  <p class="card-desc">
+                     Bold dùng để làm chữ đậm về mặt hiển thị. Thẻ b chỉ thể hiện kiểu chữ đậm và không mang nhiều ý nghĩa nhấn mạnh về mặt nội dung.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;b&gt;Nội dung in đậm&lt;/b&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;Khóa học tại &lt;b&gt;F8&lt;/b&gt;.&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="strong">
+                  <h3>Strong</h3>
+
+                  <p class="card-desc">
+                     Strong cũng làm chữ đậm nhưng mang ý nghĩa nhấn mạnh nội dung. Trình duyệt thường hiển thị strong giống chữ đậm, tuy nhiên về semantic thì nội dung này quan trọng hơn.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;strong&gt;Nội dung quan trọng&lt;/strong&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;&lt;strong&gt;Không được&lt;/strong&gt; bỏ trống email.&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="italic">
+                  <h3>Italic</h3>
+
+                  <p class="card-desc">
+                     Italic dùng để làm chữ nghiêng về mặt hiển thị. Thẻ i thường dùng cho tên riêng, thuật ngữ, tên sách, tên tác phẩm hoặc một đoạn chữ cần hiển thị khác biệt.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;i&gt;Nội dung in nghiêng&lt;/i&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;HTML là viết tắt của &lt;i&gt;HyperText Markup Language&lt;/i&gt;.&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="emphasis">
+                  <h3>Emphasis</h3>
+
+                  <p class="card-desc">
+                     Emphasis dùng để nhấn mạnh nội dung về mặt ngữ nghĩa. Trình duyệt thường hiển thị thẻ em bằng chữ nghiêng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;em&gt;Nội dung cần nhấn mạnh&lt;/em&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;Bạn &lt;em&gt;nên&lt;/em&gt; học HTML trước khi học CSS.&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="underline">
+                  <h3>Underline</h3>
+
+                  <p class="card-desc">
+                     Underline dùng để gạch chân văn bản. Cần sử dụng cẩn thận vì người dùng có thể nhầm chữ gạch chân với một liên kết.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;u&gt;Nội dung được gạch chân&lt;/u&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;Đây là &lt;u&gt;nội dung quan trọng&lt;/u&gt; trong ghi chú.&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="inserted-text">
+                  <h3>Inserted text</h3>
+
+                  <p class="card-desc">
+                     Inserted text dùng để biểu thị nội dung mới được thêm vào tài liệu. Trình duyệt thường hiển thị nội dung trong thẻ ins bằng chữ gạch chân.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;ins&gt;Nội dung mới được thêm&lt;/ins&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;Bài học đã bổ sung phần &lt;ins&gt;HTML semantic&lt;/ins&gt;.&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="strikethrough">
+                  <h3>Strikethrough</h3>
+
+                  <p class="card-desc">
+                     Strikethrough dùng để gạch ngang nội dung không còn chính xác hoặc không còn phù hợp. Nội dung vẫn hiển thị nhưng được đánh dấu là không nên dùng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;s&gt;Nội dung không còn phù hợp&lt;/s&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;Giá cũ: &lt;s&gt;500.000đ&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;Giá mới: 300.000đ&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="deleted-text">
+                  <h3>Deleted text</h3>
+
+                  <p class="card-desc">
+                     Deleted text dùng để biểu thị nội dung đã bị xóa khỏi tài liệu. Thẻ del mang ý nghĩa semantic rõ hơn so với cách gạch ngang chỉ để trình bày.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;del&gt;Nội dung đã bị xóa&lt;/del&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;Nội dung cũ: &lt;del&gt;HTML dùng để tạo kiểu cho trang web.&lt;/del&gt;&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="line-break">
+                  <h3>Line break</h3>
+
+                  <p class="card-desc">
+                     Line break dùng để xuống dòng trong cùng một đoạn nội dung. Không nên lạm dụng thẻ br để tạo bố cục vì việc căn chỉnh giao diện nên được xử lý bằng CSS.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>Dòng thứ nhất&lt;br /&gt;
+Dòng thứ hai</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;p&gt;
+  F8 Education&lt;br /&gt;
+  Cầu Giấy&lt;br /&gt;
+  Hà Nội
+&lt;/p&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="link">
+                  <h3>Link</h3>
+
+                  <p class="card-desc">
+                     Link dùng để tạo liên kết đến một trang khác, một file khác, một website bên ngoài hoặc một vị trí trong cùng trang. Đây là một trong những thành phần quan trọng nhất của website.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;a href="URL"&gt;Nội dung liên kết&lt;/a&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;a href="https://github.com/username"&gt;My GitHub&lt;/a&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="link-target">
+                  <h3>Target trong link</h3>
+
+                  <p class="card-desc">
+                     Thuộc tính target quyết định cách liên kết được mở. Giá trị _self mở link trong tab hiện tại, còn _blank mở link trong một tab mới.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;a href="URL" target="_blank"&gt;Nội dung liên kết&lt;/a&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;a
+  href="https://github.com/username"
+  target="_blank"
+  rel="noopener noreferrer"
+&gt;
+  My GitHub
+&lt;/a&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="internal-link">
+                  <h3>Link nội bộ</h3>
+
+                  <p class="card-desc">
+                     Link nội bộ dùng để điều hướng đến một phần cụ thể trong cùng một trang. Giá trị href trỏ đến id của phần nội dung đích.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;a href="#ten-id"&gt;Đi tới nội dung&lt;/a&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;a href="#image"&gt;Đi tới phần Image&lt;/a&gt;
+
+&lt;section id="image"&gt;
+  &lt;h2&gt;Image&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="image">
+                  <h3>Image</h3>
+
+                  <p class="card-desc">
+                     Image dùng để hiển thị hình ảnh trên trang web. Một hình ảnh thường cần đường dẫn src, mô tả alt, tiêu đề title và kích thước hiển thị. Nội dung alt sẽ hỗ trợ người dùng khi ảnh không tải được.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;img src="duong-dan-anh" alt="Mô tả ảnh" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;img
+  src="../images/html-structure.png"
+  alt="Sơ đồ cấu trúc website"
+  title="Cấu trúc HTML"
+  width="640"
+  height="360"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="absolute-path">
+                  <h3>Absolute path</h3>
+
+                  <p class="card-desc">
+                     Absolute path là đường dẫn tuyệt đối. Đường dẫn này thường bắt đầu từ gốc website hoặc bao gồm đầy đủ giao thức và tên miền.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>/images/logo.png
+https://example.com/images/logo.png</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;img src="/images/logo.png" alt="Logo website" /&gt;
+
+&lt;a href="https://example.com/about"&gt;Trang giới thiệu&lt;/a&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="relative-path">
+                  <h3>Relative path</h3>
+
+                  <p class="card-desc">
+                     Relative path là đường dẫn tương đối và phụ thuộc vào vị trí của file hiện tại. Đây là loại đường dẫn thường dùng để liên kết giữa các file trong cùng một project.
+                     <br />
+                     <strong>Ví dụ:</strong> Từ file html.html trong thư mục pages, muốn quay về index.html ở ngoài thư mục cha thì cần đi lùi ra một cấp rồi mới trỏ đến index.html.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>./file-cung-thu-muc.html
+../file-o-thu-muc-cha.html</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;img src="../images/logo.png" alt="Logo website" /&gt;
+
+&lt;a href="../index.html"&gt;Quay về trang chủ&lt;/a&gt;</code></pre>
+                  </div>
+               </article>
+            </section>
+
+            <section class="html-group">
+               <span>Nhóm 4</span>
+               <h2>Table</h2>
+
+               <article class="html-card" id="table">
+                  <h3>Table</h3>
+
+                  <p class="card-desc">
+                     Table dùng để tạo bảng trong HTML. Bảng thường dùng để hiển thị dữ liệu có dạng hàng và cột, ví dụ bảng điểm, bảng sản phẩm, bảng thống kê hoặc bảng doanh thu.
+                     <br />
+                     <strong>Ví dụ:</strong> Một bảng danh sách học viên có thể gồm các cột: STT, họ tên, email và số điện thoại.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Nội dung ô&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;STT&lt;/th&gt;
+    &lt;th&gt;Họ tên&lt;/th&gt;
+    &lt;th&gt;Email&lt;/th&gt;
+    &lt;th&gt;Số điện thoại&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;1&lt;/td&gt;
+    &lt;td&gt;Nguyễn Văn A&lt;/td&gt;
+    &lt;td&gt;a@example.com&lt;/td&gt;
+    &lt;td&gt;0901 234 567&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="table-row">
+                  <h3>Table row</h3>
+
+                  <p class="card-desc">
+                     Table row là hàng trong bảng và được tạo bằng thẻ tr. Mỗi hàng sẽ chứa các ô dữ liệu hoặc ô tiêu đề. Một bảng thường có nhiều hàng.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong bảng học viên, mỗi học viên sẽ nằm trên một hàng riêng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;tr&gt;
+  &lt;td&gt;Nội dung ô thứ nhất&lt;/td&gt;
+  &lt;td&gt;Nội dung ô thứ hai&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;1&lt;/td&gt;
+    &lt;td&gt;Nguyễn Văn A&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;2&lt;/td&gt;
+    &lt;td&gt;Trần Thị B&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="table-heading">
+                  <h3>Table heading</h3>
+
+                  <p class="card-desc">
+                     Table heading là ô tiêu đề của bảng và được tạo bằng thẻ th. Nội dung trong ô tiêu đề thường được trình duyệt hiển thị đậm và căn giữa mặc định.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong bảng sản phẩm, các tiêu đề “Tên sản phẩm”, “Số lượng”, “Đơn giá” và “Thành tiền” có thể là table heading.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;th&gt;Nội dung tiêu đề&lt;/th&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;tr&gt;
+  &lt;th&gt;Tên sản phẩm&lt;/th&gt;
+  &lt;th&gt;Số lượng&lt;/th&gt;
+  &lt;th&gt;Đơn giá&lt;/th&gt;
+  &lt;th&gt;Thành tiền&lt;/th&gt;
+&lt;/tr&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="table-data">
+                  <h3>Table data</h3>
+
+                  <p class="card-desc">
+                     Table data là ô dữ liệu trong bảng và được tạo bằng thẻ td. Đây là nơi chứa nội dung thật của từng hàng, từng cột.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong bảng sản phẩm, “Áo thun”, “2”, “150.000đ” và “300.000đ” là các table data.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;td&gt;Nội dung dữ liệu&lt;/td&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;tr&gt;
+  &lt;td&gt;Áo thun&lt;/td&gt;
+  &lt;td&gt;2&lt;/td&gt;
+  &lt;td&gt;150.000đ&lt;/td&gt;
+  &lt;td&gt;300.000đ&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="table-head">
+                  <h3>Table head</h3>
+
+                  <p class="card-desc">
+                     Table head dùng thẻ thead để nhóm phần đầu của bảng. Phần này thường chứa các hàng tiêu đề, giúp cấu trúc bảng rõ ràng hơn.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong bảng doanh thu, phần table head có thể chứa các cột “Tháng”, “Doanh thu”, “Chi phí” và “Lợi nhuận”.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Tiêu đề cột&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tháng&lt;/th&gt;
+      &lt;th&gt;Doanh thu&lt;/th&gt;
+      &lt;th&gt;Chi phí&lt;/th&gt;
+      &lt;th&gt;Lợi nhuận&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="table-body">
+                  <h3>Table body</h3>
+
+                  <p class="card-desc">
+                     Table body dùng thẻ tbody để nhóm phần thân của bảng. Đây là nơi chứa dữ liệu chính của bảng.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong bảng doanh thu, phần table body sẽ chứa dữ liệu từng tháng như tháng 1, tháng 2 và tháng 3.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Dữ liệu&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Tháng 1&lt;/td&gt;
+      &lt;td&gt;20.000.000đ&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Tháng 2&lt;/td&gt;
+      &lt;td&gt;25.000.000đ&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="table-foot">
+                  <h3>Table foot</h3>
+
+                  <p class="card-desc">
+                     Table foot dùng thẻ tfoot để nhóm phần cuối của bảng. Phần này thường dùng để hiển thị tổng cộng, ghi chú hoặc kết quả cuối cùng.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong bảng sản phẩm, phần table foot có thể chứa dòng “Tổng cộng” và tổng số tiền cần thanh toán.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;tfoot&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Nội dung cuối bảng&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tfoot&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;table&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tổng cộng&lt;/th&gt;
+      &lt;td&gt;600.000đ&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="colspan">
+                  <h3>Colspan</h3>
+
+                  <p class="card-desc">
+                     Colspan dùng để gộp nhiều cột thành một ô. Thuộc tính này thường dùng khi muốn tạo tiêu đề lớn hoặc dòng tổng kết trải dài qua nhiều cột.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong bảng sản phẩm, dòng “Thông tin sản phẩm” có thể gộp hai cột “Hình ảnh” và “Tên sản phẩm”.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;td colspan="2"&gt;Nội dung gộp hai cột&lt;/td&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2"&gt;Thông tin sản phẩm&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Hình ảnh&lt;/th&gt;
+    &lt;th&gt;Tên sản phẩm&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="rowspan">
+                  <h3>Rowspan</h3>
+
+                  <p class="card-desc">
+                     Rowspan dùng để gộp nhiều hàng thành một ô. Thuộc tính này thường dùng khi một ô cần được dùng chung cho nhiều hàng.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong bảng sản phẩm, cột “Số lượng” có thể được gộp theo chiều dọc nếu phần tiêu đề chiếm hai hàng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;td rowspan="2"&gt;Nội dung gộp hai hàng&lt;/td&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th rowspan="2"&gt;Số lượng&lt;/th&gt;
+    &lt;th colspan="2"&gt;Giá&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Đơn giá&lt;/th&gt;
+    &lt;th&gt;Thành tiền&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="cellspacing">
+                  <h3>Cellspacing</h3>
+
+                  <p class="card-desc">
+                     Cellspacing là thuộc tính cũ dùng để tạo khoảng cách giữa các ô trong bảng. Nếu đặt cellspacing bằng 0, các ô sẽ sát nhau hơn. Trong HTML5 nên dùng thuộc tính CSS border-spacing hoặc border-collapse.
+                     <br />
+                     <strong>Ví dụ:</strong> Khi muốn bảng sản phẩm có đường viền liền mạch, có thể đặt khoảng cách giữa các ô bằng 0.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;table cellspacing="0"&gt;
+  ...
+&lt;/table&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;!-- Cách cũ --&gt;
+&lt;table border="1" cellspacing="0"&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Sản phẩm&lt;/td&gt;
+    &lt;td&gt;Số lượng&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- Cách dùng CSS hiện đại --&gt;
+&lt;table style="border-collapse: collapse;"&gt;
+  ...
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="cellpadding">
+                  <h3>Cellpadding</h3>
+
+                  <p class="card-desc">
+                     Cellpadding là thuộc tính cũ dùng để tạo khoảng cách giữa nội dung và đường viền của ô. Khoảng đệm giúp nội dung không bị dính sát vào viền. Trong HTML5 nên dùng thuộc tính CSS padding cho th và td.
+                     <br />
+                     <strong>Ví dụ:</strong> Nếu chữ “Tên sản phẩm” nằm quá sát viền ô, có thể tăng cellpadding để bảng dễ đọc hơn.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;table cellpadding="8"&gt;
+  ...
+&lt;/table&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;!-- Cách cũ --&gt;
+&lt;table border="1" cellpadding="12"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Tên sản phẩm&lt;/th&gt;
+    &lt;td&gt;Áo thun&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- Cách dùng CSS hiện đại --&gt;
+&lt;td style="padding: 12px;"&gt;Áo thun&lt;/td&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="product-table">
+                  <h3>Table sản phẩm</h3>
+
+                  <p class="card-desc">
+                     Table sản phẩm là dạng bảng thực hành tổng hợp nhiều kiến thức về table. Bảng có thể dùng hình ảnh, tên sản phẩm, số lượng, đơn giá, thành tiền, gộp cột, gộp hàng và dòng tổng cộng.
+                     <br />
+                     <strong>Ví dụ:</strong> Một bảng giỏ hàng có thể gồm hình ảnh sản phẩm, tên sản phẩm, số lượng, đơn giá, thành tiền và tổng cộng cuối bảng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;table&gt;
+  &lt;thead&gt;...&lt;/thead&gt;
+  &lt;tbody&gt;...&lt;/tbody&gt;
+  &lt;tfoot&gt;...&lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;table border="1" cellspacing="0" cellpadding="8"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th rowspan="2"&gt;Hình ảnh&lt;/th&gt;
+      &lt;th rowspan="2"&gt;Tên sản phẩm&lt;/th&gt;
+      &lt;th colspan="3"&gt;Thông tin mua hàng&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Số lượng&lt;/th&gt;
+      &lt;th&gt;Đơn giá&lt;/th&gt;
+      &lt;th&gt;Thành tiền&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;img src="../images/ao-thun.jpg" alt="Áo thun" width="80" /&gt;
+      &lt;/td&gt;
+      &lt;td&gt;Áo thun Front-End&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;150.000đ&lt;/td&gt;
+      &lt;td&gt;300.000đ&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;th colspan="4"&gt;Tổng cộng&lt;/th&gt;
+      &lt;td&gt;300.000đ&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+            </section>
+
+            <section class="html-group">
+               <span>Nhóm 5</span>
+               <h2>Form &amp; Semantic HTML5</h2>
+
+               <article class="html-card" id="form">
+                  <h3>Form</h3>
+
+                  <p class="card-desc">
+                     Form dùng để thu thập dữ liệu người dùng nhập vào trên website. Form thường được dùng trong đăng nhập, đăng ký, tìm kiếm, liên hệ, đặt hàng hoặc gửi phản hồi.
+                     <br />
+                     <strong>Ví dụ:</strong> Một form đăng ký tài khoản có thể gồm họ tên, email, mật khẩu, giới tính, tỉnh thành và nút đăng ký.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;form action="URL-xu-ly" method="post"&gt;
+  Các trường nhập dữ liệu
+&lt;/form&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/register" method="post"&gt;
+  &lt;label for="full-name"&gt;Họ tên&lt;/label&gt;
+  &lt;input id="full-name" name="fullName" type="text" required /&gt;
+
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required /&gt;
+
+  &lt;label for="password"&gt;Mật khẩu&lt;/label&gt;
+  &lt;input id="password" name="password" type="password" required /&gt;
+
+  &lt;button type="submit"&gt;Đăng ký&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="form-action">
+                  <h3>Action</h3>
+
+                  <p class="card-desc">
+                     Action là nơi dữ liệu form sẽ được gửi đến sau khi người dùng bấm nút submit. Giá trị của action thường là một URL hoặc một API xử lý dữ liệu.
+                     <br />
+                     <strong>Ví dụ:</strong> Khi người dùng gửi form liên hệ, dữ liệu có thể được gửi đến một trang backend hoặc API server.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;form action="URL-xu-ly"&gt;
+  ...
+&lt;/form&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/api/contact" method="post"&gt;
+  &lt;input name="email" type="email" /&gt;
+  &lt;textarea name="message"&gt;&lt;/textarea&gt;
+  &lt;button type="submit"&gt;Gửi liên hệ&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="method-get">
+                  <h3>Method GET</h3>
+
+                  <p class="card-desc">
+                     GET là phương thức gửi dữ liệu form thông qua URL. Dữ liệu sẽ hiển thị trên thanh địa chỉ trình duyệt, nên thường dùng cho tìm kiếm, lọc dữ liệu hoặc truy vấn không chứa thông tin nhạy cảm.
+                     <br />
+                     <strong>Ví dụ:</strong> Một form tìm kiếm sản phẩm có thể dùng GET để đưa từ khóa tìm kiếm lên URL.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;form action="/search" method="get"&gt;
+  ...
+&lt;/form&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/products" method="get"&gt;
+  &lt;label for="keyword"&gt;Tìm sản phẩm&lt;/label&gt;
+  &lt;input id="keyword" name="q" type="search" /&gt;
+  &lt;button type="submit"&gt;Tìm kiếm&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- URL có thể trở thành: /products?q=ao+thun --&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="method-post">
+                  <h3>Method POST</h3>
+
+                  <p class="card-desc">
+                     POST là phương thức gửi dữ liệu form trong phần body của request nên dữ liệu không hiển thị trực tiếp trên URL. POST thường dùng cho đăng nhập, đăng ký, gửi bình luận hoặc thay đổi dữ liệu. Vẫn cần dùng HTTPS để bảo vệ dữ liệu khi truyền.
+                     <br />
+                     <strong>Ví dụ:</strong> Một form đăng ký tài khoản nên dùng POST vì có email, mật khẩu và thông tin cá nhân.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;form action="/register" method="post"&gt;
+  ...
+&lt;/form&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/register" method="post"&gt;
+  &lt;input name="email" type="email" required /&gt;
+  &lt;input name="password" type="password" required /&gt;
+  &lt;button type="submit"&gt;Đăng ký&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="input">
+                  <h3>Input</h3>
+
+                  <p class="card-desc">
+                     Input là thẻ dùng để tạo ô nhập dữ liệu. Input có nhiều loại khác nhau như text, email, password, number, file, radio và checkbox.
+                     <br />
+                     <strong>Ví dụ:</strong> Form đăng ký có thể dùng input text cho họ tên, input email cho email và input password cho mật khẩu.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="text" name="ten-truong" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;input name="fullName" type="text" /&gt;
+&lt;input name="email" type="email" /&gt;
+&lt;input name="password" type="password" /&gt;
+&lt;input name="age" type="number" /&gt;
+&lt;input name="avatar" type="file" /&gt;
+&lt;input name="gender" type="radio" value="male" /&gt;
+&lt;input name="terms" type="checkbox" value="accepted" /&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="name">
+                  <h3>Name</h3>
+
+                  <p class="card-desc">
+                     Name là tên của trường dữ liệu khi form được gửi đi. Nếu input không có thuộc tính name, dữ liệu của input đó thường sẽ không được gửi lên server.
+                     <br />
+                     <strong>Ví dụ:</strong> Ô nhập email nên có name là email để server biết dữ liệu nhận được là email của người dùng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input name="ten-truong" type="text" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/subscribe" method="post"&gt;
+  &lt;input name="email" type="email" /&gt;
+  &lt;button type="submit"&gt;Đăng ký nhận tin&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Dữ liệu gửi đi có dạng: email=user@example.com --&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="placeholder">
+                  <h3>Placeholder</h3>
+
+                  <p class="card-desc">
+                     Placeholder là nội dung gợi ý hiển thị bên trong ô nhập khi người dùng chưa nhập dữ liệu. Placeholder giúp người dùng biết cần nhập gì nhưng không nên được dùng thay cho label.
+                     <br />
+                     <strong>Ví dụ:</strong> Ô nhập họ tên có thể hiển thị gợi ý “Nhập họ và tên”.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="text" placeholder="Nội dung gợi ý" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="full-name"&gt;Họ và tên&lt;/label&gt;
+&lt;input
+  id="full-name"
+  name="fullName"
+  type="text"
+  placeholder="Nhập họ và tên"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="label">
+                  <h3>Label</h3>
+
+                  <p class="card-desc">
+                     Label là nhãn mô tả cho input. Label giúp form dễ hiểu hơn và hỗ trợ accessibility. Khi thuộc tính for của label trùng với id của input, người dùng có thể bấm vào label để focus vào ô nhập tương ứng.
+                     <br />
+                     <strong>Ví dụ:</strong> Dòng chữ “Email” đặt trước ô nhập email là một label.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;label for="input-id"&gt;Tên trường&lt;/label&gt;
+&lt;input id="input-id" name="tenTruong" type="text" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="user-email"&gt;Email&lt;/label&gt;
+&lt;input
+  id="user-email"
+  name="email"
+  type="email"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="required">
+                  <h3>Required</h3>
+
+                  <p class="card-desc">
+                     Required dùng để bắt buộc người dùng phải nhập hoặc chọn dữ liệu trước khi gửi form. Nếu bỏ trống trường required, trình duyệt sẽ hiển thị thông báo lỗi.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong form đăng ký, email và mật khẩu thường là hai trường bắt buộc.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="text" required /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/register" method="post"&gt;
+  &lt;input name="email" type="email" required /&gt;
+  &lt;input name="password" type="password" required /&gt;
+  &lt;button type="submit"&gt;Đăng ký&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="value">
+                  <h3>Value</h3>
+
+                  <p class="card-desc">
+                     Value là giá trị mặc định hoặc giá trị hiện tại của input, option, radio hoặc checkbox. Khi form được gửi, value là dữ liệu tương ứng được gửi lên server.
+                     <br />
+                     <strong>Ví dụ:</strong> Ô họ tên có thể được đặt sẵn giá trị “Nguyễn Văn A”. Với radio giới tính, value có thể là “male” hoặc “female”.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input name="tenTruong" type="text" value="Giá trị mặc định" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;input
+  name="fullName"
+  type="text"
+  value="Nguyễn Văn A"
+/&gt;
+
+&lt;label&gt;
+  &lt;input name="gender" type="radio" value="male" /&gt;
+  Nam
+&lt;/label&gt;
+&lt;label&gt;
+  &lt;input name="gender" type="radio" value="female" /&gt;
+  Nữ
+&lt;/label&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="button">
+                  <h3>Button</h3>
+
+                  <p class="card-desc">
+                     Button dùng để tạo nút bấm trong form hoặc trên giao diện. Trong form, button có thể dùng để submit dữ liệu, reset dữ liệu hoặc thực hiện một hành động bằng JavaScript.
+                     <br />
+                     <strong>Ví dụ:</strong> Form đăng ký thường có nút “Đăng ký” để gửi dữ liệu và nút “Nhập lại” để xóa dữ liệu đã nhập.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;button type="button"&gt;Nội dung nút&lt;/button&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/register" method="post"&gt;
+  &lt;input name="email" type="email" /&gt;
+
+  &lt;button type="submit"&gt;Đăng ký&lt;/button&gt;
+  &lt;button type="reset"&gt;Nhập lại&lt;/button&gt;
+  &lt;button type="button"&gt;Xem điều khoản&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="textarea">
+                  <h3>Textarea</h3>
+
+                  <p class="card-desc">
+                     Textarea dùng để nhập nội dung nhiều dòng. Thẻ này thường dùng cho ghi chú, mô tả, tin nhắn, bình luận hoặc phản hồi.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong form liên hệ, phần “Nội dung tin nhắn” nên dùng textarea vì người dùng có thể nhập nhiều dòng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;textarea name="tenTruong" rows="5" cols="40"&gt;&lt;/textarea&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="message"&gt;Nội dung tin nhắn&lt;/label&gt;
+&lt;textarea
+  id="message"
+  name="message"
+  rows="6"
+  placeholder="Nhập nội dung cần liên hệ"
+&gt;&lt;/textarea&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="select">
+                  <h3>Select</h3>
+
+                  <p class="card-desc">
+                     Select dùng để tạo danh sách lựa chọn dạng dropdown. Người dùng có thể chọn một lựa chọn hoặc nhiều lựa chọn khi select có thuộc tính multiple.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong form đăng ký, phần chọn tỉnh hoặc thành phố có thể dùng select.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;select name="tenTruong"&gt;
+  &lt;option value="gia-tri"&gt;Nội dung lựa chọn&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="city"&gt;Tỉnh/thành phố&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+  &lt;option value=""&gt;-- Chọn tỉnh/thành phố --&lt;/option&gt;
+  &lt;option value="ha-noi"&gt;Hà Nội&lt;/option&gt;
+  &lt;option value="ho-chi-minh"&gt;Hồ Chí Minh&lt;/option&gt;
+  &lt;option value="da-nang"&gt;Đà Nẵng&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="option">
+                  <h3>Option</h3>
+
+                  <p class="card-desc">
+                     Option là từng lựa chọn nằm bên trong select. Mỗi option có thể có nội dung hiển thị cho người dùng và thuộc tính value để gửi lên server.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong select tỉnh hoặc thành phố, các option có thể là “Hà Nội”, “Hồ Chí Minh” và “Đà Nẵng”.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;option value="gia-tri-gui-di"&gt;Nội dung hiển thị&lt;/option&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;select name="city"&gt;
+  &lt;option value=""&gt;-- Chọn tỉnh/thành phố --&lt;/option&gt;
+  &lt;option value="ha-noi"&gt;Hà Nội&lt;/option&gt;
+  &lt;option value="ho-chi-minh"&gt;Hồ Chí Minh&lt;/option&gt;
+  &lt;option value="da-nang"&gt;Đà Nẵng&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="optgroup">
+                  <h3>Optgroup</h3>
+
+                  <p class="card-desc">
+                     Optgroup dùng để nhóm các option trong select. Cách này giúp danh sách lựa chọn dài trở nên dễ nhìn và dễ chọn hơn.
+                     <br />
+                     <strong>Ví dụ:</strong> Danh sách tỉnh hoặc thành phố có thể chia thành các nhóm “Miền Bắc”, “Miền Trung” và “Miền Nam”.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;optgroup label="Tên nhóm"&gt;
+  &lt;option value="gia-tri"&gt;Lựa chọn&lt;/option&gt;
+&lt;/optgroup&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;select name="city"&gt;
+  &lt;optgroup label="Miền Bắc"&gt;
+    &lt;option value="ha-noi"&gt;Hà Nội&lt;/option&gt;
+    &lt;option value="hai-phong"&gt;Hải Phòng&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label="Miền Trung"&gt;
+    &lt;option value="da-nang"&gt;Đà Nẵng&lt;/option&gt;
+    &lt;option value="hue"&gt;Huế&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label="Miền Nam"&gt;
+    &lt;option value="ho-chi-minh"&gt;Hồ Chí Minh&lt;/option&gt;
+    &lt;option value="can-tho"&gt;Cần Thơ&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="semantic-html5">
+                  <h3>Semantic HTML5</h3>
+
+                  <p class="card-desc">
+                     Semantic HTML5 là nhóm thẻ HTML có ý nghĩa rõ ràng về mặt nội dung và cấu trúc trang. Các thẻ này giúp code dễ đọc hơn, hỗ trợ SEO và cải thiện accessibility.
+                     <br />
+                     <strong>Ví dụ:</strong> Một trang web có thể dùng header, nav, main, section, article, figure, figcaption và footer để mô tả đúng vai trò của từng khu vực.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;header&gt;Phần đầu trang&lt;/header&gt;
+&lt;nav&gt;Điều hướng&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;article&gt;Nội dung độc lập&lt;/article&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;Phần cuối trang&lt;/footer&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;header&gt;
+  &lt;h1&gt;Code Knowledge&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="/html"&gt;HTML&lt;/a&gt;
+    &lt;a href="/css"&gt;CSS&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Kiến thức HTML&lt;/h2&gt;
+
+    &lt;article&gt;
+      &lt;h3&gt;Semantic HTML5&lt;/h3&gt;
+      &lt;figure&gt;
+        &lt;img src="semantic-html5.png" alt="Cấu trúc semantic HTML5" /&gt;
+        &lt;figcaption&gt;Cấu trúc một trang HTML semantic&lt;/figcaption&gt;
+      &lt;/figure&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026 Code Knowledge&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+                  </div>
+               </article>
+            </section>
+
+            <section class="html-group">
+               <span>Nhóm 6</span>
+               <h2>Input types &amp; thuộc tính form</h2>
+
+               <article class="html-card" id="text-input">
+                  <h3>Text input</h3>
+
+                  <p class="card-desc">
+                     Text input dùng để tạo ô nhập văn bản thông thường. Đây là loại input phổ biến nhất trong form.
+                     <br />
+                     <strong>Ví dụ:</strong> Dùng cho ô nhập họ tên, tên tài khoản, tiêu đề bài viết hoặc tên sản phẩm.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="text" name="tenTruong" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="full-name"&gt;Họ và tên&lt;/label&gt;
+&lt;input
+  id="full-name"
+  name="fullName"
+  type="text"
+  placeholder="Nhập họ và tên"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="email-input">
+                  <h3>Email input</h3>
+
+                  <p class="card-desc">
+                     Email input dùng để nhập địa chỉ email. Trình duyệt có thể tự kiểm tra định dạng email trước khi gửi form.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong form đăng ký, ô nhập email nên dùng email input để hạn chế người dùng nhập sai định dạng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="email" name="email" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input
+  id="email"
+  name="email"
+  type="email"
+  placeholder="name@example.com"
+  required
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="password-input">
+                  <h3>Password input</h3>
+
+                  <p class="card-desc">
+                     Password input dùng để nhập mật khẩu. Nội dung người dùng nhập sẽ bị che bằng dấu chấm hoặc ký tự ẩn.
+                     <br />
+                     <strong>Ví dụ:</strong> Form đăng nhập thường có ô nhập mật khẩu dùng password input.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="password" name="password" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="password"&gt;Mật khẩu&lt;/label&gt;
+&lt;input
+  id="password"
+  name="password"
+  type="password"
+  minlength="8"
+  required
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="number-input">
+                  <h3>Number input</h3>
+
+                  <p class="card-desc">
+                     Number input dùng để nhập dữ liệu dạng số. Có thể giới hạn giá trị nhỏ nhất, lớn nhất hoặc bước nhảy của số.
+                     <br />
+                     <strong>Ví dụ:</strong> Dùng cho ô nhập tuổi, số lượng sản phẩm, điểm số hoặc mức lương.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="number" name="tenTruong" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="quantity"&gt;Số lượng&lt;/label&gt;
+&lt;input
+  id="quantity"
+  name="quantity"
+  type="number"
+  min="1"
+  max="100"
+  step="1"
+  value="1"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="file-input">
+                  <h3>File input</h3>
+
+                  <p class="card-desc">
+                     File input dùng để chọn file từ máy tính hoặc thiết bị của người dùng. Khi upload file, form thường cần method POST và enctype multipart/form-data.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong form ứng tuyển, người dùng có thể chọn file CV để gửi lên hệ thống.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="file" name="tenFile" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/apply" method="post" enctype="multipart/form-data"&gt;
+  &lt;label for="cv"&gt;Tải lên CV&lt;/label&gt;
+  &lt;input
+    id="cv"
+    name="cv"
+    type="file"
+    accept=".pdf,.doc,.docx"
+    required
+  /&gt;
+  &lt;button type="submit"&gt;Gửi hồ sơ&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="radio-input">
+                  <h3>Radio input</h3>
+
+                  <p class="card-desc">
+                     Radio input dùng khi người dùng chỉ được chọn một lựa chọn trong nhiều lựa chọn. Các radio thuộc cùng một nhóm cần dùng chung thuộc tính name.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong form đăng ký, phần giới tính có thể gồm Nam, Nữ và Khác nhưng người dùng chỉ được chọn một.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="radio" name="tenNhom" value="giaTri" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Giới tính&lt;/legend&gt;
+
+  &lt;label&gt;
+    &lt;input type="radio" name="gender" value="male" /&gt;
+    Nam
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;input type="radio" name="gender" value="female" /&gt;
+    Nữ
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;input type="radio" name="gender" value="other" /&gt;
+    Khác
+  &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="checkbox-input">
+                  <h3>Checkbox input</h3>
+
+                  <p class="card-desc">
+                     Checkbox input dùng khi người dùng có thể chọn nhiều lựa chọn cùng lúc. Checkbox phù hợp với danh sách sở thích, kỹ năng hoặc nguồn thông tin.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong form khảo sát, người dùng có thể chọn nhiều kỹ năng như HTML, CSS, JavaScript và ReactJS.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="checkbox" name="tenTruong" value="giaTri" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Kỹ năng&lt;/legend&gt;
+
+  &lt;label&gt;
+    &lt;input type="checkbox" name="skills" value="html" /&gt; HTML
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;input type="checkbox" name="skills" value="css" /&gt; CSS
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;input type="checkbox" name="skills" value="javascript" /&gt; JavaScript
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;input type="checkbox" name="skills" value="reactjs" /&gt; ReactJS
+  &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="submit-button">
+                  <h3>Submit button</h3>
+
+                  <p class="card-desc">
+                     Submit button dùng để gửi dữ liệu form. Khi người dùng bấm nút này, form sẽ gửi dữ liệu đến địa chỉ được khai báo trong action.
+                     <br />
+                     <strong>Ví dụ:</strong> Nút “Đăng ký”, “Gửi liên hệ” hoặc “Đăng nhập” thường là submit button.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;button type="submit"&gt;Gửi dữ liệu&lt;/button&gt;
+
+&lt;!-- Hoặc --&gt;
+&lt;input type="submit" value="Gửi dữ liệu" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/login" method="post"&gt;
+  &lt;input name="email" type="email" required /&gt;
+  &lt;input name="password" type="password" required /&gt;
+  &lt;button type="submit"&gt;Đăng nhập&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="reset-button">
+                  <h3>Reset button</h3>
+
+                  <p class="card-desc">
+                     Reset button dùng để đưa dữ liệu trong form về trạng thái ban đầu. Nếu input có giá trị mặc định, reset sẽ đưa input về giá trị đó.
+                     <br />
+                     <strong>Ví dụ:</strong> Nút “Nhập lại” trong form đăng ký có thể dùng reset để xóa các dữ liệu người dùng vừa nhập.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;button type="reset"&gt;Nhập lại&lt;/button&gt;
+
+&lt;!-- Hoặc --&gt;
+&lt;input type="reset" value="Nhập lại" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form&gt;
+  &lt;input name="fullName" type="text" value="Nguyễn Văn A" /&gt;
+  &lt;input name="email" type="email" /&gt;
+
+  &lt;button type="reset"&gt;Nhập lại&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Sau khi reset, fullName trở về "Nguyễn Văn A" --&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="min-max-step">
+                  <h3>Min, Max, Step</h3>
+
+                  <p class="card-desc">
+                     Min, max và step thường dùng với number input. Min quy định giá trị nhỏ nhất, max quy định giá trị lớn nhất, còn step quy định mỗi lần tăng hoặc giảm sẽ nhảy bao nhiêu đơn vị.
+                     <br />
+                     <strong>Ví dụ:</strong> Ô nhập tuổi có thể giới hạn từ 18 đến 60. Ô nhập số lượng sản phẩm có thể tăng hoặc giảm từng 1 đơn vị.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input
+  type="number"
+  min="giaTriNhoNhat"
+  max="giaTriLonNhat"
+  step="buocNhay"
+/&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="age"&gt;Tuổi&lt;/label&gt;
+&lt;input id="age" name="age" type="number" min="18" max="60" step="1" /&gt;
+
+&lt;label for="price"&gt;Mức giá&lt;/label&gt;
+&lt;input
+  id="price"
+  name="price"
+  type="number"
+  min="0"
+  max="1000000"
+  step="50000"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="checked">
+                  <h3>Checked</h3>
+
+                  <p class="card-desc">
+                     Checked dùng để đặt trạng thái chọn sẵn cho radio hoặc checkbox. Khi trang vừa tải, lựa chọn có checked sẽ được chọn mặc định.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong phần giới tính có thể chọn sẵn “Nam”; checkbox đồng ý điều khoản có thể được chọn sẵn hoặc để trống tùy yêu cầu.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="radio" checked /&gt;
+&lt;input type="checkbox" checked /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label&gt;
+  &lt;input type="radio" name="gender" value="male" checked /&gt;
+  Nam
+&lt;/label&gt;
+&lt;label&gt;
+  &lt;input type="radio" name="gender" value="female" /&gt;
+  Nữ
+&lt;/label&gt;
+
+&lt;label&gt;
+  &lt;input type="checkbox" name="newsletter" value="yes" checked /&gt;
+  Nhận thông tin mới
+&lt;/label&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="disabled">
+                  <h3>Disabled</h3>
+
+                  <p class="card-desc">
+                     Disabled dùng để vô hiệu hóa input, select, textarea hoặc button. Người dùng không thể tương tác với phần tử bị disabled và dữ liệu của trường disabled thường không được gửi khi submit form.
+                     <br />
+                     <strong>Ví dụ:</strong> Một nút “Gửi” có thể bị disabled cho đến khi người dùng nhập đủ thông tin cần thiết.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="text" disabled /&gt;
+&lt;button type="submit" disabled&gt;Gửi&lt;/button&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/checkout" method="post"&gt;
+  &lt;input name="discountCode" type="text" value="SALE2026" disabled /&gt;
+  &lt;button type="submit" disabled&gt;Gửi đơn hàng&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- discountCode không được gửi vì input bị disabled --&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="readonly">
+                  <h3>Readonly</h3>
+
+                  <p class="card-desc">
+                     Readonly chỉ cho phép đọc và không cho phép sửa nội dung input hoặc textarea. Khác với disabled, dữ liệu readonly vẫn được gửi khi submit form.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong form thanh toán, mã đơn hàng có thể để readonly để người dùng nhìn thấy nhưng không chỉnh sửa được.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="text" readonly /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/payment" method="post"&gt;
+  &lt;label for="order-id"&gt;Mã đơn hàng&lt;/label&gt;
+  &lt;input
+    id="order-id"
+    name="orderId"
+    type="text"
+    value="ORDER-2026-001"
+    readonly
+  /&gt;
+  &lt;button type="submit"&gt;Thanh toán&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- orderId vẫn được gửi khi submit --&gt;</code></pre>
+                  </div>
+               </article>
+            </section>
+
+            <section class="html-group">
+               <span>Nhóm 7</span>
+               <h2>Thuộc tính HTML thường dùng</h2>
+
+               <article class="html-card" id="attribute-id">
+                  <h3>Id</h3>
+
+                  <p class="card-desc">
+                     Id là thuộc tính dùng để định danh duy nhất cho một phần tử HTML. Trong một trang, mỗi id chỉ nên xuất hiện một lần. Id thường dùng với CSS, JavaScript hoặc link nội bộ để cuộn đến một phần cụ thể.
+                     <br />
+                     <strong>Ví dụ:</strong> Một phần kiến thức về form có thể có id riêng để khi click vào sidebar, trang tự cuộn xuống đúng phần đó.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;tag id="ten-duy-nhat"&gt;Nội dung&lt;/tag&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;a href="#form-knowledge"&gt;Đi tới kiến thức Form&lt;/a&gt;
+
+&lt;section id="form-knowledge"&gt;
+  &lt;h2&gt;Kiến thức Form&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-class">
+                  <h3>Class</h3>
+
+                  <p class="card-desc">
+                     Class dùng để đặt tên nhóm cho một hoặc nhiều phần tử HTML. Nhiều phần tử có thể dùng chung một class. Class thường được dùng để CSS các phần tử có cùng kiểu giao diện.
+                     <br />
+                     <strong>Ví dụ:</strong> Các thẻ kiến thức trong website có thể dùng chung class “knowledge-card” để có cùng kiểu khung, màu nền và khoảng cách.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;tag class="ten-class"&gt;Nội dung&lt;/tag&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;article class="knowledge-card"&gt;
+  &lt;h2&gt;HTML cơ bản&lt;/h2&gt;
+&lt;/article&gt;
+
+&lt;article class="knowledge-card"&gt;
+  &lt;h2&gt;CSS cơ bản&lt;/h2&gt;
+&lt;/article&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-style">
+                  <h3>Style</h3>
+
+                  <p class="card-desc">
+                     Style dùng để viết CSS trực tiếp trên một phần tử HTML. Cách này gọi là inline CSS. Không nên lạm dụng vì code sẽ khó quản lý khi dự án lớn.
+                     <br />
+                     <strong>Ví dụ:</strong> Một ô trong bảng có thể dùng style để căn giữa hoặc căn phải nội dung.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;tag style="thuoc-tinh-css: gia-tri;"&gt;Nội dung&lt;/tag&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td style="text-align: center;"&gt;2&lt;/td&gt;
+    &lt;td style="text-align: right;"&gt;300.000đ&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-href">
+                  <h3>Href</h3>
+
+                  <p class="card-desc">
+                     Href là thuộc tính của thẻ liên kết. Nó xác định địa chỉ mà người dùng sẽ được chuyển đến khi click vào link.
+                     <br />
+                     <strong>Ví dụ:</strong> Một liên kết “Trang chủ” có thể dùng href để quay về file index.html.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;a href="duong-dan"&gt;Nội dung liên kết&lt;/a&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;a href="../index.html"&gt;Trang chủ&lt;/a&gt;
+&lt;a href="https://github.com/username"&gt;My GitHub&lt;/a&gt;
+&lt;a href="#form"&gt;Đi tới phần Form&lt;/a&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-src">
+                  <h3>Src</h3>
+
+                  <p class="card-desc">
+                     Src dùng để khai báo đường dẫn nguồn của tài nguyên. Thuộc tính này thường gặp trong thẻ img, script, iframe, audio hoặc video.
+                     <br />
+                     <strong>Ví dụ:</strong> Một ảnh logo cần có src để trình duyệt biết file ảnh nằm ở đâu.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;img src="duong-dan-anh" alt="Mô tả ảnh" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;img src="../images/logo.png" alt="Logo Code Knowledge" /&gt;
+&lt;script src="../js/main.js"&gt;&lt;/script&gt;
+&lt;iframe src="https://example.com" title="Trang minh họa"&gt;&lt;/iframe&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-alt">
+                  <h3>Alt</h3>
+
+                  <p class="card-desc">
+                     Alt là nội dung mô tả thay thế cho hình ảnh. Nếu ảnh không tải được, trình duyệt có thể hiển thị nội dung alt. Alt cũng rất quan trọng cho accessibility và hỗ trợ SEO.
+                     <br />
+                     <strong>Ví dụ:</strong> Một ảnh sản phẩm nên có alt mô tả tên sản phẩm hoặc nội dung ảnh.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;img src="duong-dan-anh" alt="Mô tả nội dung ảnh" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;img
+  src="../images/ao-thun-front-end.jpg"
+  alt="Áo thun Front-End màu đen"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-title">
+                  <h3>Title</h3>
+
+                  <p class="card-desc">
+                     Title là thuộc tính dùng để cung cấp thông tin bổ sung cho phần tử. Khi người dùng hover, trình duyệt có thể hiển thị nội dung title dưới dạng tooltip.
+                     <br />
+                     <strong>Ví dụ:</strong> Một hình ảnh có thể có title để khi rê chuột vào sẽ hiện mô tả ngắn.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;tag title="Thông tin bổ sung"&gt;Nội dung&lt;/tag&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;img
+  src="../images/html-structure.png"
+  alt="Sơ đồ cấu trúc HTML"
+  title="Cấu trúc cơ bản của một tài liệu HTML"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-target">
+                  <h3>Target</h3>
+
+                  <p class="card-desc">
+                     Target dùng trong thẻ liên kết để quy định cách mở link. Giá trị _self mở ở tab hiện tại, còn _blank mở ở tab mới.
+                     <br />
+                     <strong>Ví dụ:</strong> Link dẫn đến GitHub cá nhân có thể mở ở tab mới để người dùng không bị rời khỏi website kiến thức.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;a href="URL" target="_blank"&gt;Nội dung liên kết&lt;/a&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;a
+  href="https://github.com/username"
+  target="_blank"
+  rel="noopener noreferrer"
+&gt;
+  My GitHub
+&lt;/a&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-name">
+                  <h3>Name</h3>
+
+                  <p class="card-desc">
+                     Name thường dùng trong form để đặt tên cho trường dữ liệu. Khi form được gửi đi, server sẽ nhận dữ liệu dựa theo name của từng input, select hoặc textarea.
+                     <br />
+                     <strong>Ví dụ:</strong> Ô nhập email nên có name là email để server biết dữ liệu đó là email người dùng nhập.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input name="tenTruong" type="text" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/subscribe" method="post"&gt;
+  &lt;input name="email" type="email" /&gt;
+  &lt;button type="submit"&gt;Đăng ký nhận tin&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;!-- Dữ liệu gửi đi: email=user@example.com --&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-value">
+                  <h3>Value</h3>
+
+                  <p class="card-desc">
+                     Value là giá trị của một phần tử form. Với input, value có thể là giá trị mặc định. Với radio, checkbox hoặc option, value là dữ liệu được gửi đi khi người dùng chọn.
+                     <br />
+                     <strong>Ví dụ:</strong> Radio giới tính “Nam” có thể có value là male, còn “Nữ” có thể có value là female.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input name="tenTruong" value="giaTri" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label&gt;
+  &lt;input name="gender" type="radio" value="male" /&gt; Nam
+&lt;/label&gt;
+&lt;label&gt;
+  &lt;input name="gender" type="radio" value="female" /&gt; Nữ
+&lt;/label&gt;
+
+&lt;select name="city"&gt;
+  &lt;option value="ha-noi"&gt;Hà Nội&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-placeholder">
+                  <h3>Placeholder</h3>
+
+                  <p class="card-desc">
+                     Placeholder là dòng gợi ý hiển thị bên trong ô nhập khi người dùng chưa nhập dữ liệu. Nó giúp người dùng biết cần nhập nội dung gì nhưng không nên thay thế label.
+                     <br />
+                     <strong>Ví dụ:</strong> Ô nhập họ tên có thể có placeholder là “Nhập họ và tên”.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="text" placeholder="Nội dung gợi ý" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="full-name"&gt;Họ và tên&lt;/label&gt;
+&lt;input
+  id="full-name"
+  name="fullName"
+  type="text"
+  placeholder="Nhập họ và tên"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-required">
+                  <h3>Required</h3>
+
+                  <p class="card-desc">
+                     Required dùng để bắt buộc người dùng phải nhập hoặc chọn dữ liệu trước khi gửi form. Nếu trường required bị bỏ trống, trình duyệt sẽ không cho submit form.
+                     <br />
+                     <strong>Ví dụ:</strong> Email và mật khẩu trong form đăng ký thường là các trường bắt buộc.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;input type="text" required /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;form action="/register" method="post"&gt;
+  &lt;input name="email" type="email" required /&gt;
+  &lt;input name="password" type="password" required /&gt;
+  &lt;button type="submit"&gt;Đăng ký&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-selected">
+                  <h3>Selected</h3>
+
+                  <p class="card-desc">
+                     Selected dùng để chọn sẵn một option trong select. Khi trang vừa tải, option có selected sẽ được hiển thị là lựa chọn mặc định.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong danh sách tỉnh hoặc thành phố, có thể chọn sẵn “Hà Nội” làm giá trị mặc định.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;option value="giaTri" selected&gt;Nội dung lựa chọn&lt;/option&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="city"&gt;Tỉnh/thành phố&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+  &lt;option value="da-nang"&gt;Đà Nẵng&lt;/option&gt;
+  &lt;option value="ha-noi" selected&gt;Hà Nội&lt;/option&gt;
+  &lt;option value="ho-chi-minh"&gt;Hồ Chí Minh&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-multiple">
+                  <h3>Multiple</h3>
+
+                  <p class="card-desc">
+                     Multiple cho phép người dùng chọn nhiều giá trị trong select hoặc chọn nhiều file trong input file.
+                     <br />
+                     <strong>Ví dụ:</strong> Một form chọn kỹ năng có thể cho phép người dùng chọn nhiều kỹ năng như HTML, CSS và JavaScript.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;select name="tenTruong" multiple&gt;
+  ...
+&lt;/select&gt;
+
+&lt;input type="file" name="files" multiple /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;label for="skills"&gt;Kỹ năng&lt;/label&gt;
+&lt;select id="skills" name="skills" multiple&gt;
+  &lt;option value="html"&gt;HTML&lt;/option&gt;
+  &lt;option value="css"&gt;CSS&lt;/option&gt;
+  &lt;option value="javascript"&gt;JavaScript&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;label for="documents"&gt;Tài liệu&lt;/label&gt;
+&lt;input id="documents" name="documents" type="file" multiple /&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-width">
+                  <h3>Width</h3>
+
+                  <p class="card-desc">
+                     Width dùng để đặt chiều rộng cho một phần tử và thường gặp trong img, table hoặc một số phần tử hiển thị khác. Trong HTML hiện đại, nên ưu tiên quản lý chiều rộng bằng CSS.
+                     <br />
+                     <strong>Ví dụ:</strong> Một ảnh minh họa có thể được đặt chiều rộng cố định để không hiển thị quá lớn trên giao diện.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;img src="anh.jpg" alt="Mô tả ảnh" width="640" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;!-- Thuộc tính HTML --&gt;
+&lt;img
+  src="../images/html-structure.png"
+  alt="Sơ đồ cấu trúc HTML"
+  width="640"
+/&gt;
+
+&lt;!-- CSS linh hoạt hơn --&gt;
+&lt;img
+  src="../images/html-structure.png"
+  alt="Sơ đồ cấu trúc HTML"
+  style="width: 100%; max-width: 640px;"
+/&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="attribute-height">
+                  <h3>Height</h3>
+
+                  <p class="card-desc">
+                     Height dùng để đặt chiều cao cho một phần tử và thường gặp trong img, table hoặc iframe. Giống width, nên ưu tiên dùng CSS để quản lý chiều cao trong dự án thực tế.
+                     <br />
+                     <strong>Ví dụ:</strong> Một ảnh sản phẩm có thể được đặt chiều cao cố định để các ảnh trong bảng hiển thị đều nhau.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;img src="anh.jpg" alt="Mô tả ảnh" height="240" /&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;!-- Thuộc tính HTML --&gt;
+&lt;img
+  src="../images/product.jpg"
+  alt="Ảnh sản phẩm"
+  width="240"
+  height="240"
+/&gt;
+
+&lt;!-- CSS giúp kiểm soát cách ảnh được cắt --&gt;
+&lt;img
+  src="../images/product.jpg"
+  alt="Ảnh sản phẩm"
+  style="width: 240px; height: 240px; object-fit: cover;"
+/&gt;</code></pre>
+                  </div>
+               </article>
+            </section>
+
+            <section class="html-group">
+               <span>Nhóm 8</span>
+               <h2>Semantic HTML5 chi tiết</h2>
+
+               <article class="html-card" id="semantic-header">
+                  <h3>Header</h3>
+
+                  <p class="card-desc">
+                     Header là phần đầu của trang web hoặc phần đầu của một khu vực nội dung. Header thường chứa logo, tiêu đề, mô tả ngắn, menu hoặc thông tin giới thiệu.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong website lưu kiến thức code, phần đầu trang HTML có thể dùng header để chứa tiêu đề “HTML Knowledge” và mô tả “Kiến thức HTML được chia theo từng nhóm”.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;header&gt;
+  Nội dung phần đầu trang hoặc khu vực
+&lt;/header&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;header&gt;
+  &lt;h1&gt;HTML Knowledge&lt;/h1&gt;
+  &lt;p&gt;Kiến thức HTML được chia theo từng nhóm.&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;article&gt;
+  &lt;header&gt;
+    &lt;h2&gt;Semantic HTML5&lt;/h2&gt;
+    &lt;p&gt;Cập nhật ngày 14/07/2026&lt;/p&gt;
+  &lt;/header&gt;
+&lt;/article&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="semantic-nav">
+                  <h3>Nav</h3>
+
+                  <p class="card-desc">
+                     Nav dùng để chứa các liên kết điều hướng chính. Nav thường dùng cho menu trang web, sidebar, menu trong header hoặc danh sách mục lục.
+                     <br />
+                     <strong>Ví dụ:</strong> Sidebar bên trái của trang HTML có thể dùng nav để chứa các link như Cấu trúc HTML, Table, Form và Semantic HTML5.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;nav&gt;
+  Các liên kết điều hướng chính
+&lt;/nav&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;nav aria-label="Mục lục HTML"&gt;
+  &lt;a href="#basic-html"&gt;Cấu trúc HTML&lt;/a&gt;
+  &lt;a href="#table"&gt;Table&lt;/a&gt;
+  &lt;a href="#form"&gt;Form&lt;/a&gt;
+  &lt;a href="#semantic-html5"&gt;Semantic HTML5&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="semantic-main">
+                  <h3>Main</h3>
+
+                  <p class="card-desc">
+                     Main là phần nội dung chính của trang web. Mỗi trang chỉ nên có một main chính và nội dung trong đó nên là phần quan trọng nhất mà người dùng cần đọc.
+                     <br />
+                     <strong>Ví dụ:</strong> Trong trang HTML, toàn bộ phần giải thích kiến thức, ví dụ và các nhóm bài học nên nằm trong main.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;main&gt;
+  Nội dung chính của trang
+&lt;/main&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;body&gt;
+  &lt;header&gt;Tiêu đề trang&lt;/header&gt;
+  &lt;nav&gt;Điều hướng chính&lt;/nav&gt;
+
+  &lt;main&gt;
+    &lt;h1&gt;HTML Knowledge&lt;/h1&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Cấu trúc HTML cơ bản&lt;/h2&gt;
+      &lt;p&gt;Nội dung bài học...&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;Thông tin cuối trang&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="semantic-section">
+                  <h3>Section</h3>
+
+                  <p class="card-desc">
+                     Section dùng để chia nội dung thành từng khu vực có chủ đề riêng. Mỗi section thường nên có một tiêu đề để thể hiện nội dung chính của khu vực đó.
+                     <br />
+                     <strong>Ví dụ:</strong> Các nhóm “Cấu trúc HTML cơ bản”, “Table”, “Form” và “Semantic HTML5” có thể được đặt trong từng section riêng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;section&gt;
+  &lt;h2&gt;Tiêu đề khu vực&lt;/h2&gt;
+  Nội dung cùng chủ đề
+&lt;/section&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;main&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Cấu trúc HTML cơ bản&lt;/h2&gt;
+    &lt;p&gt;DOCTYPE, html, head, body...&lt;/p&gt;
+  &lt;/section&gt;
+
+  &lt;section&gt;
+    &lt;h2&gt;Table&lt;/h2&gt;
+    &lt;p&gt;Table, thead, tbody, tfoot...&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="semantic-article">
+                  <h3>Article</h3>
+
+                  <p class="card-desc">
+                     Article dùng cho một nội dung độc lập, có thể tách ra đọc riêng mà vẫn hiểu được. Article thường dùng cho bài viết, thẻ sản phẩm, bài blog, tin tức hoặc từng mục kiến thức.
+                     <br />
+                     <strong>Ví dụ:</strong> Mỗi mục kiến thức như “DOCTYPE”, “Heading”, “Table” hoặc “Form” có thể là một article riêng vì có tiêu đề, giải thích và ví dụ riêng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;article&gt;
+  &lt;h2&gt;Tiêu đề nội dung độc lập&lt;/h2&gt;
+  Nội dung article
+&lt;/article&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;article id="doctype"&gt;
+  &lt;h2&gt;DOCTYPE&lt;/h2&gt;
+  &lt;p&gt;
+    DOCTYPE khai báo loại tài liệu để trình duyệt xử lý trang HTML đúng cách.
+  &lt;/p&gt;
+  &lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/article&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="semantic-figure">
+                  <h3>Figure</h3>
+
+                  <p class="card-desc">
+                     Figure dùng để bọc nội dung minh họa như hình ảnh, sơ đồ, biểu đồ hoặc đoạn code có chú thích. Figure giúp trình duyệt và người đọc hiểu đây là một nội dung minh họa riêng biệt.
+                     <br />
+                     <strong>Ví dụ:</strong> Một hình ảnh minh họa cấu trúc HTML hoặc sơ đồ layout semantic có thể được đặt trong figure.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;figure&gt;
+  Nội dung minh họa
+  &lt;figcaption&gt;Chú thích&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;figure&gt;
+  &lt;img
+    src="../images/semantic-layout.png"
+    alt="Sơ đồ bố cục semantic HTML5"
+  /&gt;
+  &lt;figcaption&gt;Sơ đồ bố cục semantic của một trang HTML5.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="semantic-figcaption">
+                  <h3>Figcaption</h3>
+
+                  <p class="card-desc">
+                     Figcaption dùng để viết chú thích cho nội dung nằm trong figure. Figcaption thường đi kèm với ảnh, sơ đồ, biểu đồ hoặc ví dụ minh họa và có thể đặt ở đầu hoặc cuối figure.
+                     <br />
+                     <strong>Ví dụ:</strong> Bên dưới ảnh mô tả layout HTML5, có thể dùng figcaption để ghi “Cấu trúc semantic HTML5 gồm header, nav, main, section và article”.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cú pháp</div>
+                     <pre><code>&lt;figure&gt;
+  Nội dung minh họa
+  &lt;figcaption&gt;Nội dung chú thích&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ</div>
+                     <pre><code>&lt;figure&gt;
+  &lt;img
+    src="../images/html5-layout.png"
+    alt="Layout HTML5"
+  /&gt;
+  &lt;figcaption&gt;
+    Cấu trúc semantic HTML5 gồm header, nav, main, section và article.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                  </div>
+               </article>
+            </section>
+
+            <section class="html-group">
+               <span>Nhóm 9</span>
+               <h2>Thực hành HTML</h2>
+
+               <article class="html-card" id="practice-personal-page">
+                  <h3>Trang giới thiệu cá nhân</h3>
+
+                  <p class="card-desc">
+                     Bài thực hành này dùng để luyện cấu trúc HTML cơ bản, tiêu đề, đoạn văn, hình ảnh, liên kết và danh sách. Đây là bài phù hợp sau khi đã học các thẻ cơ bản.
+                     <br />
+                     <strong>Ví dụ:</strong> Một trang giới thiệu cá nhân có thể gồm tên, ảnh đại diện, mô tả bản thân, kỹ năng, sở thích và link GitHub hoặc Facebook.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cấu trúc</div>
+                     <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+  &lt;head&gt;...&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Tên của bạn&lt;/h1&gt;
+    &lt;img src="avatar.jpg" alt="Ảnh đại diện" /&gt;
+    &lt;p&gt;Giới thiệu bản thân...&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ hoàn chỉnh</div>
+                     <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Nguyễn Văn A - Front-End Developer&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Nguyễn Văn A&lt;/h1&gt;
+      &lt;p&gt;Front-End Developer&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+      &lt;img src="./images/avatar.jpg" alt="Ảnh đại diện Nguyễn Văn A" width="200" /&gt;
+
+      &lt;section&gt;
+        &lt;h2&gt;Giới thiệu&lt;/h2&gt;
+        &lt;p&gt;Tôi đang học HTML, CSS, JavaScript và ReactJS.&lt;/p&gt;
+      &lt;/section&gt;
+
+      &lt;section&gt;
+        &lt;h2&gt;Kỹ năng&lt;/h2&gt;
+        &lt;ul&gt;
+          &lt;li&gt;HTML&lt;/li&gt;
+          &lt;li&gt;CSS&lt;/li&gt;
+          &lt;li&gt;JavaScript&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+
+      &lt;section&gt;
+        &lt;h2&gt;Sở thích&lt;/h2&gt;
+        &lt;ol&gt;
+          &lt;li&gt;Đọc sách&lt;/li&gt;
+          &lt;li&gt;Nghe nhạc&lt;/li&gt;
+          &lt;li&gt;Viết code&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+      &lt;a href="https://github.com/username" target="_blank" rel="noopener noreferrer"&gt;
+        GitHub của tôi
+      &lt;/a&gt;
+    &lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="practice-internal-menu">
+                  <h3>Menu điều hướng nội bộ</h3>
+
+                  <p class="card-desc">
+                     Bài thực hành này dùng để luyện link nội bộ bằng id. Khi click vào menu, trang sẽ tự cuộn đến đúng phần nội dung tương ứng.
+                     <br />
+                     <strong>Ví dụ:</strong> Sidebar bên trái có các mục “Giới thiệu”, “Kỹ năng”, “Dự án” và “Liên hệ”. Khi click vào “Kỹ năng”, trang cuộn xuống phần kỹ năng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cấu trúc</div>
+                     <pre><code>&lt;nav&gt;
+  &lt;a href="#gioi-thieu"&gt;Giới thiệu&lt;/a&gt;
+  &lt;a href="#ky-nang"&gt;Kỹ năng&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;section id="gioi-thieu"&gt;...&lt;/section&gt;
+&lt;section id="ky-nang"&gt;...&lt;/section&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ hoàn chỉnh</div>
+                     <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;title&gt;Portfolio cá nhân&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;aside&gt;
+      &lt;nav aria-label="Mục lục portfolio"&gt;
+        &lt;a href="#gioi-thieu"&gt;Giới thiệu&lt;/a&gt;
+        &lt;a href="#ky-nang"&gt;Kỹ năng&lt;/a&gt;
+        &lt;a href="#du-an"&gt;Dự án&lt;/a&gt;
+        &lt;a href="#lien-he"&gt;Liên hệ&lt;/a&gt;
+      &lt;/nav&gt;
+    &lt;/aside&gt;
+
+    &lt;main&gt;
+      &lt;section id="gioi-thieu"&gt;
+        &lt;h2&gt;Giới thiệu&lt;/h2&gt;
+        &lt;p&gt;Tôi là một Front-End Developer.&lt;/p&gt;
+      &lt;/section&gt;
+
+      &lt;section id="ky-nang"&gt;
+        &lt;h2&gt;Kỹ năng&lt;/h2&gt;
+        &lt;p&gt;HTML, CSS, JavaScript và ReactJS.&lt;/p&gt;
+      &lt;/section&gt;
+
+      &lt;section id="du-an"&gt;
+        &lt;h2&gt;Dự án&lt;/h2&gt;
+        &lt;p&gt;Website Code Knowledge.&lt;/p&gt;
+      &lt;/section&gt;
+
+      &lt;section id="lien-he"&gt;
+        &lt;h2&gt;Liên hệ&lt;/h2&gt;
+        &lt;a href="mailto:user@example.com"&gt;user@example.com&lt;/a&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="practice-product-table">
+                  <h3>Bảng sản phẩm</h3>
+
+                  <p class="card-desc">
+                     Bài thực hành này dùng để luyện table, tr, th, td, colspan, rowspan, hình ảnh trong bảng và dòng tổng cộng. Đây là bài tổng hợp tốt cho phần table.
+                     <br />
+                     <strong>Ví dụ:</strong> Một bảng giỏ hàng có thể gồm hình ảnh sản phẩm, tên sản phẩm, số lượng, đơn giá, thành tiền và tổng cộng.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cấu trúc</div>
+                     <pre><code>&lt;table&gt;
+  &lt;thead&gt;...&lt;/thead&gt;
+  &lt;tbody&gt;...&lt;/tbody&gt;
+  &lt;tfoot&gt;...&lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ hoàn chỉnh</div>
+                     <pre><code>&lt;table border="1" cellspacing="0" cellpadding="8"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th rowspan="2"&gt;Hình ảnh&lt;/th&gt;
+      &lt;th rowspan="2"&gt;Tên sản phẩm&lt;/th&gt;
+      &lt;th colspan="3"&gt;Thông tin mua hàng&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Số lượng&lt;/th&gt;
+      &lt;th&gt;Đơn giá&lt;/th&gt;
+      &lt;th&gt;Thành tiền&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;img src="./images/ao-thun.jpg" alt="Áo thun Front-End" width="80" /&gt;
+      &lt;/td&gt;
+      &lt;td&gt;Áo thun Front-End&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;150.000đ&lt;/td&gt;
+      &lt;td&gt;300.000đ&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;
+        &lt;img src="./images/mu-luoi-trai.jpg" alt="Mũ lưỡi trai" width="80" /&gt;
+      &lt;/td&gt;
+      &lt;td&gt;Mũ lưỡi trai&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;120.000đ&lt;/td&gt;
+      &lt;td&gt;120.000đ&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;th colspan="4"&gt;Tổng cộng&lt;/th&gt;
+      &lt;td&gt;420.000đ&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="practice-registration-form">
+                  <h3>Form đăng ký</h3>
+
+                  <p class="card-desc">
+                     Bài thực hành này dùng để luyện form, input, label, select, option, textarea, button và các thuộc tính như name, placeholder, required, value.
+                     <br />
+                     <strong>Ví dụ:</strong> Một form đăng ký tài khoản có thể gồm họ tên, email, mật khẩu, tuổi, giới tính, tỉnh thành, kỹ năng, ảnh đại diện và nút đăng ký.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cấu trúc</div>
+                     <pre><code>&lt;form action="/register" method="post" enctype="multipart/form-data"&gt;
+  Các trường đăng ký
+  &lt;button type="submit"&gt;Đăng ký&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ hoàn chỉnh</div>
+                     <pre><code>&lt;form action="/register" method="post" enctype="multipart/form-data"&gt;
+  &lt;div&gt;
+    &lt;label for="full-name"&gt;Họ và tên&lt;/label&gt;
+    &lt;input id="full-name" name="fullName" type="text" placeholder="Nhập họ và tên" required /&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input id="email" name="email" type="email" required /&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;label for="password"&gt;Mật khẩu&lt;/label&gt;
+    &lt;input id="password" name="password" type="password" minlength="8" required /&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;label for="age"&gt;Tuổi&lt;/label&gt;
+    &lt;input id="age" name="age" type="number" min="18" max="60" /&gt;
+  &lt;/div&gt;
+
+  &lt;fieldset&gt;
+    &lt;legend&gt;Giới tính&lt;/legend&gt;
+    &lt;label&gt;&lt;input name="gender" type="radio" value="male" checked /&gt; Nam&lt;/label&gt;
+    &lt;label&gt;&lt;input name="gender" type="radio" value="female" /&gt; Nữ&lt;/label&gt;
+    &lt;label&gt;&lt;input name="gender" type="radio" value="other" /&gt; Khác&lt;/label&gt;
+  &lt;/fieldset&gt;
+
+  &lt;div&gt;
+    &lt;label for="city"&gt;Tỉnh/thành phố&lt;/label&gt;
+    &lt;select id="city" name="city" required&gt;
+      &lt;option value=""&gt;-- Chọn tỉnh/thành phố --&lt;/option&gt;
+      &lt;option value="ha-noi"&gt;Hà Nội&lt;/option&gt;
+      &lt;option value="da-nang"&gt;Đà Nẵng&lt;/option&gt;
+      &lt;option value="ho-chi-minh"&gt;Hồ Chí Minh&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;fieldset&gt;
+    &lt;legend&gt;Kỹ năng&lt;/legend&gt;
+    &lt;label&gt;&lt;input name="skills" type="checkbox" value="html" /&gt; HTML&lt;/label&gt;
+    &lt;label&gt;&lt;input name="skills" type="checkbox" value="css" /&gt; CSS&lt;/label&gt;
+    &lt;label&gt;&lt;input name="skills" type="checkbox" value="javascript" /&gt; JavaScript&lt;/label&gt;
+  &lt;/fieldset&gt;
+
+  &lt;div&gt;
+    &lt;label for="avatar"&gt;Ảnh đại diện&lt;/label&gt;
+    &lt;input id="avatar" name="avatar" type="file" accept="image/*" /&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;label for="bio"&gt;Giới thiệu ngắn&lt;/label&gt;
+    &lt;textarea id="bio" name="bio" rows="4"&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;button type="submit"&gt;Đăng ký&lt;/button&gt;
+  &lt;button type="reset"&gt;Nhập lại&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="practice-html5-layout">
+                  <h3>Layout HTML5 cơ bản</h3>
+
+                  <p class="card-desc">
+                     Bài thực hành này dùng để luyện các thẻ semantic HTML5 như header, nav, main, section, article, figure và figcaption. Mục tiêu là biết cách chia bố cục trang web có ý nghĩa rõ ràng.
+                     <br />
+                     <strong>Ví dụ:</strong> Một layout cơ bản có thể gồm header ở trên cùng, nav chứa menu, main chứa nội dung chính, nhiều section bên trong main và các article cho từng bài viết hoặc sản phẩm.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cấu trúc</div>
+                     <pre><code>&lt;body&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;article&gt;...&lt;/article&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ hoàn chỉnh</div>
+                     <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Blog Front-End&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Blog Front-End&lt;/h1&gt;
+      &lt;p&gt;Chia sẻ kiến thức lập trình web.&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;nav aria-label="Điều hướng chính"&gt;
+      &lt;a href="#html"&gt;HTML&lt;/a&gt;
+      &lt;a href="#css"&gt;CSS&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;main&gt;
+      &lt;section id="html"&gt;
+        &lt;h2&gt;Kiến thức HTML&lt;/h2&gt;
+
+        &lt;article&gt;
+          &lt;h3&gt;Semantic HTML5&lt;/h3&gt;
+          &lt;figure&gt;
+            &lt;img src="./images/semantic-html5.png" alt="Sơ đồ Semantic HTML5" /&gt;
+            &lt;figcaption&gt;Cấu trúc một trang web semantic.&lt;/figcaption&gt;
+          &lt;/figure&gt;
+          &lt;p&gt;Semantic HTML giúp cấu trúc trang rõ ràng hơn.&lt;/p&gt;
+        &lt;/article&gt;
+      &lt;/section&gt;
+
+      &lt;section id="css"&gt;
+        &lt;h2&gt;Kiến thức CSS&lt;/h2&gt;
+        &lt;article&gt;
+          &lt;h3&gt;CSS Layout&lt;/h3&gt;
+          &lt;p&gt;Flexbox và Grid giúp xây dựng bố cục.&lt;/p&gt;
+        &lt;/article&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+      &lt;p&gt;&amp;copy; 2026 Blog Front-End&lt;/p&gt;
+    &lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  </div>
+               </article>
+
+               <article class="html-card" id="practice-html-knowledge-page">
+                  <h3>Trang lưu kiến thức HTML</h3>
+
+                  <p class="card-desc">
+                     Bài thực hành này là bài tổng hợp toàn bộ kiến thức HTML đã học. Trang có sidebar bên trái chứa danh sách tiêu đề, còn nội dung bên phải chứa từng nhóm kiến thức với phần giải thích và ví dụ.
+                     <br />
+                     <strong>Ví dụ:</strong> Trang HTML trong website Code Knowledge có thể chia thành các nhóm: cấu trúc HTML, văn bản và block, inline/link/image/path, table, form, input types, thuộc tính HTML, semantic HTML5 và thực hành.
+                  </p>
+
+                  <div class="code-box">
+                     <div class="code-title">Cấu trúc</div>
+                     <pre><code>&lt;main class="html-page"&gt;
+  &lt;aside&gt;
+    &lt;nav&gt;Danh sách kiến thức&lt;/nav&gt;
+  &lt;/aside&gt;
+
+  &lt;section class="html-content"&gt;
+    Các nhóm kiến thức
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+                  </div>
+
+                  <div class="code-box">
+                     <div class="code-title">Ví dụ hoàn chỉnh</div>
+                     <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;HTML Knowledge&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../css/style.css" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;main class="html-page"&gt;
+      &lt;aside class="html-sidebar"&gt;
+        &lt;a href="../index.html"&gt;Trang chủ&lt;/a&gt;
+        &lt;h2&gt;HTML&lt;/h2&gt;
+
+        &lt;nav aria-label="Mục lục HTML"&gt;
+          &lt;a href="#basic-html"&gt;Cấu trúc HTML&lt;/a&gt;
+          &lt;a href="#table-group"&gt;Table&lt;/a&gt;
+          &lt;a href="#form-group"&gt;Form&lt;/a&gt;
+          &lt;a href="#practice-group"&gt;Thực hành&lt;/a&gt;
+        &lt;/nav&gt;
+      &lt;/aside&gt;
+
+      &lt;section class="html-content"&gt;
+        &lt;section class="html-group" id="basic-html"&gt;
+          &lt;h2&gt;Cấu trúc HTML cơ bản&lt;/h2&gt;
+          &lt;article class="html-card"&gt;
+            &lt;h3&gt;DOCTYPE&lt;/h3&gt;
+            &lt;p&gt;DOCTYPE khai báo loại tài liệu HTML.&lt;/p&gt;
+          &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;section class="html-group" id="table-group"&gt;
+          &lt;h2&gt;Table&lt;/h2&gt;
+          &lt;article class="html-card"&gt;
+            &lt;h3&gt;Table&lt;/h3&gt;
+            &lt;p&gt;Table dùng để hiển thị dữ liệu dạng hàng và cột.&lt;/p&gt;
+          &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;section class="html-group" id="form-group"&gt;
+          &lt;h2&gt;Form&lt;/h2&gt;
+          &lt;article class="html-card"&gt;
+            &lt;h3&gt;Form&lt;/h3&gt;
+            &lt;p&gt;Form dùng để thu thập dữ liệu người dùng.&lt;/p&gt;
+          &lt;/article&gt;
+        &lt;/section&gt;
+
+        &lt;section class="html-group" id="practice-group"&gt;
+          &lt;h2&gt;Thực hành HTML&lt;/h2&gt;
+          &lt;article class="html-card"&gt;
+            &lt;h3&gt;Trang giới thiệu cá nhân&lt;/h3&gt;
+            &lt;p&gt;Bài thực hành tổng hợp kiến thức HTML cơ bản.&lt;/p&gt;
+          &lt;/article&gt;
+        &lt;/section&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  </div>
+               </article>
+            </section>
+         </section>
+      </main>
+   </body>
+</html>

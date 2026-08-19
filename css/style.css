@@ -1,0 +1,277 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   font-family: Arial, sans-serif;
+   background: #f4f6fb;
+   color: #1f2937;
+}
+
+.home {
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 24px;
+}
+
+.hero {
+   width: 100%;
+   max-width: 900px;
+   text-align: center;
+   background: #ffffff;
+   padding: 60px 40px;
+   border-radius: 24px;
+   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+.hero h1 {
+   font-size: 48px;
+   margin-bottom: 16px;
+   color: #111827;
+}
+
+.hero p {
+   font-size: 18px;
+   margin-bottom: 40px;
+   color: #6b7280;
+}
+
+.topic-list {
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 16px;
+}
+
+.topic-btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 90px;
+   text-decoration: none;
+   color: #ffffff;
+   font-size: 20px;
+   font-weight: 700;
+   border-radius: 18px;
+   transition: 0.25s;
+}
+
+.topic-btn:hover {
+   transform: translateY(-6px);
+   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+.topic-btn.html {
+   background: #e34f26;
+}
+
+.topic-btn.css {
+   background: #1572b6;
+}
+
+.topic-btn.js {
+   background: #f7df1e;
+   color: #111827;
+}
+
+.topic-btn.react {
+   background: #61dafb;
+   color: #111827;
+}
+
+.topic-btn.next {
+   background: #111827;
+}
+
+@media (max-width: 768px) {
+   .hero {
+      padding: 40px 24px;
+   }
+
+   .hero h1 {
+      font-size: 36px;
+   }
+
+   .topic-list {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+@media (max-width: 480px) {
+   .topic-list {
+      grid-template-columns: 1fr;
+   }
+}
+/* HTML */
+html {
+   scroll-behavior: smooth;
+}
+
+.html-page {
+   min-height: 100vh;
+   display: grid;
+   grid-template-columns: 280px 1fr;
+   background: #f4f6fb;
+}
+
+.html-sidebar {
+   position: sticky;
+   top: 0;
+   height: 100vh;
+   overflow-y: auto;
+   padding: 32px 24px;
+   background: #ffffff;
+   border-right: 1px solid #e5e7eb;
+}
+
+.html-sidebar h2 {
+   margin-bottom: 24px;
+   font-size: 32px;
+   color: #e34f26;
+}
+
+.html-menu {
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+}
+
+.html-menu-group {
+   display: flex;
+   min-width: 0;
+   flex-direction: column;
+   gap: 6px;
+}
+
+.html-menu-title {
+   margin: 0 0 4px;
+   color: #e34f26;
+   font-size: 18px;
+   font-weight: 800;
+   line-height: 1.4;
+}
+
+.html-menu a {
+   padding: 12px 14px;
+   border-radius: 12px;
+   text-decoration: none;
+   color: #374151;
+   font-size: 16px;
+   font-weight: 700;
+   transition: 0.2s;
+}
+
+.html-menu a:hover {
+   background: #fff1ed;
+   color: #e34f26;
+}
+
+.html-content {
+   padding: 40px;
+}
+
+.html-group {
+   max-width: 900px;
+}
+
+.html-group + .html-group {
+   margin-top: 56px;
+}
+
+.html-group > span {
+   color: #e34f26;
+   font-weight: 700;
+}
+
+.html-group > h2 {
+   margin: 8px 0 24px;
+   font-size: 32px;
+   color: #111827;
+}
+
+.html-card {
+   scroll-margin-top: 32px;
+   margin-bottom: 24px;
+   padding: 28px;
+   background: #ffffff;
+   border-radius: 18px;
+   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+.html-card h3 {
+   margin-bottom: 16px;
+   font-size: 26px;
+   color: #111827;
+}
+
+@media (max-width: 768px) {
+   .html-page {
+      grid-template-columns: 1fr;
+   }
+
+   .html-sidebar {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid #e5e7eb;
+   }
+
+   .html-menu {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 16px;
+   }
+
+   .html-content {
+      padding: 28px 16px;
+   }
+}
+
+@media (max-width: 480px) {
+   .html-menu {
+      grid-template-columns: 1fr;
+   }
+}
+
+.card-desc {
+   margin-bottom: 18px;
+   color: #4b5563;
+   font-size: 16px;
+   line-height: 1.7;
+}
+
+.code-box {
+   margin-top: 16px;
+   overflow: hidden;
+   border-radius: 14px;
+   background: #111827;
+   border: 1px solid #1f2937;
+}
+
+.code-title {
+   display: flex;
+   align-items: center;
+   min-height: 42px;
+   padding: 10px 18px;
+   background: #1f2937;
+   color: #f9fafb;
+   font-size: 14px;
+   font-weight: 700;
+   line-height: 1.4;
+}
+
+.code-box pre {
+   margin: 0;
+   padding: 18px;
+   overflow-x: auto;
+}
+
+.code-box code {
+   color: #e5e7eb;
+   font-size: 15px;
+   line-height: 1.6;
+   font-family: Consolas, Monaco, "Courier New", monospace;
+}

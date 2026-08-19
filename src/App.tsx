@@ -1,0 +1,83 @@
+import { useEffect, useState } from "react";
+import HomePage from "./pages/HomePage";
+import HtmlKnowledgePage from "./pages/HtmlKnowledgePage";
+import CssKnowledgePage from "./pages/CssKnowledgePage";
+import JsKnowledgePage from "./pages/JsKnowledgePage";
+import ReactKnowledgePage from "./pages/ReactKnowledgePage";
+import TopicPlaceholder from "./pages/TopicPlaceholder";
+import type { Navigate, Page } from "./types/navigation";
+
+const pageTitles: Record<Page, string> = {
+  home: "Code Knowledge",
+  html: "HTML Knowledge",
+  css: "CSS Knowledge",
+  js: "JavaScript Knowledge",
+  react: "ReactJS Knowledge",
+  next: "NextJS Knowledge",
+};
+
+function isPage(value: string | null): value is Page {
+  return value !== null && Object.prototype.hasOwnProperty.call(pageTitles, value);
+}
+
+function readPageFromUrl(): Page {
+  const page = new URLSearchParams(window.location.search).get("page");
+  return isPage(page) ? page : "home";
+}
+
+export default function App() {
+  const [page, setPage] = useState<Page>(readPageFromUrl);
+
+  useEffect(() => {
+    const handlePopState = () => setPage(readPageFromUrl());
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  useEffect(() => {
+    document.title = pageTitles[page];
+  }, [page]);
+
+  const navigate: Navigate = (nextPage) => {
+    const url = new URL(window.location.href);
+
+    url.hash = "";
+    if (nextPage === "home") {
+      url.searchParams.delete("page");
+    } else {
+      url.searchParams.set("page", nextPage);
+    }
+
+    window.history.pushState({}, "", `${url.pathname}${url.search}`);
+    setPage(nextPage);
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
+  if (page === "home") {
+    return <HomePage onNavigate={navigate} />;
+  }
+
+  if (page === "html") {
+    return <HtmlKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "css") {
+    return <CssKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "js") {
+    return <JsKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "react") {
+    return <ReactKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  return (
+    <TopicPlaceholder
+      topic={pageTitles[page].replace(" Knowledge", "")}
+      onBack={() => navigate("home")}
+    />
+  );
+}
