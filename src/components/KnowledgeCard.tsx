@@ -25,6 +25,8 @@ export default function KnowledgeCard({ card }: KnowledgeCardProps) {
           key={`${card.id}-${index}`}
           title={block.title}
           code={block.code}
+          codeTsx={block.codeTsx}
+          preview={block.preview}
         />
       ))}
     </article>

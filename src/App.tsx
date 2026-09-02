@@ -3,7 +3,19 @@ import HomePage from "./pages/HomePage";
 import HtmlKnowledgePage from "./pages/HtmlKnowledgePage";
 import CssKnowledgePage from "./pages/CssKnowledgePage";
 import JsKnowledgePage from "./pages/JsKnowledgePage";
+import TsKnowledgePage from "./pages/TsKnowledgePage";
 import ReactKnowledgePage from "./pages/ReactKnowledgePage";
+import NextKnowledgePage from "./pages/NextKnowledgePage";
+import NodeKnowledgePage from "./pages/NodeKnowledgePage";
+import NestKnowledgePage from "./pages/NestKnowledgePage";
+import GoKnowledgePage from "./pages/GoKnowledgePage";
+import PythonKnowledgePage from "./pages/PythonKnowledgePage";
+import ScssKnowledgePage from "./pages/ScssKnowledgePage";
+import TailwindKnowledgePage from "./pages/TailwindKnowledgePage";
+import DbKnowledgePage from "./pages/DbKnowledgePage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ExercisesPage from "./pages/ExercisesPage";
+import NotesPage from "./pages/NotesPage";
 import TopicPlaceholder from "./pages/TopicPlaceholder";
 import type { Navigate, Page } from "./types/navigation";
 
@@ -12,8 +24,19 @@ const pageTitles: Record<Page, string> = {
   html: "HTML Knowledge",
   css: "CSS Knowledge",
   js: "JavaScript Knowledge",
+  ts: "TypeScript Knowledge",
   react: "ReactJS Knowledge",
   next: "NextJS Knowledge",
+  node: "Node.js Knowledge",
+  nest: "NestJS Knowledge",
+  go: "Go Knowledge",
+  python: "Python Knowledge",
+  scss: "SCSS Knowledge",
+  tailwind: "Tailwind CSS Knowledge",
+  database: "Database Knowledge",
+  projects: "Dự án Thực tế",
+  exercises: "Bài tập Thực hành",
+  notes: "Sổ Tay Ghi Chú",
 };
 
 function isPage(value: string | null): value is Page {
@@ -70,13 +93,61 @@ export default function App() {
     return <JsKnowledgePage onBack={() => navigate("home")} />;
   }
 
+  if (page === "ts") {
+    return <TsKnowledgePage onBack={() => navigate("home")} />;
+  }
+
   if (page === "react") {
     return <ReactKnowledgePage onBack={() => navigate("home")} />;
   }
 
+  if (page === "next") {
+    return <NextKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "node") {
+    return <NodeKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "nest") {
+    return <NestKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "go") {
+    return <GoKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "python") {
+    return <PythonKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "scss") {
+    return <ScssKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "tailwind") {
+    return <TailwindKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "database") {
+    return <DbKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "projects") {
+    return <ProjectsPage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "exercises") {
+    return <ExercisesPage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "notes") {
+    return <NotesPage onBack={() => navigate("home")} />;
+  }
+
   return (
     <TopicPlaceholder
-      topic={pageTitles[page].replace(" Knowledge", "")}
+      topic={(pageTitles[page as Page] || "").replace(" Knowledge", "")}
       onBack={() => navigate("home")}
     />
   );

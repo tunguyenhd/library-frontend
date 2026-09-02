@@ -1,6 +1,8 @@
 export interface CodeBlock {
   title: string;
   code: string;
+  codeTsx?: string;
+  preview?: string;
 }
 
 export interface KnowledgeCard {

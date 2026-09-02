@@ -13,9 +13,20 @@ interface HomePageProps {
 const topics: Topic[] = [
   { slug: "html", label: "HTML", className: "html" },
   { slug: "css", label: "CSS", className: "css" },
+  { slug: "scss", label: "SCSS", className: "scss" },
+  { slug: "tailwind", label: "Tailwind", className: "tailwind" },
   { slug: "js", label: "JavaScript", className: "js" },
+  { slug: "ts", label: "TypeScript", className: "ts" },
   { slug: "react", label: "ReactJS", className: "react" },
   { slug: "next", label: "NextJS", className: "next" },
+  { slug: "node", label: "Node.js", className: "node" },
+  { slug: "nest", label: "NestJS", className: "nest" },
+  { slug: "go", label: "Go", className: "go" },
+  { slug: "python", label: "Python", className: "python" },
+  { slug: "database", label: "Database", className: "database" },
+  { slug: "exercises", label: "Bài tập", className: "exercises" },
+  { slug: "projects", label: "Dự án", className: "projects" },
+  { slug: "notes", label: "Sổ tay", className: "notes" },
 ];
 
 export default function HomePage({ onNavigate }: HomePageProps) {
