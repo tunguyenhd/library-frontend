@@ -227,14 +227,44 @@ body {
 }
 
 @media (max-width: 600px) {
+   .home {
+      padding: 16px;
+   }
+
+   .hero {
+      padding: 32px 16px;
+      border-radius: 18px;
+   }
+
+   .hero h1 {
+      font-size: 28px;
+   }
+
+   .hero p {
+      font-size: 15px;
+      margin-bottom: 24px;
+   }
+
    .topic-list {
       grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+   }
+
+   .topic-btn {
+      min-height: 70px;
+      font-size: 16px;
+      border-radius: 14px;
    }
 }
 
-@media (max-width: 480px) {
-   .topic-list {
-      grid-template-columns: 1fr;
+@media (max-width: 380px) {
+   .hero h1 {
+      font-size: 24px;
+   }
+
+   .topic-btn {
+      min-height: 60px;
+      font-size: 14px;
    }
 }
 
@@ -456,29 +486,159 @@ html {
    color: var(--text-primary);
 }
 
+/* ─── Mobile Sidebar Drawer ─── */
+.sidebar-mobile-toggle {
+   display: none;
+   position: fixed;
+   top: 16px;
+   left: 16px;
+   z-index: 1000;
+   width: 44px;
+   height: 44px;
+   border-radius: 12px;
+   border: 1px solid var(--border-color);
+   background: var(--bg-card);
+   color: var(--text-primary);
+   font-size: 22px;
+   cursor: pointer;
+   align-items: center;
+   justify-content: center;
+   box-shadow: 0 4px 12px var(--shadow-card);
+   transition: all 0.2s;
+}
+
+.sidebar-mobile-close {
+   display: none;
+   background: none;
+   border: none;
+   color: var(--text-muted);
+   font-size: 20px;
+   cursor: pointer;
+   padding: 4px 8px;
+   border-radius: 8px;
+   transition: all 0.2s;
+}
+
+.sidebar-mobile-close:hover {
+   background: var(--menu-hover-bg);
+   color: var(--text-primary);
+}
+
+.sidebar-overlay {
+   display: none;
+}
+
+.sidebar-header-actions {
+   display: flex;
+   align-items: center;
+   gap: 4px;
+}
+
 @media (max-width: 768px) {
    .html-page {
       grid-template-columns: 1fr;
    }
 
+   .sidebar-mobile-toggle {
+      display: flex;
+   }
+
+   .sidebar-mobile-close {
+      display: block;
+   }
+
    .html-sidebar {
-      position: static;
-      height: auto;
-      border-right: none;
-      border-bottom: 1px solid #e5e7eb;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      max-width: 85vw;
+      height: 100vh;
+      z-index: 2000;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      border-right: 1px solid var(--border-color);
+      box-shadow: none;
+   }
+
+   .html-sidebar.sidebar-open {
+      transform: translateX(0);
+      box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+   }
+
+   .sidebar-overlay {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 1999;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(2px);
    }
 
    .html-menu {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
    }
 
+   .html-content {
+      padding: 0 16px 24px 16px;
+   }
+
+   .content-search-wrapper {
+      padding-top: 72px;
+   }
+
+   .html-card {
+      padding: 20px;
+   }
+
+   .html-card h3 {
+      font-size: 20px;
+   }
+
+   .html-group > h2 {
+      font-size: 24px;
+   }
+
+   .code-box pre {
+      padding: 14px;
+   }
+
+   .code-box code {
+      font-size: 13px;
+   }
+
+   .theme-toggle {
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+   }
 }
 
 @media (max-width: 480px) {
-   .html-menu {
-      grid-template-columns: 1fr;
+   .html-content {
+      padding: 0 10px 20px 10px;
+   }
+
+   .html-card {
+      padding: 16px;
+      border-radius: 14px;
+   }
+
+   .html-card h3 {
+      font-size: 18px;
+   }
+
+   .code-box code {
+      font-size: 12px;
+   }
+
+   .code-title {
+      padding: 8px 12px;
+      font-size: 12px;
    }
 }
 
@@ -1060,6 +1220,31 @@ html {
    
    .exercises-sidebar, .notes-sidebar {
       position: static;
+   }
+
+   .knowledge-page {
+      padding: 24px 16px;
+   }
+
+   .projects-grid {
+      grid-template-columns: 1fr;
+   }
+
+   .course-tabs {
+      gap: 8px;
+   }
+
+   .course-tab {
+      padding: 10px 16px;
+      font-size: 15px;
+   }
+
+   .exercise-card {
+      padding: 20px;
+   }
+
+   .markdown-card {
+      padding: 24px 16px;
    }
 }
 

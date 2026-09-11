@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import type { KnowledgeGroup } from "../types/knowledge";
 
@@ -23,6 +23,7 @@ export default function Sidebar({
 }: SidebarProps) {
   const activeLinkRef = useRef<HTMLAnchorElement | null>(null);
   const sidebarRef = useRef<HTMLElement | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   // Determine which group the active card belongs to
   const activeGroupLabel = useMemo(() => {
@@ -57,65 +58,109 @@ export default function Sidebar({
     }
   }, [activeId]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
-    <aside className="html-sidebar" ref={sidebarRef}>
-      <div className="sidebar-header">
-        <div className="sidebar-header-top">
-          <a
-            href="./"
-            className="back-btn"
-            onClick={(event) => {
-              event.preventDefault();
-              onBack();
-            }}
-          >
-            ← Trang chủ
-          </a>
-          {themeToggle}
+    <>
+      {/* Mobile hamburger button */}
+      <button
+        className="sidebar-mobile-toggle"
+        onClick={() => setMobileOpen(true)}
+        aria-label="Mở menu"
+      >
+        ☰
+      </button>
+
+      {/* Overlay backdrop */}
+      {mobileOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      <aside
+        className={`html-sidebar${mobileOpen ? " sidebar-open" : ""}`}
+        ref={sidebarRef}
+      >
+        <div className="sidebar-header">
+          <div className="sidebar-header-top">
+            <a
+              href="./"
+              className="back-btn"
+              onClick={(event) => {
+                event.preventDefault();
+                onBack();
+              }}
+            >
+              ← Trang chủ
+            </a>
+            <div className="sidebar-header-actions">
+              {themeToggle}
+              <button
+                className="sidebar-mobile-close"
+                onClick={() => setMobileOpen(false)}
+                aria-label="Đóng menu"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <h2>{topic}</h2>
         </div>
 
-        <h2>{topic}</h2>
-      </div>
+        <nav
+          className="html-menu"
+          aria-label={`Mục lục kiến thức ${topic}`}
+        >
+          {groups.map((group, index) => {
+            const isGroupActive = activeGroupLabel === group.label;
 
-      <nav
-        className="html-menu"
-        aria-label={`Mục lục kiến thức ${topic}`}
-      >
-        {groups.map((group, index) => {
-          const isGroupActive = activeGroupLabel === group.label;
+            return (
+              <div
+                className={`html-menu-group${isGroupActive ? " menu-group-active" : ""}`}
+                key={`${group.label}-${index}`}
+              >
+                <h3 className="html-menu-title"># {group.title}</h3>
 
-          return (
-            <div
-              className={`html-menu-group${isGroupActive ? " menu-group-active" : ""}`}
-              key={`${group.label}-${index}`}
-            >
-              <h3 className="html-menu-title"># {group.title}</h3>
-
-              {group.cards.map((card) => {
-                const isActive = activeId === card.id;
-                return (
-                  <a
-                    href={`#${card.id}`}
-                    key={card.id}
-                    ref={isActive ? activeLinkRef : null}
-                    className={isActive ? "menu-link-active" : ""}
-                    aria-current={isActive ? "location" : undefined}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.getElementById(card.id)?.scrollIntoView({
-                        behavior: "smooth",
-                      });
-                      history.replaceState(null, "", `#${card.id}`);
-                    }}
-                  >
-                    {card.title}
-                  </a>
-                );
-              })}
-            </div>
-          );
-        })}
-      </nav>
-    </aside>
+                {group.cards.map((card) => {
+                  const isActive = activeId === card.id;
+                  return (
+                    <a
+                      href={`#${card.id}`}
+                      key={card.id}
+                      ref={isActive ? activeLinkRef : null}
+                      className={isActive ? "menu-link-active" : ""}
+                      aria-current={isActive ? "location" : undefined}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById(card.id)?.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                        history.replaceState(null, "", `#${card.id}`);
+                        setMobileOpen(false);
+                      }}
+                    >
+                      {card.title}
+                    </a>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </nav>
+      </aside>
+    </>
   );
 }
