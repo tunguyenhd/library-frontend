@@ -26,7 +26,6 @@ const topics: Topic[] = [
   { slug: "database", label: "Database", className: "database" },
   { slug: "exercises", label: "Bài tập", className: "exercises" },
   { slug: "projects", label: "Dự án", className: "projects" },
-  { slug: "notes", label: "Sổ tay", className: "notes" },
 ];
 
 export default function HomePage({ onNavigate }: HomePageProps) {

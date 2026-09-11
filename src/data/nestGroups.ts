@@ -260,4 +260,18 @@ export const nestGroups: KnowledgeGroup[] = [
       ]
     }
   ]
-}];
+},
+  {
+    "label": "notes-nest",
+    "title": "Ghi Chú Từ Khóa Học",
+    "cards": [
+      {
+        "id": "fullstack-nodejs-08-hocnestjs-nestjs02-note-md",
+        "title": "📝 Auth & Permission System",
+        "description": "Logic xác thực. Authentication. - Lấy body: email, password",
+        "exampleText": "# Logic xác thực\r\n\r\n## Authentication\r\n\r\n- Lấy body: email, password\r\n- Tìm email có tồn tại trong bảng users không? --> Không tồn tại thông báo lỗi\r\n- Lấy password hash từ database\r\n- Verify password hash với password từ body --> Failed --> Thông báo lỗi\r\n- Lưu user_id hoặc email vào JWT (Dùng thư viện jsonwebtoken)\r\n- Trả về response token tương ứng\r\n  `\r\n\r\n## Authorization\r\n\r\n- Gửi request header: Authorization: Bearer token-can-gui\r\n- Server đọc header Authorization và cắt ra token\r\n- Kiểm tra token có nằm trong blacklist không? (Database, Redis)\r\n- Verify token (Dùng thư viện jsonwebtoken) --> Trả về được thông tin trong token (user_id hoặc email)\r\n- Dùng dữ liệu từ token để lấy thông tin trong database\r\n- Trả về response\r\n\r\n## Logout\r\n\r\n- Gửi request chứa token lên server\r\n- Verify token\r\n- Thêm token vào blacklist\r\n- Trả về response\r\n\r\n## Permission System\r\n\r\nNHÓM 1: Thiết lập quyền\r\n\r\n### Roles\r\n\r\nGET /roles --> Lấy danh sách roles\r\n\r\nPOST /roles --> Thêm role mới\r\nOptions: Thêm permission vào role, nếu permission không tồn tại tự động tạo permission mới\r\n\r\nPATCH /roles/{id} --> Sửa role\r\nOptions: Cập nhật lại dữ liệu bảng trung gian roles_permissions\r\n\r\nDELETE /roles/{id} --> Xóa role (Xóa dữ liệu cả bảng trung gian)\r\n\r\nPOST /roles/{id}/copy --> Copy role cũ sang role mới (Lưu ở bản nháp)\r\n\r\n### Users\r\n\r\nGET /users/{userId}/roles --> Danh sách roles theo userId\r\n\r\nPUT /users/{userId}/roles --> Cập nhật role cho 1 user\r\n\r\nDELETE /users/{userId}/roles --> Xóa tất cả roles của 1 user\r\n\r\nPUT /users/{userId}/permissions --> Thiết lập quyền riêng cho 1 user\r\n\r\nDELETE /users/{userId}/permissions --> Xóa hết quyền riêng của 1 user\r\n\r\nNHÓM 2: Kiểm tra quyền\r\n\r\n### Lấy tất cả permission của 1 user\r\n\r\n- Lấy permission của role được gán vào user\r\n- Lấy permission được gán vào trực tiếp vào user\r\n  ==> Lọc trùng\r\n\r\n## Vấn đề root khi phân quyền\r\n\r\n- Danh sách user --> Tạo 1 tài khoản root (Không xóa được)\r\n- Tạo role \"Super Admin\" --> Không thay đổi được\r\n\r\n## Tìm hiểu trước\r\n\r\n- Queue trong Back-End\r\n- Task Scheduler\r\n- Cronjob (Linux)\r\n- Concurrency\r\n",
+        "codeBlocks": []
+      }
+    ]
+  }
+];

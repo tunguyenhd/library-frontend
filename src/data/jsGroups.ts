@@ -3566,5 +3566,46 @@ export const jsGroups: KnowledgeGroup[] = [
         ]
       }
     ]
+  },
+  {
+    "label": "notes-js",
+    "title": "Ghi Chú Từ Khóa Học",
+    "cards": [
+      {
+        "id": "frontend-f8---offline-hocjs-bundler-note-md",
+        "title": "📝 Môi trường & Bundler",
+        "description": "Môi trường trong phát triển phần mềm. 1. Dev. - SERVER_API=http://localhost:3000",
+        "exampleText": "# Môi trường trong phát triển phần mềm\r\n\r\n1. Dev\r\n\r\n- SERVER_API=http://localhost:3000\r\n\r\n2. Test\r\n\r\n- SERVER_API=https://api.test.fullstack.edu.vn\r\n\r\n3. Production\r\n\r\n- SERVER_API=https://api.fullstack.edu.vn\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "frontend-f8---offline-hocjs-fetch-api-note-md",
+        "title": "📝 Fetch API & Authentication",
+        "description": "Call API:. -  fetch(). -  axios lib",
+        "exampleText": "Call API:\r\n\r\n-  fetch()\r\n-  axios lib\r\n-  xhr\r\n\r\n-> Phát sinh nhiều vấn đền\r\n\r\n-  Rối, khó bảo trì nâng cấp\r\n-  Cần thêm các tác vụ khác: thêm header, authetication, authorization -> Rối\r\n-  Giả sử: fetch() -> Không được phép sử dụng -> Sửa lại hết từng file\r\n\r\n-> Giải pháp: Tách nghiệp vụ Call API thành 1 hàm riêng\r\n\r\n## Authentication\r\n\r\n-  Cho biết bạn là ai ?\r\n-  Đăng nhập\r\n\r\nLuồng Request: Đăng nhập => Server Verify => Khởi tạo mã số (sessionId, Token) => Trả về Client\r\n\r\n## Authorization\r\n\r\n-  Ủy quyền\r\n-  Cho phép được làm gì? Không được làm gì?\r\n-  Server: Kiểm tra mã số (sessionId, token) hợp lệ hay không?\r\n\r\n*  Không hợp lệ -> Trả về thông báo lỗi (401)\r\n*  Hợp lệ -> Xử lý nghiệp vụ tiếp theo\r\n\r\nVí dụ:\r\n\r\n-  Đăng nhập -> Authetication\r\n-  Sửa thông tin tài khoản -> Authorization\r\n\r\n## Các hình thức Authetication\r\n\r\n1. Session-Based (Cookie-Based) Authenication\r\n\r\n-  Ưu điểm:\r\n\r\n*  Dễ triển khai\r\n*  Các fraemwork, thư viện, cms từ trước đa số theo cơ chế này\r\n\r\n-  Nhược điểm:\r\n\r\n*  Không scale được\r\n*  Không áp dụng cho các ứng dụng đa nền tảng\r\n\r\nVí dụ: 1 dự án có nhiều server (microservices)\r\n\r\nRequest => LB =>\r\n\r\n-  Server 1 -> Login lưu session vào server này\r\n-  Server 2 -> Không có session -> Bắt đăng nhập lại\r\n-  Server 3\r\n\r\n2. Token-Based Authetication\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "fullstack-nodejs-08-hocjs-auth-note-md",
+        "title": "📝 Authentication & Authorization",
+        "description": "Authentication - Authorization. - Authentication: Đăng nhập => Trả về thông tin. - Authorization: Kiểm tra quyền hạn => Trả về thông tin",
+        "exampleText": "# Authentication - Authorization\r\n\r\n- Authentication: Đăng nhập => Trả về thông tin\r\n- Authorization: Kiểm tra quyền hạn => Trả về thông tin\r\n\r\n# Xây dựng class/object httpclient để xử lý http request tập trung\r\n\r\n- Xử lý refresh token\r\n- Quản lý các request tốt hơn\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "fullstack-nodejs-08-hocjs-package-note-md",
+        "title": "📝 NPM Package Manager",
+        "description": "Package. - Cài đặt thủ công. - Cập nhật thủ công",
+        "exampleText": "# Package\r\n\r\n- Cài đặt thủ công\r\n- Cập nhật thủ công\r\n- Gỡ bỏ thủ công (Quên gỡ thư viện nếu không dùng)\r\n- Di chuyển ==> Nặng\r\n- Xung đột thư viện\r\n\r\n==> Giải pháp: Công cụ quản lý thư viện\r\n\r\n- Thao tác thông qua giao diện dòng lệnh (CLI = Commandline Interface)\r\n- Thư viện sẽ được lưu trữ trên store\r\n\r\n## Các công cụ\r\n\r\n- Node Package Manager (NPM)\r\n- Yarn\r\n\r\nLưu ý: Khi cài thư viện ==> Sinh ra folder node_modules\r\n\r\n## Khởi tạo dự án\r\n\r\nnpm init -y ==> Tạo ra file package.json\r\n\r\n## Cài đặt tất cả Dependencies\r\n\r\nnpm i hoặc npm install\r\n\r\n## Cài đặt 1 package\r\n\r\nnpm i ten_package hoặc npm install ten_package\r\n\r\n## Cài đặt nhiều package\r\n\r\nnpm i package1 package2 package3\r\n\r\n## Gỡ bỏ Dependencies\r\n\r\nnpm uninstall ten_package\r\n\r\n## Các loại dependencies\r\n\r\n- Simple Dependency ==> npm i ten_package\r\n- Dev Dependency ==> npm i ten_package --save-dev\r\n\r\n## Chỉ cần cài đặt Dependencies phụ vụ production\r\n\r\nnpm i --product\r\n\r\n## Các loại cài đặt package\r\n\r\n- Local: npm i ten_package\r\n- Global: npm i ten_package -g\r\n\r\nnpm root -g ==> Kiểm tra đường dẫn chứa các dependencies global\r\n\r\nnpm list -g ==> Liệt kê các dependencies được cài đặt global\r\n\r\n## Phiên bản\r\n\r\nmajor.minor.patch\r\n\r\nKhi chạy lệnh update của npm ==> Chỉ update minor và patch\r\n\r\n## Cập nhật phiên bản\r\n\r\nnpm update ten_package\r\n\r\nnpm update ==> Cập nhật tất cả package\r\n\r\n## Cài đặt Dependency theo phiên bản\r\n\r\nnpm i ten_package@phienban hoặc npm install ten_package@phienban\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "fullstack-nodejs-08-hocjs-regex-note-md",
+        "title": "📝 Regular Expression (Regex)",
+        "description": "Regular Expression (Regex). - Biểu thức chính quy. - Biểu thức để xử lý chuỗi nâng cao",
+        "exampleText": "# Regular Expression (Regex)\r\n\r\n- Biểu thức chính quy\r\n- Biểu thức để xử lý chuỗi nâng cao\r\n\r\n* So khớp\r\n* Cắt chuỗi\r\n* Thay thế\r\n\r\nKhi làm việc với Regex, xây dựng lên 1 pattern\r\n\r\nCấu tạo pattern\r\n/regex/modifier\r\n\r\nWebsite test Regex: https://regex101.com\r\n\r\n## Các ký hiệu cơ bản\r\n\r\nstring ==> So khớp chuỗi string trong biểu có nằm trong chuỗi cần kiểm tra không?\r\n\r\n^ (Đặt ở đầu biểu thức, sau dấu phân cách /) ==> Kiểm tra biểu thức nằm ở đầu chuỗi\r\n\r\n$ (Đặt ở cuối biểu thức, trước dấu phân cách /) ==> Kiểm tra biểu thức nằm ở cuối chuỗi\r\n\r\n[min-max] ==> Kiểm tra các ký tự từ min đến max (A-Z, a-z, 0-9)\r\n\r\n[char_list] ==> Kiểm tra các ký tự ([abc])\r\n\r\nLưu ý:\r\n\r\n- Các biểu thức trong cặp [], kết hợp với nhau theo điều kiện OR\r\n- Nếu các biểu thức không nằm trong cùng cặp ngoặc [] ==> Kết hợp với nhau theo điều kiện AND và phải đúng thứ tự\r\n\r\n- {min,} ==> Độ dài của biểu thức lớn hơn hoặc bằng min\r\n\r\n- {value} ==> Độ dài của biểu thức bằng value\r\n\r\n- {min, max} ==> Độ dài của biểu thức từ min đến max\r\n\r\nKý hiệu viết tắt độ dài\r\n\r\n```\r\n+ ==> Tương ứng với {1,}\r\n* ==> Tương ứng với {0,}\r\n? ==> Tương ứng với {0,1}\r\n```\r\n\r\nHoặc (|) - Phủ định (^)\r\n\r\nKý hiệu đại diện cho tất cả ký tự: .\r\n\r\nCác ký hiệu viết tắt\r\n\r\n```\r\n\\w: Thường, hoa, số, _\r\n\\W: Ngược lại của \\w\r\n\\d: Số\r\n\\D: Ngược lại của số\r\n\\s: Khoảng trắng\r\n\\S: Ngược lại của \\s\r\n```\r\n",
+        "codeBlocks": []
+      }
+    ]
   }
 ];

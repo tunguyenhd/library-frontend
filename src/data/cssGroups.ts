@@ -2604,5 +2604,25 @@ export const cssGroups: KnowledgeGroup[] = [
         ]
       }
     ]
+  },
+  {
+    "label": "notes-css",
+    "title": "Ghi Chú Từ Khóa Học",
+    "cards": [
+      {
+        "id": "frontend-f8---offline-css-flex-note-md",
+        "title": "📝 Flexbox",
+        "description": "Flex = Flexible box Module. Các thuộc tính trong nhóm Flex Container. -   display: flex | inline-flex => kích hoạt flex",
+        "exampleText": "# Flex = Flexible box Module\r\n\r\n## Các thuộc tính trong nhóm Flex Container\r\n\r\n-   display: flex | inline-flex => kích hoạt flex\r\n-   flex-direction: Chọn trụ cho flex\r\n\r\n*   row: Nằm ngang\r\n*   row-reverse: Nằm ngang đảo ngược\r\n*   column: Nằm dọc\r\n*   column-reverse: Nằm dọc đảo ngược\r\n\r\n-   justify-content: căn chỉnh các item theo hướng song song với trục chính\r\n\r\n*   flex-start\r\n*   flex-end\r\n*   center\r\n*   space-around\r\n*   space-between\r\n*   space-evenly\r\n\r\n-   align-items: căn chỉnh các item theo hướng vuông góc với trục chính (cross)\r\n\r\n*   stretch => Mặc định, full chiều cao\r\n*   flex-start\r\n*   flex-end\r\n*   center\r\n*   baseline\r\n\r\n-   flex-wrap\r\n\r\n*   no-wrap => Mặc định\r\n*   wrap\r\n*   wrap-reverse\r\n\r\n-   align-content: Căn chỉnh hàng (cột) => Chỉ áp dụng khi có nhiều hàng (cột)\r\n\r\n*   flex-start\r\n*   flex-end\r\n*   center\r\n*   space-around\r\n*   space-between\r\n*   space-evenly\r\n\r\n-   gap: căn chỉnh khoảng cách giữa các item\r\n\r\n## Các thuộc tính trong nhóm Flex Item\r\n\r\n-   flex-grow: Dãn các item để lấp đầy các khoảng trống\r\n-   flex-shrink: tự động co lại các item\r\n-   flex-basis: Thiết lập các kích thước ban đầu cho các item (ko set dc width)\r\n    => flex-basis: sẽ bị chặn bởi min-width, max-width\r\n-   flex: grow shrink basis\r\n-   align-selft: Căn chỉnh 1 item\r\n\r\n*   stretch => Mặc định, full chiều cao\r\n*   flex-start\r\n*   center\r\n*   flex-end\r\n*   baseline\r\n\r\n-   order: Sắp xếp thứ tự các item\r\n    => Nhận số nguyên\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "fullstack-nodejs-08-hoccss-responsive-note-md",
+        "title": "📝 Responsive Design",
+        "description": "Responsive. - Thiết kế web đáp ứng trên mọi thiết bị. - Dựa theo kích thước màn hình để thay đổi giao diện",
+        "exampleText": "# Responsive\r\n\r\n- Thiết kế web đáp ứng trên mọi thiết bị\r\n- Dựa theo kích thước màn hình để thay đổi giao diện\r\n- Sử dụng css thông qua at-rule @media (Media Queries)\r\n\r\n## Breakpoint\r\n\r\n- Điểm dừng tọa độ mà tại đó giao diện được thay đổi\r\n- Không có breakpoint cố định cho mọi dự án\r\n- Chỉ có các breakpoint phổ biến\r\n\r\nVí dụ:\r\n\r\n- 576px\r\n- 768px\r\n- 992px\r\n- 1200px\r\n- 1400px\r\n\r\n## Meta viewport\r\n\r\n- Đảm bảo tỷ lệ của khung nhìn khi chuyển sang thiết bị kích thước khác\r\n- <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />s\r\n\r\n## Media Queries\r\n\r\n```css\r\n@media all|screen|print and (min-width: giatri) and (max-width: giatri) {\r\n    Selector {\r\n        code css\r\n    }\r\n}\r\n```\r\n\r\n## Trường phái Responsive\r\n\r\n1. Desktop First: Đi từ màn hình lớn nhất\r\n\r\n```\r\n<= 1399.98px\r\n<= 1199.98px\r\n<= 991.98px\r\n<= 767.98px\r\n<= 575.988x\r\n```\r\n\r\n2. Mobile First: Đi từ màn hình nhỏ nhất\r\n\r\n```\r\n>= 576px\r\n>= 768px\r\n>= 992px\r\n>= 1200px\r\n>= 1400px\r\n```\r\n",
+        "codeBlocks": []
+      }
+    ]
   }
 ];

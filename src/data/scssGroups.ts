@@ -232,5 +232,25 @@ export const scssGroups: KnowledgeGroup[] = [
         ]
       }
     ]
+  },
+  {
+    "label": "notes-scss",
+    "title": "Ghi Chú Từ Khóa Học",
+    "cards": [
+      {
+        "id": "frontend-f8---offline-hocscss-note-md",
+        "title": "📝 SCSS Compiler",
+        "description": "Ngôn ngữ tiền xử lý scss. Cài đặt trình biên dịch. 1. Cài đặt NodeJS",
+        "exampleText": "# Ngôn ngữ tiền xử lý scss\r\n\r\n## Cài đặt trình biên dịch\r\n\r\n1. Cài đặt NodeJS\r\n\r\n2. Cài đặt SASS\r\n\r\nnpm i sass -g\r\n\r\n## Câu lệnh biên dịch SCSS sang CSS\r\n\r\n1. Biên dịch cả folder scss sang css\r\n\r\nsass folder_scss:foldercss\r\n\r\nWatch mode\r\n\r\nsass folder_scss:folder --watch\r\n\r\n2. Biên dịch 1 file scss sang 1 file css\r\n\r\nsass duong-dan-file-scss duong-dan-file-css\r\nvd: sass scss/ex01.scss build/style.css\r\n\r\n3. Nén file CSS từ file SCSS\r\n   => Tạo ra file .min (minify)\r\n\r\nsass duong-dan-file-scss duong-dan-file --style compressed\r\nvd: sass scss/ex01.scss build/style.min.css --style compressed\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "fullstack-nodejs-08-hocscss-note-md",
+        "title": "📝 Sass Compiler",
+        "description": "Sass. Biên dịch từ file SCSS => CSS. sass duong-dan-file-scss duong-dan-file-css --watch",
+        "exampleText": "# Sass\r\n\r\n## Biên dịch từ file SCSS => CSS\r\n\r\nsass duong-dan-file-scss duong-dan-file-css --watch\r\n\r\n## Biên dịch folder SCSS => CSS\r\n\r\nsass duong-dan-folder-scss:duong-dan-folder-css --watch\r\n\r\n## Nén file SCSS => CSS\r\n\r\nTạo minify css\r\n\r\nsass duong-dan-file-scss duong-dan-file-css --style compressed\r\n",
+        "codeBlocks": []
+      }
+    ]
   }
 ];

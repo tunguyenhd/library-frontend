@@ -541,4 +541,25 @@ module.exports = {
       ]
     }
   ]
-}];
+},
+  {
+    "label": "notes-node",
+    "title": "Ghi Chú Từ Khóa Học",
+    "cards": [
+      {
+        "id": "fullstack-nodejs-08-hocnodejs-note-md",
+        "title": "📝 Node.js Cơ bản",
+        "description": "Request => Server => Response. scheme. hostname",
+        "exampleText": "Request => Server => Response\r\n\r\nscheme\r\nhostname\r\nport\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "fullstack-nodejs-08-front-end-project-note-md",
+        "title": "📝 Môi trường & Deploy",
+        "description": "Development. ==> Server Api: http://localhost:4000. Test",
+        "exampleText": "Development\r\n==> Server Api: http://localhost:4000\r\nTest\r\n==> Server Api: http://test.fullstack.edu.vn\r\nProduction\r\n==> Server Api: http://api.fullstack.edu.vn\r\n\r\nQuy trình khi làm việc với Server\r\n\r\nLocal: Source code + .env\r\n\r\nServer: Source code + .env ==> Build Production\r\n",
+        "codeBlocks": []
+      }
+    ]
+  }
+];

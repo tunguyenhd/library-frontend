@@ -2232,4 +2232,32 @@ export const reactGroups: KnowledgeGroup[] = [
       ]
     }
   ]
-}];
+},
+  {
+    "label": "notes-react",
+    "title": "Ghi Chú Từ Khóa Học",
+    "cards": [
+      {
+        "id": "frontend-f8---offline-hocreact-react07-note-md",
+        "title": "📝 Redux",
+        "description": "Redux là gì?. -  Thư viện để quản lý Global State trong các ứng dụng JS. -  Có thể tích hợp vào tất các ứng dụng JS: VanillaJS (JS thuần), React, React Native, Vuejs, NextJS,...",
+        "exampleText": "# Redux là gì?\r\n\r\n-  Thư viện để quản lý Global State trong các ứng dụng JS\r\n-  Có thể tích hợp vào tất các ứng dụng JS: VanillaJS (JS thuần), React, React Native, Vuejs, NextJS,...\r\n\r\n# Các thành phần của Redux\r\n\r\n-  Store: Kho lưu trữ các state\r\n-  Reducer: Hàm reducer để viết các logic update state\r\n-  Dispatch: Gửi action từ component lên Reducer\r\n-  Action: Object đặc tả hành động: thêm, sửa, xóa\r\n-  Subscibe: Lắng nghe sự thay đổi State trên Store (tìm hiểu observer pattern)\r\n\r\n# Học Redux cần học những gì?\r\n\r\n-  Redux Core: Tự Setup redux vào dự án theo cách thủ công --> Hiểu cách hoạt động của Redux\r\n\r\n-  Redux Toolkit: Bộ đóng gói của thư viện Redux giúp Setup nhanh, code ít hơn,...\r\n-  Redux Middleware: Redux Thunk\r\n\r\n# Redux Middleware\r\n\r\nComponent --> Dispatch tới Middleware --> Dispatch tới Reducer --> Update Sate\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "frontend-f8---offline-hocreact-redux-npm-md",
+        "title": "📝 Redux Packages",
+        "description": "Redux thunk. https://www.npmjs.com/package/redux-thunk. Redux-devtool",
+        "exampleText": "# Redux thunk\r\n\r\nhttps://www.npmjs.com/package/redux-thunk\r\n\r\n# Redux-devtool\r\n\r\nhttps://www.npmjs.com/package/@redux-devtools/extension\r\n\r\n# cách cài\r\n\r\nnpm i redux react-redux\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "fullstack-nodejs-08-hocreactjs-reactjs04-note-md",
+        "title": "📝 Redux & Redux Toolkit",
+        "description": "Redux. - Thư viện quản lý Global State trong các ứng dụng Javascript. - Redux không phải của ReactJS",
+        "exampleText": "# Redux\r\n\r\n- Thư viện quản lý Global State trong các ứng dụng Javascript\r\n- Redux không phải của ReactJS\r\n\r\n## Các thành phần của Redux\r\n\r\n- Store: Kho lưu trữ State\r\n- Reducer: Hàm để quản lý việc cập nhật state\r\n- Action: Object mô tả hành động cập nhật state\r\n- Dispatch: Hàm gửi action lên Reducer\r\n- Subscribe: Lắng nghe sự thay đổi của State trên store\r\n\r\n## Làm sao để tích hợp Redux vào React\r\n\r\nSử dụng thư viện React-Redux\r\n\r\n- Có sẵn Component Provider\r\n- Có sẵn Hook cần thiết\r\n\r\n* useDispatch\r\n* useSelector\r\n\r\n- Tự động re-render khi state trên store thay đổi\r\n\r\n## Lộ trình học Redux\r\n\r\n- Redux Core + Kết hợp với React\r\n- Redux Toolkit + Kết hợp với React\r\n- Redux Middleware: Thunk, Saga\r\n\r\n## Redux Toolkit\r\n\r\nGom các thành phần của 1 module vào 1 slice\r\n\r\n- reducer\r\n- state\r\n- action\r\n- action creator\r\n\r\nTích hợp sẵn redux-thunk\r\n\r\nTích hợp sẵn với Redux Devtool\r\n",
+        "codeBlocks": []
+      }
+    ]
+  }
+];

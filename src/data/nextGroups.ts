@@ -526,5 +526,32 @@ export const nextGroups: KnowledgeGroup[] = [
         ]
       }
     ]
+  },
+  {
+    "label": "notes-next",
+    "title": "Ghi Chú Từ Khóa Học",
+    "cards": [
+      {
+        "id": "frontend-f8---offline-hocnextjs-next01-note-md",
+        "title": "📝 NextJS Flow & Middleware",
+        "description": "flow NextJS. Request -> RootLayout -> Custom Layout -> Page -> Render JSX -> Response (HTML). Layout: Tạo ra 1 bố cục cho trang web, đại diện cho nhiều router khác nhau",
+        "exampleText": "# flow NextJS\r\n\r\nRequest -> RootLayout -> Custom Layout -> Page -> Render JSX -> Response (HTML)\r\n\r\nLayout: Tạo ra 1 bố cục cho trang web, đại diện cho nhiều router khác nhau\r\nPage: Nội dung chính của trang, chỉ duy nhất 1 router\r\n\r\n# Middleware\r\n\r\nRequest -> Middleware -> RootLayout -> Custom Layout -> Page -> Render JSX -> Response (HTML)\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "frontend-f8---offline-hocnextjs-next03-note-md",
+        "title": "📝 Router Handler",
+        "description": "Router Handler. Request --> Layout --> Page --> Call API (Server khác). Custom API --> Router Handler",
+        "exampleText": "# Router Handler\r\n\r\nRequest --> Layout --> Page --> Call API (Server khác)\r\n\r\nCustom API --> Router Handler\r\nHost API --> Router Handler\r\n\r\nEndpoint: GET /api/users\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "fullstack-nodejs-08-hocnextjs-nextjs01-note-md",
+        "title": "📝 NextJS Router",
+        "description": "Luồng chạy. Request => Middleware ==> Root Layout ==> Custom Layout (Nếu có) ==> Page ==> Response. Cơ chế Router",
+        "exampleText": "# Luồng chạy\r\n\r\nRequest => Middleware ==> Root Layout ==> Custom Layout (Nếu có) ==> Page ==> Response\r\n\r\n# Cơ chế Router\r\n\r\napp/ten-folder-1/page.jsx ==> Đường dẫn: /ten-folder-1\r\n\r\nXây dựng đường dẫn sau\r\n\r\n/posts\r\n/posts/id\r\n\r\nChỉ được dùng 1 file page.jsx\r\n",
+        "codeBlocks": []
+      }
+    ]
   }
 ];

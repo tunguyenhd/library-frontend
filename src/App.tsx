@@ -15,7 +15,6 @@ import TailwindKnowledgePage from "./pages/TailwindKnowledgePage";
 import DbKnowledgePage from "./pages/DbKnowledgePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ExercisesPage from "./pages/ExercisesPage";
-import NotesPage from "./pages/NotesPage";
 import TopicPlaceholder from "./pages/TopicPlaceholder";
 import ThemeToggle from "./components/ThemeToggle";
 import { useTheme } from "./hooks/useTheme";
@@ -38,7 +37,6 @@ const pageTitles: Record<Page, string> = {
   database: "Database Knowledge",
   projects: "Dự án Thực tế",
   exercises: "Bài tập Thực hành",
-  notes: "Sổ Tay Ghi Chú",
 };
 
 function isPage(value: string | null): value is Page {
@@ -143,10 +141,6 @@ export default function App() {
 
   if (page === "exercises") {
     return <ExercisesPage onBack={() => navigate("home")} />;
-  }
-
-  if (page === "notes") {
-    return <NotesPage onBack={() => navigate("home")} />;
   }
 
   return (

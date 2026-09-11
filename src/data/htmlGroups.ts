@@ -1767,5 +1767,25 @@ export const htmlGroups: KnowledgeGroup[] = [
         ]
       }
     ]
+  },
+  {
+    "label": "notes-html",
+    "title": "Ghi Chú Từ Khóa Học",
+    "cards": [
+      {
+        "id": "frontend-f8---offline-html-inline-absolute-path-vs-relative-path-md",
+        "title": "📝 Đường dẫn tuyệt đối & tương đối",
+        "description": "absolute path (đường dẫn tuyệt đối). /duong-dan. relative path (đường dẫn tương đối)",
+        "exampleText": "# absolute path (đường dẫn tuyệt đối)\r\n\r\n/duong-dan\r\n\r\n# relative path (đường dẫn tương đối)\r\n\r\nduong-dan\r\n./duong-dan\r\n../duong-dan\r\n",
+        "codeBlocks": []
+      },
+      {
+        "id": "fullstack-nodejs-08-note-md",
+        "title": "📝 Block/Inline, Đường dẫn & CSS Priority",
+        "description": "Thẻ Block (Khối). - Luôn phát sinh ở hàng mới. - Chiều rộng mặc định bằng 100% so với thành phần cha",
+        "exampleText": "# Thẻ Block (Khối)\r\n\r\n- Luôn phát sinh ở hàng mới\r\n- Chiều rộng mặc định bằng 100% so với thành phần cha\r\n\r\n# Thẻ Inline (Trên dòng)\r\n\r\n- Chiều rộng mặc định bằng với nội dung của thẻ\r\n- Các thẻ inline đứng cạnh nhau nằm trên 1 dòng (Trừ phi tổng chiều rộng các inline > chiều rộng thành phần cha)\r\n\r\n# Đường dẫn tuyệt đối, tương đối\r\n\r\n1. Thế nào là đường dẫn tuyệt đối? Tương đối?\r\n\r\n2. Phân biệt các loại đường dẫn sau\r\n\r\n./duong-dan --> Phụ thuộc vào thư mục đang đứng\r\nduong-dan --> Phụ thuộc vào thư mục đang đứng\r\n../duong-dan --> Đẩy ra ngoài 1 cấp (Vẫn phụ thuộc)\r\n../../duong-dan --> Đẩy ra ngoài 2 cấp (Vẫn phụ thuộc)\r\n/duong-dan --> Tuyệt đối (Di chuyển về gốc của tên miền, sau port)\r\n//tenmien.com/duong-dan\r\nhttps://tenmien.com/duong-dan\r\n\r\nTrang chủ: http://127.0.0.1:5500\r\n\r\nĐộ ưu tiên trong CSS\r\n\r\n0. important\r\n1. inline\r\n2. id\r\n3. class\r\n4. tag\r\n\r\nLưu ý:\r\n\r\n- Selector càng chi tiết --> Ưu tiên càng cao\r\n- Code ở bên dưới ưu tiên cao hơn\r\n",
+        "codeBlocks": []
+      }
+    ]
   }
 ];

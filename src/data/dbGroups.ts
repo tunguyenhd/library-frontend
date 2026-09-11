@@ -286,4 +286,18 @@ export const dbGroups: KnowledgeGroup[] = [
       ]
     }
   ]
-}];
+},
+  {
+    "label": "notes-db",
+    "title": "Ghi Chú Từ Khóa Học",
+    "cards": [
+      {
+        "id": "fullstack-nodejs-08-database-note-md",
+        "title": "📝 Ngôn ngữ SQL",
+        "description": "Ngôn ngữ truy vấn SQL. Kiểu dữ liệu. 1. Number",
+        "exampleText": "# Ngôn ngữ truy vấn SQL\r\n\r\n## Kiểu dữ liệu\r\n\r\n1. Number\r\n\r\n- integer\r\n- bigint\r\n- double\r\n- smallint\r\n\r\n2. String\r\n\r\n- charactor varying (varchar)\r\n- charactor (char)\r\n- text\r\n\r\n3. DateTime\r\n\r\n- date\r\n- timestamp\r\n- time\r\n\r\n4. Logic\r\n\r\n- boolean\r\n\r\n## Toán tử\r\n\r\n```\r\n>, <, >=, <=, =, !=, <>, IS, LIKE, ILIKE, IN, BETWEEN, EXISTS\r\n```\r\n\r\n```\r\nAND, OR, NOT\r\n```\r\n\r\nLưu ý: Giá trị null phải so sánh bằng toán tử IS\r\n\r\nVí dụ: updated_at IS NOT NULL\r\n\r\n## Mô hình quan hệ\r\n",
+        "codeBlocks": []
+      }
+    ]
+  }
+];
