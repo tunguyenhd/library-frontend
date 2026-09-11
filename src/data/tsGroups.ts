@@ -331,4 +331,203 @@ type UserUpdate = Partial<User>;`
       ]
     }
   ]
+},
+{
+  label: "Nhóm 7",
+  title: "Modules, Decorators & Cấu hình",
+  cards: [
+    {
+      id: "ts-module-system",
+      title: "Module trong TypeScript",
+      description: "TypeScript hỗ trợ ES Modules (import/export). Điểm đặc biệt: import type chỉ import kiểu (bị xóa khi biên dịch, không tạo runtime code). isolatedModules flag buộc mỗi file phải là module.",
+      exampleText: "Dùng import type khi chỉ cần kiểu, giúp giảm bundle size và tránh circular dependency.",
+      codeBlocks: [
+        { title: "import type", code: `// ✅ Chỉ import kiểu (bị xóa khi compile)
+import type { User } from './types';
+import type { Request, Response } from 'express';
+
+// ✅ Import cả value và type
+import { UserRole } from './enums'; // value (enum)
+import type { User } from './types'; // type only
+
+// ✅ Inline type import (TS 4.5+)
+import { type User, createUser } from './user';
+
+// ✅ Re-export types
+export type { User, UserRole };
+export { createUser };` },
+        { title: "Module patterns", code: `// Barrel export (index.ts)
+// src/models/index.ts
+export { User } from './user.model';
+export { Post } from './post.model';
+export type { UserDTO } from './user.dto';
+
+// Sử dụng
+import { User, Post } from './models';
+
+// Namespace import
+import * as Utils from './utils';
+Utils.formatDate(new Date());
+
+// Default + named
+import React, { useState, useEffect } from 'react';` }
+      ]
+    },
+    {
+      id: "ts-namespace",
+      title: "Namespace",
+      description: "Namespace dùng để nhóm code logic lại với nhau, tránh xung đột tên. Trong TypeScript hiện đại, ES Modules được ưu tiên hơn namespace. Tuy nhiên, namespace vẫn xuất hiện trong declaration files (.d.ts) và các thư viện cũ.",
+      exampleText: "Hầu hết dự án mới nên dùng ES Modules thay vì namespace. Namespace chủ yếu gặp khi đọc type definitions.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `// Namespace cơ bản
+namespace Validation {
+  export interface StringValidator {
+    isValid(s: string): boolean;
+  }
+
+  export class EmailValidator implements StringValidator {
+    isValid(s: string): boolean {
+      return s.includes('@');
+    }
+  }
+}
+
+// Sử dụng
+const validator = new Validation.EmailValidator();
+validator.isValid('an@mail.com'); // true
+
+// Namespace trong declaration file
+declare namespace Express {
+  interface Request {
+    user?: { id: string; role: string };
+  }
+}` }
+      ]
+    },
+    {
+      id: "ts-decorator",
+      title: "Decorators",
+      description: "Decorator là pattern đặc biệt dùng @ để thêm metadata hoặc thay đổi hành vi của class, method, property. Cần bật experimentalDecorators trong tsconfig. Dùng rất nhiều trong NestJS và Angular.",
+      exampleText: "Decorator giống annotation trong Java. NestJS dùng @Controller(), @Get(), @Injectable()...",
+      codeBlocks: [
+        { title: "Ví dụ", code: `// Class decorator
+function Logger(target: Function) {
+  console.log('Class created:', target.name);
+}
+
+@Logger
+class UserService {
+  getUsers() { return []; }
+}
+
+// Method decorator
+function Log(target: any, key: string, desc: PropertyDescriptor) {
+  const original = desc.value;
+  desc.value = function (...args: any[]) {
+    console.log(\`Calling \${key} with\`, args);
+    return original.apply(this, args);
+  };
+}
+
+class Calculator {
+  @Log
+  add(a: number, b: number) { return a + b; }
+}
+
+// Decorator Factory (truyền tham số)
+function Controller(prefix: string) {
+  return function (target: Function) {
+    Reflect.defineMetadata('prefix', prefix, target);
+  };
+}
+
+@Controller('/users')
+class UsersController {}` }
+      ]
+    },
+    {
+      id: "ts-tsconfig",
+      title: "tsconfig.json",
+      description: "tsconfig.json cấu hình TypeScript compiler. Các option quan trọng: strict (bật tất cả strict checks), target (ES version output), module (module system), paths (alias imports), baseUrl, include/exclude.",
+      exampleText: "Luôn bật strict: true cho dự án mới. paths giúp tránh ../../ khi import.",
+      codeBlocks: [
+        { title: "Cấu hình phổ biến", code: `{
+  "compilerOptions": {
+    // Strict
+    "strict": true,              // Bật tất cả strict checks
+    "noImplicitAny": true,       // Không cho biến any ngầm
+    "strictNullChecks": true,    // null/undefined phải check
+
+    // Module & Target
+    "target": "ES2022",          // Output JS version
+    "module": "ESNext",          // Module system
+    "moduleResolution": "bundler", // Cách resolve imports
+    "esModuleInterop": true,     // import React from 'react'
+
+    // Paths (alias)
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],          // import X from '@/utils'
+      "@components/*": ["src/components/*"]
+    },
+
+    // Output
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,         // Tạo .d.ts files
+    "sourceMap": true,           // Debug maps
+
+    // JSX (React)
+    "jsx": "react-jsx",          // React 17+
+
+    // Decorator (NestJS)
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}` }
+      ]
+    },
+    {
+      id: "ts-declaration-file",
+      title: "Declaration Files (.d.ts)",
+      description: "File .d.ts chứa khai báo kiểu (không có implementation). Dùng để cung cấp type cho thư viện JS thuần, hoặc mở rộng type của thư viện có sẵn. @types/xxx trên npm chứa declarations cho các thư viện phổ biến.",
+      exampleText: "Khi import thư viện JS không có types, cài @types/ten-thu-vien hoặc tạo file .d.ts.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `// types/global.d.ts - Khai báo biến toàn cục
+declare const API_URL: string;
+declare const __DEV__: boolean;
+
+// Khai báo module cho file non-JS
+declare module '*.css' {
+  const content: Record<string, string>;
+  export default content;
+}
+
+declare module '*.svg' {
+  const content: React.FC<React.SVGProps<SVGSVGElement>>;
+  export default content;
+}
+
+declare module '*.png' {
+  const src: string;
+  export default src;
+}
+
+// Mở rộng type thư viện có sẵn
+// types/express.d.ts
+import 'express';
+declare module 'express' {
+  interface Request {
+    user?: { id: string; name: string; role: string };
+    token?: string;
+  }
+}
+
+// Cài types cho thư viện
+// npm install -D @types/node @types/express @types/react` }
+      ]
+    }
+  ]
 }];

@@ -1,5 +1,35 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { CodeBlock } from "../types/knowledge";
+import hljs from "highlight.js/lib/core";
+
+// Register languages
+import javascript from "highlight.js/lib/languages/javascript";
+import typescript from "highlight.js/lib/languages/typescript";
+import xml from "highlight.js/lib/languages/xml";
+import css from "highlight.js/lib/languages/css";
+import scss from "highlight.js/lib/languages/scss";
+import json from "highlight.js/lib/languages/json";
+import bash from "highlight.js/lib/languages/bash";
+import sql from "highlight.js/lib/languages/sql";
+import go from "highlight.js/lib/languages/go";
+import python from "highlight.js/lib/languages/python";
+import yaml from "highlight.js/lib/languages/yaml";
+import dockerfile from "highlight.js/lib/languages/dockerfile";
+
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("typescript", typescript);
+hljs.registerLanguage("xml", xml);
+hljs.registerLanguage("html", xml);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("scss", scss);
+hljs.registerLanguage("json", json);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("shell", bash);
+hljs.registerLanguage("sql", sql);
+hljs.registerLanguage("go", go);
+hljs.registerLanguage("python", python);
+hljs.registerLanguage("yaml", yaml);
+hljs.registerLanguage("dockerfile", dockerfile);
 
 type CodeBoxProps = CodeBlock;
 
@@ -26,6 +56,19 @@ function wrapPreview(html: string): string {
 
 export default function CodeBox({ title, code, codeTsx, preview }: CodeBoxProps) {
   const [showTsx, setShowTsx] = useState(false);
+  const codeRef = useRef<HTMLElement>(null);
+
+  const displayCode = showTsx && codeTsx ? codeTsx : code;
+
+  useEffect(() => {
+    if (codeRef.current) {
+      // Reset highlight state
+      codeRef.current.removeAttribute("data-highlighted");
+      codeRef.current.className = "";
+      codeRef.current.textContent = displayCode;
+      hljs.highlightElement(codeRef.current);
+    }
+  }, [displayCode]);
 
   const iframeRef = useCallback((iframe: HTMLIFrameElement | null) => {
     if (!iframe) return;
@@ -60,7 +103,7 @@ export default function CodeBox({ title, code, codeTsx, preview }: CodeBoxProps)
           </div>
         )}
       </div>
-      <pre><code>{showTsx && codeTsx ? codeTsx : code}</code></pre>
+      <pre><code ref={codeRef}>{displayCode}</code></pre>
 
       {preview && (
         <div className="code-preview">

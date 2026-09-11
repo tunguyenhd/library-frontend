@@ -297,4 +297,248 @@ export const nodeGroups: KnowledgeGroup[] = [
       ]
     }
   ]
+},
+{
+  label: "Nhóm 8",
+  title: "Worker Threads, Testing & Deploy",
+  cards: [
+    {
+      id: "node-worker-threads",
+      title: "Worker Threads",
+      description: "Worker Threads cho phép chạy JavaScript trên nhiều threads. Dùng cho CPU-intensive tasks (resize ảnh, mã hóa, tính toán nặng). Không dùng cho I/O (dùng async/await). Workers giao tiếp qua message passing.",
+      exampleText: "Không block event loop bằng tính toán nặng! Chuyển sang Worker Thread.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `// worker.js
+const { parentPort, workerData } = require('worker_threads');
+
+// Tính toán nặng
+const result = heavyComputation(workerData);
+parentPort.postMessage(result);
+
+function heavyComputation(data) {
+  let sum = 0;
+  for (let i = 0; i < data.iterations; i++) {
+    sum += Math.sqrt(i);
+  }
+  return sum;
+}
+
+// main.js
+const { Worker } = require('worker_threads');
+
+function runWorker(data) {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker('./worker.js', {
+      workerData: data
+    });
+    worker.on('message', resolve);
+    worker.on('error', reject);
+    worker.on('exit', (code) => {
+      if (code !== 0)
+        reject(new Error(\`Worker stopped with code \${code}\`));
+    });
+  });
+}
+
+const result = await runWorker({ iterations: 1e8 });
+console.log('Result:', result);` }
+      ]
+    },
+    {
+      id: "node-child-process",
+      title: "Child Process",
+      description: "Child Process tạo process con để chạy lệnh shell hoặc script. exec() cho lệnh ngắn (buffer output). spawn() cho lệnh dài (stream output). fork() cho Node.js scripts (có IPC channel).",
+      exampleText: "spawn tốt hơn exec cho output lớn vì stream thay vì buffer toàn bộ.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `const { exec, spawn, fork } = require('child_process');
+
+// exec - Chạy lệnh shell (buffer output)
+exec('ls -la', (error, stdout, stderr) => {
+  if (error) throw error;
+  console.log(stdout);
+});
+
+// exec với Promise
+const { promisify } = require('util');
+const execAsync = promisify(exec);
+const { stdout } = await execAsync('node --version');
+
+// spawn - Stream output (tốt cho lệnh dài)
+const child = spawn('npm', ['install'], { cwd: './my-app' });
+child.stdout.on('data', (data) => console.log(data.toString()));
+child.stderr.on('data', (data) => console.error(data.toString()));
+child.on('close', (code) => console.log('Exit:', code));
+
+// fork - Chạy Node.js script (có IPC)
+const worker = fork('./heavy-task.js');
+worker.send({ task: 'process', data: [1, 2, 3] });
+worker.on('message', (result) => console.log(result));` }
+      ]
+    },
+    {
+      id: "node-cluster",
+      title: "Cluster",
+      description: "Cluster module tạo nhiều process chạy cùng server, tận dụng multi-core CPU. Master process quản lý workers. Mỗi worker là một instance riêng. Trong production thường dùng PM2 thay vì tự quản lý cluster.",
+      exampleText: "Cluster tốt cho HTTP server. Worker Threads tốt cho CPU tasks trong cùng process.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `const cluster = require('cluster');
+const os = require('os');
+const express = require('express');
+
+if (cluster.isPrimary) {
+  const numCPUs = os.cpus().length;
+  console.log(\`Primary \${process.pid} - \${numCPUs} CPUs\`);
+
+  // Fork workers
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker, code) => {
+    console.log(\`Worker \${worker.process.pid} died\`);
+    cluster.fork(); // Restart worker
+  });
+} else {
+  // Workers chạy HTTP server
+  const app = express();
+  app.get('/', (req, res) => {
+    res.json({ pid: process.pid });
+  });
+  app.listen(3000, () => {
+    console.log(\`Worker \${process.pid} started\`);
+  });
+}` }
+      ]
+    },
+    {
+      id: "node-testing",
+      title: "Testing (Jest/Vitest)",
+      description: "Unit test kiểm tra từng function/module. Integration test kiểm tra nhiều module phối hợp. Jest và Vitest là 2 framework phổ biến. Vitest nhanh hơn, native ESM, tương thích Jest API.",
+      exampleText: "Đặt tên file: *.test.ts hoặc *.spec.ts. Chạy: npx vitest hoặc npx jest.",
+      codeBlocks: [
+        { title: "Unit Test", code: `// utils.ts
+export function add(a: number, b: number) { return a + b; }
+export function isEmail(s: string) { return /^[^@]+@[^@]+$/.test(s); }
+
+// utils.test.ts
+import { describe, it, expect } from 'vitest'; // hoặc jest
+import { add, isEmail } from './utils';
+
+describe('add', () => {
+  it('cộng 2 số', () => {
+    expect(add(2, 3)).toBe(5);
+  });
+
+  it('cộng số âm', () => {
+    expect(add(-1, 1)).toBe(0);
+  });
+});
+
+describe('isEmail', () => {
+  it('email hợp lệ', () => {
+    expect(isEmail('an@mail.com')).toBe(true);
+  });
+
+  it('email không hợp lệ', () => {
+    expect(isEmail('invalid')).toBe(false);
+  });
+});` },
+        { title: "API Test", code: `// app.test.ts - Test Express API
+import { describe, it, expect } from 'vitest';
+import request from 'supertest';
+import app from './app';
+
+describe('GET /api/users', () => {
+  it('trả về danh sách users', async () => {
+    const res = await request(app)
+      .get('/api/users')
+      .expect(200);
+
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body[0]).toHaveProperty('name');
+  });
+
+  it('trả về 404 nếu user không tồn tại', async () => {
+    await request(app)
+      .get('/api/users/999')
+      .expect(404);
+  });
+});` }
+      ]
+    },
+    {
+      id: "node-docker",
+      title: "Docker cho Node.js",
+      description: "Docker đóng gói ứng dụng thành container, đảm bảo chạy giống nhau trên mọi môi trường. Dockerfile định nghĩa cách build image. Multi-stage build giúp giảm image size.",
+      exampleText: "Dùng node:alpine cho image nhẹ. Luôn COPY package*.json trước để cache npm install.",
+      codeBlocks: [
+        { title: "Dockerfile", code: `# --- Multi-stage build ---
+
+# Stage 1: Build
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Stage 2: Production
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY --from=builder /app/dist ./dist
+
+# Non-root user (bảo mật)
+USER node
+
+EXPOSE 3000
+CMD ["node", "dist/index.js"]
+
+# Build & Run
+# docker build -t my-app .
+# docker run -p 3000:3000 --env-file .env my-app` }
+      ]
+    },
+    {
+      id: "node-pm2",
+      title: "PM2 Process Manager",
+      description: "PM2 là process manager cho production Node.js. Tự restart khi crash, cluster mode, log management, monitoring. Dùng ecosystem.config.js để cấu hình.",
+      exampleText: "PM2 thay thế cluster module + tự restart + log rotation.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `# Cài đặt
+npm install -g pm2
+
+# Khởi động
+pm2 start dist/index.js --name my-app
+pm2 start dist/index.js -i max  # Cluster mode (all CPUs)
+pm2 start dist/index.js -i 4    # 4 instances
+
+# Quản lý
+pm2 list                  # Xem danh sách processes
+pm2 logs my-app           # Xem logs
+pm2 monit                 # Monitor CPU/Memory
+pm2 restart my-app        # Restart
+pm2 stop my-app           # Stop
+pm2 delete my-app         # Xóa
+
+# ecosystem.config.js
+module.exports = {
+  apps: [{
+    name: 'my-app',
+    script: 'dist/index.js',
+    instances: 'max',
+    exec_mode: 'cluster',
+    env: { NODE_ENV: 'production', PORT: 3000 },
+    max_memory_restart: '500M',
+    log_date_format: 'YYYY-MM-DD HH:mm:ss',
+  }]
+};
+
+# pm2 start ecosystem.config.js
+# pm2 save     # Lưu danh sách processes
+# pm2 startup  # Auto-start khi reboot` }
+      ]
+    }
+  ]
 }];

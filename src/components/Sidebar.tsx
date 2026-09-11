@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
+import type { ReactNode } from "react";
 import type { KnowledgeGroup } from "../types/knowledge";
 
 interface SidebarProps {
@@ -8,6 +9,7 @@ interface SidebarProps {
   activeId: string | null;
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  themeToggle?: ReactNode;
 }
 
 export default function Sidebar({
@@ -17,6 +19,7 @@ export default function Sidebar({
   activeId,
   searchQuery,
   onSearchChange,
+  themeToggle,
 }: SidebarProps) {
   const activeLinkRef = useRef<HTMLAnchorElement | null>(null);
   const sidebarRef = useRef<HTMLElement | null>(null);
@@ -57,16 +60,19 @@ export default function Sidebar({
   return (
     <aside className="html-sidebar" ref={sidebarRef}>
       <div className="sidebar-header">
-        <a
-          href="./"
-          className="back-btn"
-          onClick={(event) => {
-            event.preventDefault();
-            onBack();
-          }}
-        >
-          ← Trang chủ
-        </a>
+        <div className="sidebar-header-top">
+          <a
+            href="./"
+            className="back-btn"
+            onClick={(event) => {
+              event.preventDefault();
+              onBack();
+            }}
+          >
+            ← Trang chủ
+          </a>
+          {themeToggle}
+        </div>
 
         <h2>{topic}</h2>
       </div>

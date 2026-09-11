@@ -220,4 +220,70 @@ export const dbGroups: KnowledgeGroup[] = [
       ]
     }
   ]
+},
+{
+  "label": "Nhóm 7",
+  "title": "Subquery, View, CTE & Window Functions",
+  "cards": [
+    {
+      "id": "db-subquery",
+      "title": "Subquery (Truy vấn con)",
+      "description": "Subquery là SELECT nằm bên trong SELECT/WHERE/FROM khác. Correlated subquery phụ thuộc vào query ngoài (chạy mỗi row). EXISTS kiểm tra có dữ liệu hay không. IN so sánh với danh sách giá trị.",
+      "exampleText": "Subquery trong WHERE phổ biến nhất. JOIN thường nhanh hơn subquery với bảng lớn.",
+      "codeBlocks": [
+        {
+          "title": "Ví dụ",
+          "code": "-- Subquery trong WHERE\nSELECT name, salary FROM employees\nWHERE salary > (SELECT AVG(salary) FROM employees);\n\n-- IN subquery\nSELECT * FROM users\nWHERE id IN (SELECT user_id FROM orders WHERE total > 1000);\n\n-- EXISTS (kiểm tra tồn tại)\nSELECT * FROM users u\nWHERE EXISTS (\n  SELECT 1 FROM orders o\n  WHERE o.user_id = u.id AND o.total > 500\n);\n\n-- Subquery trong FROM (derived table)\nSELECT dept, avg_salary\nFROM (\n  SELECT department AS dept, AVG(salary) AS avg_salary\n  FROM employees\n  GROUP BY department\n) AS dept_stats\nWHERE avg_salary > 50000;\n\n-- Subquery trong SELECT\nSELECT name,\n  (SELECT COUNT(*) FROM orders o WHERE o.user_id = u.id) AS order_count\nFROM users u;"
+        }
+      ]
+    },
+    {
+      "id": "db-view",
+      "title": "VIEW (Bảng ảo)",
+      "description": "VIEW là truy vấn được lưu lại thành bảng ảo. Không lưu data thật, chạy query mỗi lần truy cập. Materialized View (PostgreSQL) lưu kết quả, cần REFRESH. Dùng để đơn giản hóa query phức tạp.",
+      "exampleText": "View giống alias cho query dài. Materialized View giống cache cho query chậm.",
+      "codeBlocks": [
+        {
+          "title": "Ví dụ",
+          "code": "-- Tạo View\nCREATE VIEW active_users AS\nSELECT id, name, email, created_at\nFROM users\nWHERE is_active = true;\n\n-- Sử dụng như bảng thường\nSELECT * FROM active_users WHERE name LIKE 'A%';\n\n-- View phức tạp (gộp nhiều bảng)\nCREATE VIEW order_summary AS\nSELECT\n  u.name AS customer,\n  COUNT(o.id) AS total_orders,\n  SUM(o.total) AS total_spent,\n  MAX(o.created_at) AS last_order\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id\nGROUP BY u.id, u.name;\n\n-- Materialized View (PostgreSQL)\nCREATE MATERIALIZED VIEW monthly_revenue AS\nSELECT\n  DATE_TRUNC('month', created_at) AS month,\n  SUM(total) AS revenue,\n  COUNT(*) AS order_count\nFROM orders\nGROUP BY DATE_TRUNC('month', created_at);\n\n-- Cập nhật data\nREFRESH MATERIALIZED VIEW monthly_revenue;\n\n-- Xóa view\nDROP VIEW IF EXISTS active_users;\nDROP MATERIALIZED VIEW IF EXISTS monthly_revenue;"
+        }
+      ]
+    },
+    {
+      "id": "db-cte",
+      "title": "CTE (Common Table Expression)",
+      "description": "CTE dùng WITH...AS tạo bảng tạm (chỉ tồn tại trong query đó). Dễ đọc hơn subquery. Recursive CTE cho tree/hierarchy data. Có thể chain nhiều CTE.",
+      "exampleText": "CTE giúp chia query phức tạp thành các bước nhỏ, dễ hiểu.",
+      "codeBlocks": [
+        {
+          "title": "Ví dụ",
+          "code": "-- CTE cơ bản\nWITH high_value_customers AS (\n  SELECT user_id, SUM(total) AS total_spent\n  FROM orders\n  GROUP BY user_id\n  HAVING SUM(total) > 10000\n)\nSELECT u.name, u.email, hvc.total_spent\nFROM users u\nJOIN high_value_customers hvc ON u.id = hvc.user_id\nORDER BY hvc.total_spent DESC;\n\n-- Multiple CTEs\nWITH\n  monthly_sales AS (\n    SELECT DATE_TRUNC('month', created_at) AS month,\n           SUM(total) AS revenue\n    FROM orders\n    GROUP BY 1\n  ),\n  avg_revenue AS (\n    SELECT AVG(revenue) AS avg_rev FROM monthly_sales\n  )\nSELECT month, revenue,\n  CASE WHEN revenue > (SELECT avg_rev FROM avg_revenue)\n    THEN 'Above Average' ELSE 'Below Average'\n  END AS performance\nFROM monthly_sales;\n\n-- Recursive CTE (tree structure)\nWITH RECURSIVE category_tree AS (\n  -- Base case\n  SELECT id, name, parent_id, 0 AS depth\n  FROM categories\n  WHERE parent_id IS NULL\n\n  UNION ALL\n\n  -- Recursive case\n  SELECT c.id, c.name, c.parent_id, ct.depth + 1\n  FROM categories c\n  JOIN category_tree ct ON c.parent_id = ct.id\n)\nSELECT * FROM category_tree ORDER BY depth, name;"
+        }
+      ]
+    },
+    {
+      "id": "db-window-functions",
+      "title": "Window Functions",
+      "description": "Window functions tính toán trên tập rows liên quan mà KHÔNG gộp rows (khác GROUP BY). OVER() định nghĩa window. PARTITION BY chia nhóm. ORDER BY sắp xếp. ROW_NUMBER, RANK, DENSE_RANK đánh số. LEAD/LAG truy cập row trước/sau.",
+      "exampleText": "Window functions mạnh hơn GROUP BY vì giữ nguyên từng row.",
+      "codeBlocks": [
+        {
+          "title": "Ví dụ",
+          "code": "-- ROW_NUMBER - Đánh số thứ tự\nSELECT name, department, salary,\n  ROW_NUMBER() OVER (ORDER BY salary DESC) AS rank\nFROM employees;\n\n-- RANK trong mỗi phòng ban\nSELECT name, department, salary,\n  RANK() OVER (\n    PARTITION BY department\n    ORDER BY salary DESC\n  ) AS dept_rank\nFROM employees;\n\n-- ROW_NUMBER vs RANK vs DENSE_RANK\n-- ROW_NUMBER: 1, 2, 3, 4 (luôn khác nhau)\n-- RANK:       1, 2, 2, 4 (bỏ qua số sau tie)\n-- DENSE_RANK: 1, 2, 2, 3 (không bỏ qua)\n\n-- LEAD / LAG (truy cập row kế tiếp / trước)\nSELECT month, revenue,\n  LAG(revenue, 1) OVER (ORDER BY month) AS prev_month,\n  revenue - LAG(revenue, 1) OVER (ORDER BY month) AS growth\nFROM monthly_revenue;\n\n-- SUM / AVG running total\nSELECT date, amount,\n  SUM(amount) OVER (ORDER BY date) AS running_total,\n  AVG(amount) OVER (\n    ORDER BY date\n    ROWS BETWEEN 6 PRECEDING AND CURRENT ROW\n  ) AS moving_avg_7d\nFROM daily_sales;\n\n-- Top N mỗi nhóm\nWITH ranked AS (\n  SELECT *, ROW_NUMBER() OVER (\n    PARTITION BY department ORDER BY salary DESC\n  ) AS rn\n  FROM employees\n)\nSELECT * FROM ranked WHERE rn <= 3;"
+        }
+      ]
+    },
+    {
+      "id": "db-redis",
+      "title": "Redis Cơ bản",
+      "description": "Redis là in-memory key-value store, cực nhanh. Dùng cho cache, session, pub/sub, rate limiting, leaderboard. Hỗ trợ nhiều data types: String, Hash, List, Set, Sorted Set. Data trong RAM nên nhanh nhưng giới hạn dung lượng.",
+      "exampleText": "Redis phổ biến cho caching API responses, session storage, real-time features.",
+      "codeBlocks": [
+        {
+          "title": "Ví dụ",
+          "code": "# String (key-value đơn giản)\nSET user:1:name \"An Nguyễn\"\nGET user:1:name            # \"An Nguyễn\"\nSETEX session:abc 3600 \"{...}\"  # Expire sau 1h\nTTL session:abc             # Thời gian còn lại (giây)\n\n# Hash (object)\nHSET user:1 name \"An\" age 25 email \"an@mail.com\"\nHGET user:1 name           # \"An\"\nHGETALL user:1             # Tất cả fields\nHINCRBY user:1 age 1       # age = 26\n\n# List (queue/stack)\nLPUSH queue:emails \"email1\" \"email2\"\nRPOP queue:emails           # \"email1\" (FIFO)\nLRANGE queue:emails 0 -1    # Xem tất cả\n\n# Set (unique values)\nSADD tags:post:1 \"nodejs\" \"typescript\" \"api\"\nSMEMBERS tags:post:1       # Tất cả members\nSISMEMBER tags:post:1 \"nodejs\"  # true\n\n# Sorted Set (leaderboard)\nZADD leaderboard 100 \"player1\" 200 \"player2\" 150 \"player3\"\nZREVRANGE leaderboard 0 2 WITHSCORES  # Top 3\nZRANK leaderboard \"player1\"            # Xếp hạng\n\n# Node.js với ioredis\nimport Redis from 'ioredis';\nconst redis = new Redis();\n\n// Cache pattern\nasync function getUser(id) {\n  const cached = await redis.get(`user:${id}`);\n  if (cached) return JSON.parse(cached);\n\n  const user = await db.findUser(id);\n  await redis.setex(`user:${id}`, 300, JSON.stringify(user));\n  return user;\n}"
+        }
+      ]
+    }
+  ]
 }];

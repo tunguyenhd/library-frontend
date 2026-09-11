@@ -17,6 +17,8 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ExercisesPage from "./pages/ExercisesPage";
 import NotesPage from "./pages/NotesPage";
 import TopicPlaceholder from "./pages/TopicPlaceholder";
+import ThemeToggle from "./components/ThemeToggle";
+import { useTheme } from "./hooks/useTheme";
 import type { Navigate, Page } from "./types/navigation";
 
 const pageTitles: Record<Page, string> = {
@@ -50,6 +52,7 @@ function readPageFromUrl(): Page {
 
 export default function App() {
   const [page, setPage] = useState<Page>(readPageFromUrl);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handlePopState = () => setPage(readPageFromUrl());
@@ -77,9 +80,10 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
-  if (page === "home") {
-    return <HomePage onNavigate={navigate} />;
-  }
+  const renderPage = () => {
+    if (page === "home") {
+      return <HomePage onNavigate={navigate} />;
+    }
 
   if (page === "html") {
     return <HtmlKnowledgePage onBack={() => navigate("home")} />;
@@ -150,5 +154,13 @@ export default function App() {
       topic={(pageTitles[page as Page] || "").replace(" Knowledge", "")}
       onBack={() => navigate("home")}
     />
+  );
+  };
+
+  return (
+    <>
+      <ThemeToggle theme={theme} onToggle={toggleTheme} />
+      {renderPage()}
+    </>
   );
 }

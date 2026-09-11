@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./styles.css";
+import "highlight.js/styles/atom-one-dark.min.css";
 
 const rootElement = document.getElementById("root");
 

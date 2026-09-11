@@ -267,4 +267,239 @@ export const pythonGroups: KnowledgeGroup[] = [
       ]
     }
   ]
+},
+{
+  label: "Nhóm 7",
+  title: "Lambda, Iterator & Công cụ",
+  cards: [
+    {
+      id: "py-lambda-map-filter",
+      title: "Lambda, Map, Filter, Reduce",
+      description: "Lambda là hàm ẩn danh (anonymous function) viết trên 1 dòng. map() áp dụng function cho từng phần tử. filter() lọc theo điều kiện. reduce() gộp thành 1 giá trị. Thường kết hợp với lambda.",
+      exampleText: "List comprehension thường được ưu tiên hơn map/filter trong Python hiện đại.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `# Lambda - hàm ẩn danh
+square = lambda x: x ** 2
+add = lambda a, b: a + b
+print(square(5))  # 25
+print(add(3, 4))  # 7
+
+# map() - áp dụng function cho từng phần tử
+nums = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, nums))
+# [1, 4, 9, 16, 25]
+
+# Tương đương list comprehension
+squared = [x**2 for x in nums]
+
+# filter() - lọc theo điều kiện
+evens = list(filter(lambda x: x % 2 == 0, nums))
+# [2, 4]
+
+# reduce() - gộp thành 1 giá trị
+from functools import reduce
+total = reduce(lambda a, b: a + b, nums)
+# 15 (1+2+3+4+5)
+
+product = reduce(lambda a, b: a * b, nums)
+# 120 (1*2*3*4*5)
+
+# sorted() với key
+users = [{'name': 'Chi', 'age': 20}, {'name': 'An', 'age': 25}]
+sorted_users = sorted(users, key=lambda u: u['age'])
+
+# min/max với key
+youngest = min(users, key=lambda u: u['age'])` }
+      ]
+    },
+    {
+      id: "py-iterator-protocol",
+      title: "Iterator & Generator",
+      description: "Iterator: object có __iter__() và __next__(). Generator: function dùng yield thay return, tạo iterator tự động. Generator tiết kiệm bộ nhớ vì tạo giá trị lazily (từng cái một), không tạo toàn bộ list.",
+      exampleText: "Generator expression: (x**2 for x in range(10)) giống list comprehension nhưng dùng () thay [].",
+      codeBlocks: [
+        { title: "Ví dụ", code: `# Generator function
+def countdown(n):
+    while n > 0:
+        yield n  # Tạm dừng, trả giá trị, tiếp tục lần sau
+        n -= 1
+
+for num in countdown(5):
+    print(num)  # 5, 4, 3, 2, 1
+
+# Generator expression (tiết kiệm bộ nhớ)
+squares_gen = (x**2 for x in range(1000000))
+# Không tạo list 1 triệu phần tử!
+print(next(squares_gen))  # 0
+print(next(squares_gen))  # 1
+
+# So sánh memory
+import sys
+list_comp = [x**2 for x in range(10000)]
+gen_exp = (x**2 for x in range(10000))
+print(sys.getsizeof(list_comp))  # ~87624 bytes
+print(sys.getsizeof(gen_exp))    # ~208 bytes!
+
+# Custom Iterator
+class Fibonacci:
+    def __init__(self, max_count):
+        self.max_count = max_count
+        self.count = 0
+        self.a, self.b = 0, 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.count >= self.max_count:
+            raise StopIteration
+        self.count += 1
+        self.a, self.b = self.b, self.a + self.b
+        return self.a
+
+for n in Fibonacci(10):
+    print(n)  # 1, 1, 2, 3, 5, 8, 13, 21, 34, 55` }
+      ]
+    },
+    {
+      id: "py-context-manager",
+      title: "Context Manager (with)",
+      description: "Context Manager quản lý tài nguyên (mở/đóng file, kết nối DB, lock). Dùng with statement đảm bảo cleanup ngay cả khi có exception. Tạo custom context manager bằng class (__enter__/__exit__) hoặc @contextmanager decorator.",
+      exampleText: "Luôn dùng with open() thay vì open() + close(). Áp dụng cho mọi resource cần cleanup.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `# Built-in context managers
+with open('file.txt', 'r') as f:
+    content = f.read()
+# File tự động đóng!
+
+# Custom context manager (class)
+class DatabaseConnection:
+    def __init__(self, host):
+        self.host = host
+
+    def __enter__(self):
+        self.conn = connect(self.host)
+        return self.conn
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.conn.close()
+        if exc_type:
+            print(f"Error: {exc_val}")
+        return False  # True = suppress exception
+
+with DatabaseConnection('localhost') as db:
+    db.query('SELECT * FROM users')
+
+# Custom context manager (decorator - đơn giản hơn)
+from contextlib import contextmanager
+
+@contextmanager
+def timer(label):
+    import time
+    start = time.time()
+    yield  # Code trong with chạy ở đây
+    elapsed = time.time() - start
+    print(f"{label}: {elapsed:.3f}s")
+
+with timer("Query"):
+    # Code cần đo thời gian
+    result = expensive_operation()` }
+      ]
+    },
+    {
+      id: "py-virtualenv",
+      title: "Virtual Environment & pip",
+      description: "Virtual environment tạo môi trường Python cô lập cho mỗi project. Mỗi project có dependencies riêng, tránh xung đột version. Dùng venv (built-in) hoặc poetry, pipenv. pip quản lý packages.",
+      exampleText: "Luôn tạo venv cho mỗi project. Không cài packages vào global Python.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `# Tạo virtual environment
+python -m venv .venv
+
+# Kích hoạt
+# Windows
+.venv\\Scripts\\activate
+# macOS/Linux
+source .venv/bin/activate
+
+# Tắt
+deactivate
+
+# pip - Quản lý packages
+pip install requests flask
+pip install requests==2.31.0    # Version cụ thể
+pip uninstall requests
+pip list                        # Xem packages
+pip show flask                  # Thông tin package
+
+# requirements.txt
+pip freeze > requirements.txt   # Xuất danh sách
+pip install -r requirements.txt # Cài từ file
+
+# requirements.txt format
+# flask==3.0.0
+# requests>=2.28.0
+# python-dotenv~=1.0.0
+
+# .gitignore
+# .venv/
+# __pycache__/
+# *.pyc
+# .env` }
+      ]
+    },
+    {
+      id: "py-pytest",
+      title: "Testing với pytest",
+      description: "pytest là testing framework phổ biến nhất. Dùng assert thay vì self.assertEqual. fixtures cung cấp test data. parametrize chạy test với nhiều inputs. Cài: pip install pytest.",
+      exampleText: "File test: test_*.py hoặc *_test.py. Chạy: pytest hoặc pytest -v (verbose).",
+      codeBlocks: [
+        { title: "Ví dụ", code: `# utils.py
+def add(a, b):
+    return a + b
+
+def is_palindrome(s):
+    s = s.lower().replace(' ', '')
+    return s == s[::-1]
+
+# test_utils.py
+import pytest
+from utils import add, is_palindrome
+
+def test_add():
+    assert add(2, 3) == 5
+    assert add(-1, 1) == 0
+    assert add(0, 0) == 0
+
+def test_is_palindrome():
+    assert is_palindrome('racecar') == True
+    assert is_palindrome('hello') == False
+    assert is_palindrome('A Santa at NASA') == True
+
+# parametrize - chạy test với nhiều inputs
+@pytest.mark.parametrize("a, b, expected", [
+    (1, 2, 3),
+    (-1, -1, -2),
+    (0, 100, 100),
+])
+def test_add_params(a, b, expected):
+    assert add(a, b) == expected
+
+# fixtures - cung cấp test data
+@pytest.fixture
+def sample_users():
+    return [
+        {'name': 'An', 'age': 25},
+        {'name': 'Bình', 'age': 30},
+    ]
+
+def test_user_count(sample_users):
+    assert len(sample_users) == 2
+
+# pytest.raises - test exception
+def test_division_by_zero():
+    with pytest.raises(ZeroDivisionError):
+        1 / 0` }
+      ]
+    }
+  ]
 }];

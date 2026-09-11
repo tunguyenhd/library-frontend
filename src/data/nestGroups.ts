@@ -194,4 +194,70 @@ export const nestGroups: KnowledgeGroup[] = [
       ]
     }
   ]
+},
+{
+  "label": "Nhóm 6",
+  "title": "Swagger, Testing & Nâng cao",
+  "cards": [
+    {
+      "id": "nest-exception-filter",
+      "title": "Exception Filters",
+      "description": "Exception Filter bắt và xử lý lỗi tập trung. NestJS có sẵn HttpException. Tạo Custom Exception Filter để format lỗi theo ý muốn (log, response format). Dùng @UseFilters() hoặc app.useGlobalFilters().",
+      "exampleText": "Mặc định NestJS trả về { statusCode, message, error }. Custom filter để thay đổi format này.",
+      "codeBlocks": [
+        {
+          "title": "Ví dụ",
+          "code": "import { ExceptionFilter, Catch, ArgumentsHost,\n  HttpException, HttpStatus } from '@nestjs/common';\nimport { Response } from 'express';\n\n@Catch() // Bắt TẤT CẢ exceptions\nexport class AllExceptionsFilter implements ExceptionFilter {\n  catch(exception: unknown, host: ArgumentsHost) {\n    const ctx = host.switchToHttp();\n    const response = ctx.getResponse<Response>();\n\n    const status = exception instanceof HttpException\n      ? exception.getStatus()\n      : HttpStatus.INTERNAL_SERVER_ERROR;\n\n    const message = exception instanceof HttpException\n      ? exception.message\n      : 'Internal server error';\n\n    // Log lỗi\n    console.error('Exception:', exception);\n\n    response.status(status).json({\n      success: false,\n      statusCode: status,\n      message,\n      timestamp: new Date().toISOString(),\n    });\n  }\n}\n\n// Đăng ký global (main.ts)\napp.useGlobalFilters(new AllExceptionsFilter());\n\n// Hoặc đăng ký cho 1 controller\n@UseFilters(AllExceptionsFilter)\n@Controller('users')\nexport class UsersController {}"
+        }
+      ]
+    },
+    {
+      "id": "nest-swagger",
+      "title": "Swagger / OpenAPI",
+      "description": "Swagger tự động tạo API documentation từ code. Cài @nestjs/swagger. Dùng decorators: @ApiTags() nhóm API, @ApiProperty() mô tả DTO fields, @ApiOperation() mô tả endpoint, @ApiBearerAuth() cho auth.",
+      "exampleText": "Truy cập Swagger UI tại /api-docs sau khi setup.",
+      "codeBlocks": [
+        {
+          "title": "Setup & Decorators",
+          "code": "// main.ts - Setup Swagger\nimport { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';\n\nconst config = new DocumentBuilder()\n  .setTitle('My API')\n  .setDescription('API documentation')\n  .setVersion('1.0')\n  .addBearerAuth()\n  .build();\n\nconst doc = SwaggerModule.createDocument(app, config);\nSwaggerModule.setup('api-docs', app, doc);\n\n// DTO với @ApiProperty\nimport { ApiProperty } from '@nestjs/swagger';\n\nexport class CreateUserDto {\n  @ApiProperty({ example: 'An Nguyễn' })\n  name: string;\n\n  @ApiProperty({ example: 'an@mail.com' })\n  email: string;\n\n  @ApiProperty({ minimum: 0, default: 18 })\n  age: number;\n}\n\n// Controller với @ApiTags\n@ApiTags('users')\n@ApiBearerAuth()\n@Controller('users')\nexport class UsersController {\n  @ApiOperation({ summary: 'Lấy danh sách users' })\n  @ApiResponse({ status: 200, description: 'Thành công' })\n  @Get()\n  findAll() {}\n}"
+        }
+      ]
+    },
+    {
+      "id": "nest-testing",
+      "title": "Testing trong NestJS",
+      "description": "NestJS cung cấp Test module để tạo isolated testing environment. Inject mock services thay vì real services. Unit test: test service logic. E2E test: test HTTP endpoints.",
+      "exampleText": "nest g resource tạo sẵn file .spec.ts. Chạy test: npm run test.",
+      "codeBlocks": [
+        {
+          "title": "Unit Test",
+          "code": "import { Test, TestingModule } from '@nestjs/testing';\nimport { UsersService } from './users.service';\nimport { getRepositoryToken } from '@nestjs/typeorm';\nimport { User } from './entities/user.entity';\n\ndescribe('UsersService', () => {\n  let service: UsersService;\n\n  // Mock repository\n  const mockRepo = {\n    find: jest.fn().mockResolvedValue([{ id: 1, name: 'An' }]),\n    findOneBy: jest.fn().mockResolvedValue({ id: 1, name: 'An' }),\n    create: jest.fn().mockImplementation(dto => dto),\n    save: jest.fn().mockResolvedValue({ id: 1, name: 'An' }),\n  };\n\n  beforeEach(async () => {\n    const module: TestingModule = await Test.createTestingModule({\n      providers: [\n        UsersService,\n        { provide: getRepositoryToken(User), useValue: mockRepo },\n      ],\n    }).compile();\n\n    service = module.get<UsersService>(UsersService);\n  });\n\n  it('should return all users', async () => {\n    const result = await service.findAll();\n    expect(result).toHaveLength(1);\n    expect(mockRepo.find).toHaveBeenCalled();\n  });\n});"
+        }
+      ]
+    },
+    {
+      "id": "nest-websockets",
+      "title": "WebSocket Gateway",
+      "description": "WebSocket cho phép giao tiếp real-time 2 chiều (chat, notifications). NestJS hỗ trợ socket.io và ws. Dùng @WebSocketGateway() tạo gateway. @SubscribeMessage() lắng nghe events từ client.",
+      "exampleText": "Cài: npm i @nestjs/websockets @nestjs/platform-socket.io socket.io.",
+      "codeBlocks": [
+        {
+          "title": "Ví dụ",
+          "code": "import { WebSocketGateway, WebSocketServer,\n  SubscribeMessage, MessageBody,\n  ConnectedSocket } from '@nestjs/websockets';\nimport { Server, Socket } from 'socket.io';\n\n@WebSocketGateway({ cors: { origin: '*' } })\nexport class ChatGateway {\n  @WebSocketServer()\n  server: Server;\n\n  @SubscribeMessage('sendMessage')\n  handleMessage(\n    @MessageBody() data: { room: string; message: string },\n    @ConnectedSocket() client: Socket,\n  ) {\n    // Gửi cho tất cả trong room\n    this.server.to(data.room).emit('newMessage', {\n      message: data.message,\n      sender: client.id,\n    });\n  }\n\n  handleConnection(client: Socket) {\n    console.log('Connected:', client.id);\n  }\n\n  handleDisconnect(client: Socket) {\n    console.log('Disconnected:', client.id);\n  }\n}\n\n// Client (React)\n// import io from 'socket.io-client';\n// const socket = io('http://localhost:3000');\n// socket.emit('sendMessage', { room: 'general', message: 'Hi!' });\n// socket.on('newMessage', (data) => console.log(data));"
+        }
+      ]
+    },
+    {
+      "id": "nest-cron",
+      "title": "Task Scheduling (@Cron)",
+      "description": "Lên lịch chạy tác vụ tự động (cleanup, send emails, sync data). Cài @nestjs/schedule. Dùng @Cron() với cron expression hoặc @Interval(), @Timeout() cho đơn giản hơn.",
+      "exampleText": "Cài: npm i @nestjs/schedule. Import ScheduleModule.forRoot() vào AppModule.",
+      "codeBlocks": [
+        {
+          "title": "Ví dụ",
+          "code": "import { Injectable } from '@nestjs/common';\nimport { Cron, CronExpression, Interval, Timeout } from '@nestjs/schedule';\n\n@Injectable()\nexport class TasksService {\n  // Chạy mỗi ngày lúc 2:00 AM\n  @Cron('0 2 * * *')\n  async cleanupOldData() {\n    console.log('Cleaning old records...');\n    await this.dbService.deleteOldRecords();\n  }\n\n  // Dùng CronExpression có sẵn\n  @Cron(CronExpression.EVERY_HOUR)\n  checkHealth() {\n    console.log('Health check...');\n  }\n\n  // Chạy mỗi 30 giây\n  @Interval(30000)\n  syncData() {\n    console.log('Syncing data...');\n  }\n\n  // Chạy 1 lần sau 5 giây\n  @Timeout(5000)\n  onceAfterStartup() {\n    console.log('Warm-up complete');\n  }\n}\n\n// AppModule\n@Module({\n  imports: [ScheduleModule.forRoot()],\n  providers: [TasksService],\n})\nexport class AppModule {}"
+        }
+      ]
+    }
+  ]
 }];

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
 import type { KnowledgeGroup as KnowledgeGroupData } from "../types/knowledge";
 import KnowledgeGroup from "./KnowledgeGroup";
 import Sidebar from "./Sidebar";
@@ -9,6 +10,7 @@ interface KnowledgePageLayoutProps {
   groups: KnowledgeGroupData[];
   onBack: () => void;
   themeClassName?: string;
+  themeToggle?: ReactNode;
 }
 
 export default function KnowledgePageLayout({
@@ -16,6 +18,7 @@ export default function KnowledgePageLayout({
   groups,
   onBack,
   themeClassName = "",
+  themeToggle,
 }: KnowledgePageLayoutProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchError, setSearchError] = useState("");
@@ -99,6 +102,7 @@ export default function KnowledgePageLayout({
         activeId={activeId}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        themeToggle={themeToggle}
       />
 
       <section className="html-content">

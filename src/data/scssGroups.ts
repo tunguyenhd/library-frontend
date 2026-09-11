@@ -166,5 +166,71 @@ export const scssGroups: KnowledgeGroup[] = [
         ]
       }
     ]
+  },
+  {
+    "label": "Nhóm 4",
+    "title": "@use/@forward & Responsive",
+    "cards": [
+      {
+        "id": "scss-use-forward",
+        "title": "@use và @forward",
+        "description": "@use thay thế @import (đã deprecated). @use namespace hóa, chỉ load 1 lần, rõ ràng hơn. @forward re-export module cho module khác dùng. @use 'sass:math' cho built-in modules.",
+        "exampleText": "@import sẽ bị xóa trong tương lai. Nên chuyển sang @use/@forward cho project mới.",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "// _variables.scss\n$primary: #3b82f6;\n$font-size-base: 16px;\n\n// _mixins.scss\n@mixin flex-center {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n// _index.scss (barrel file)\n@forward 'variables';\n@forward 'mixins';\n\n// style.scss - Dùng @use\n@use 'variables' as vars;   // Namespace\n@use 'mixins' as mix;\n@use 'variables' as *;      // Không namespace\n\n.btn {\n  color: vars.$primary;      // Có namespace\n  color: $primary;           // Không namespace (as *)\n  @include mix.flex-center;  // Mixin với namespace\n}\n\n// Dùng barrel file\n@use 'abstracts' as *;      // Load từ _index.scss\n\n// So sánh @import vs @use\n// ❌ @import 'variables'; (deprecated, load nhiều lần)\n// ✅ @use 'variables' as vars; (load 1 lần, scoped)"
+          }
+        ]
+      },
+      {
+        "id": "scss-built-in-modules",
+        "title": "Built-in Modules",
+        "description": "Sass cung cấp built-in modules: sass:math (tính toán), sass:color (thao tác màu), sass:string, sass:list, sass:map, sass:meta. Dùng @use 'sass:xxx' để import.",
+        "exampleText": "Không dùng math.div() thay / cho phép chia (/ bị deprecated cho division).",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "@use 'sass:math';\n@use 'sass:color';\n@use 'sass:list';\n@use 'sass:string';\n\n// sass:math\nwidth: math.div(100%, 3);      // 33.333%\nwidth: math.percentage(0.75);  // 75%\nwidth: math.ceil(4.2);         // 5\nwidth: math.floor(4.8);        // 4\nwidth: math.round(4.5);        // 5\nwidth: math.max(10px, 20px);   // 20px\nwidth: math.min(10px, 20px);   // 10px\n\n// sass:color\n$blue: #3b82f6;\ncolor: color.adjust($blue, $lightness: 20%);  // Sáng hơn\ncolor: color.adjust($blue, $lightness: -20%); // Tối hơn\ncolor: color.mix($blue, white, 50%);          // Pha 50%\ncolor: color.scale($blue, $alpha: -50%);      // 50% transparent\ncolor: color.change($blue, $hue: 120);        // Đổi hue\n\n// sass:string\n$name: 'Nguyễn An';\nresult: string.to-upper-case($name);  // 'NGUYỄN AN'\nresult: string.index($name, 'An');    // 8\nresult: string.slice($name, 8);       // 'An'\n\n// sass:list\n$sizes: 4px, 8px, 16px, 24px;\nlength: list.length($sizes);  // 4\nvalue: list.nth($sizes, 2);   // 8px\nnew: list.append($sizes, 32px);"
+          }
+        ]
+      },
+      {
+        "id": "scss-responsive-pattern",
+        "title": "Responsive Patterns",
+        "description": "Tạo responsive mixins để quản lý breakpoints tập trung. Dùng map lưu breakpoints, mixin generate media queries. Mobile-first (min-width) hoặc desktop-first (max-width).",
+        "exampleText": "Mobile-first: viết mobile trước, dùng min-width mở rộng. Phổ biến hơn desktop-first.",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "// Breakpoints map\n$breakpoints: (\n  'xs': 480px,\n  'sm': 640px,\n  'md': 768px,\n  'lg': 1024px,\n  'xl': 1280px,\n  '2xl': 1536px,\n);\n\n// Mobile-first mixin (min-width)\n@mixin respond-to($breakpoint) {\n  @if map-has-key($breakpoints, $breakpoint) {\n    @media (min-width: map-get($breakpoints, $breakpoint)) {\n      @content;\n    }\n  } @else {\n    @warn 'Unknown breakpoint: #{$breakpoint}';\n  }\n}\n\n// Desktop-first mixin (max-width)\n@mixin respond-below($breakpoint) {\n  @if map-has-key($breakpoints, $breakpoint) {\n    @media (max-width: map-get($breakpoints, $breakpoint) - 1) {\n      @content;\n    }\n  }\n}\n\n// Sử dụng\n.container {\n  padding: 16px;            // Mobile default\n\n  @include respond-to('md') {\n    padding: 32px;          // >= 768px\n    max-width: 720px;\n  }\n\n  @include respond-to('lg') {\n    padding: 48px;          // >= 1024px\n    max-width: 960px;\n  }\n}\n\n.sidebar {\n  display: none;            // Mobile: ẩn\n\n  @include respond-to('md') {\n    display: block;         // Tablet+: hiện\n    width: 250px;\n  }\n}"
+          }
+        ]
+      },
+      {
+        "id": "scss-architecture",
+        "title": "Kiến trúc 7-1 Pattern",
+        "description": "7-1 pattern chia SCSS thành 7 thư mục + 1 file main. Giúp tổ chức code lớn. 7 folders: abstracts (biến, mixins), base (reset, typography), components (button, card), layout (header, footer, grid), pages, themes, vendors.",
+        "exampleText": "Không nhất thiết dùng đủ 7 folders. Chọn folders phù hợp với project size.",
+        "codeBlocks": [
+          {
+            "title": "Cấu trúc",
+            "code": "scss/\n├── abstracts/\n│   ├── _variables.scss    # Biến: colors, fonts, spacing\n│   ├── _mixins.scss       # Mixins: responsive, flex...\n│   ├── _functions.scss    # Custom functions\n│   └── _index.scss        # @forward tất cả\n├── base/\n│   ├── _reset.scss        # Reset/Normalize\n│   ├── _typography.scss   # Font rules\n│   └── _index.scss\n├── components/\n│   ├── _button.scss       # .btn, .btn--primary\n│   ├── _card.scss         # .card, .card__body\n│   ├── _modal.scss\n│   └── _index.scss\n├── layout/\n│   ├── _header.scss\n│   ├── _footer.scss\n│   ├── _sidebar.scss\n│   ├── _grid.scss\n│   └── _index.scss\n├── pages/\n│   ├── _home.scss\n│   └── _about.scss\n├── themes/\n│   ├── _dark.scss\n│   └── _light.scss\n├── vendors/\n│   └── _normalize.scss\n└── main.scss              # Entry point\n\n// main.scss\n@use 'abstracts';\n@use 'base';\n@use 'components';\n@use 'layout';\n@use 'pages';\n@use 'themes';"
+          }
+        ]
+      },
+      {
+        "id": "scss-placeholder",
+        "title": "Placeholder Selectors (%)",
+        "description": "Placeholder (%name) chỉ được compile khi @extend. Không tạo CSS thừa nếu không dùng. Khác với mixin: placeholder merge selectors (nhỏ hơn), mixin copy code (linh hoạt hơn với params).",
+        "exampleText": "Dùng %placeholder khi không cần tham số. Dùng @mixin khi cần tham số.",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "// Placeholder definition\n%flex-center {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n%visually-hidden {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n}\n\n%card-base {\n  background: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n  padding: 16px;\n}\n\n// Sử dụng @extend\n.hero { @extend %flex-center; height: 100vh; }\n.modal { @extend %flex-center; }\n.sr-only { @extend %visually-hidden; }\n.product-card { @extend %card-base; }\n.user-card { @extend %card-base; border: 1px solid #eee; }\n\n// Output CSS (merged selectors - hiệu quả!)\n// .hero, .modal {\n//   display: flex;\n//   align-items: center;\n//   justify-content: center;\n// }\n//\n// .product-card, .user-card {\n//   background: white;\n//   border-radius: 8px;\n//   ...\n// }"
+          }
+        ]
+      }
+    ]
   }
 ];

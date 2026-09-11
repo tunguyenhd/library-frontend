@@ -226,5 +226,71 @@ export const tailwindGroups: KnowledgeGroup[] = [
         ]
       }
     ]
+  },
+  {
+    "label": "Nhóm 5",
+    "title": "Dark Mode, Plugins & Nâng cao",
+    "cards": [
+      {
+        "id": "tw-dark-mode",
+        "title": "Dark Mode",
+        "description": "Tailwind hỗ trợ dark mode bằng dark: prefix. 2 strategies: media (theo system setting) và class/selector (toggle bằng JS). Class strategy linh hoạt hơn, cho user chọn theme.",
+        "exampleText": "darkMode: 'class' → thêm class 'dark' vào html tag. darkMode: 'media' → tự theo system.",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "<!-- tailwind.config.js -->\nmodule.exports = {\n  darkMode: 'class', // 'media' | 'class' | 'selector'\n}\n\n<!-- HTML -->\n<html class=\"dark\"> <!-- Toggle bằng JS -->\n<body class=\"bg-white dark:bg-gray-900\">\n  <h1 class=\"text-gray-900 dark:text-white\">\n    Dark Mode\n  </h1>\n  <p class=\"text-gray-600 dark:text-gray-300\">\n    Nội dung\n  </p>\n  <div class=\"\n    bg-white dark:bg-gray-800\n    border border-gray-200 dark:border-gray-700\n    shadow-lg dark:shadow-gray-900/50\n    rounded-lg p-4\n  \">\n    Card content\n  </div>\n</body>\n</html>\n\n<!-- Toggle JS -->\n<script>\n  const toggle = () => {\n    document.documentElement.classList.toggle('dark');\n    // Lưu vào localStorage\n    const isDark = document.documentElement.classList.contains('dark');\n    localStorage.setItem('theme', isDark ? 'dark' : 'light');\n  };\n\n  // Load saved theme\n  if (localStorage.theme === 'dark' ||\n    (!('theme' in localStorage) &&\n      window.matchMedia('(prefers-color-scheme: dark)').matches)) {\n    document.documentElement.classList.add('dark');\n  }\n</script>"
+          }
+        ]
+      },
+      {
+        "id": "tw-arbitrary-detail",
+        "title": "Arbitrary Values & Properties",
+        "description": "Arbitrary values [value] cho phép dùng giá trị tùy ý không có trong config. Arbitrary properties [property:value] cho phép dùng CSS property bất kỳ. Rất mạnh cho one-off styles.",
+        "exampleText": "Dùng _ thay khoảng trắng trong arbitrary values. VD: bg-[url('/img.png')].",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "<!-- Arbitrary values -->\n<div class=\"w-[350px]\">        <!-- width: 350px -->\n<div class=\"h-[calc(100vh-80px)]\"> <!-- calc() -->\n<div class=\"bg-[#1da1f2]\">     <!-- custom color -->\n<div class=\"text-[14px]\">      <!-- custom font size -->\n<div class=\"top-[10%]\">        <!-- percentage -->\n<div class=\"grid-cols-[200px_1fr_200px]\"> <!-- grid -->\n<div class=\"content-['Hello']\">  <!-- CSS content -->\n<div class=\"bg-[url('/hero.jpg')] bg-cover\"> <!-- bg image -->\n\n<!-- Arbitrary properties (CSS tùy ý) -->\n<div class=\"[mask-type:luminance]\"> <!-- CSS property -->\n<div class=\"[--my-color:#3b82f6]\"> <!-- CSS variable -->\n<div class=\"[text-wrap:balance]\">  <!-- Modern CSS -->\n<div class=\"[writing-mode:vertical-rl]\"> <!-- Vertical text -->\n\n<!-- Kết hợp với modifiers -->\n<div class=\"hover:bg-[#1da1f2]/80\"> <!-- hover + opacity -->\n<div class=\"dark:[--brand:#60a5fa]\">  <!-- dark + CSS var -->\n<div class=\"md:w-[calc(100%-2rem)]\"> <!-- responsive + calc -->\n\n<!-- Dùng CSS variable -->\n<div\n  style=\"--brand: #6366f1\"\n  class=\"bg-[--brand] text-white\"\n>\n  Dynamic color\n</div>"
+          }
+        ]
+      },
+      {
+        "id": "tw-apply-directive",
+        "title": "@apply Directive",
+        "description": "@apply cho phép dùng Tailwind classes trong CSS file. Hữu ích khi tạo base styles hoặc component styles quá dài. Nên hạn chế - component-based (React) tốt hơn. Dùng trong @layer components hoặc @layer utilities.",
+        "exampleText": "Ưu tiên dùng React components thay vì @apply. @apply chỉ cho global styles hoặc 3rd-party.",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "/* globals.css */\n@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n/* @layer base - Reset, typography */\n@layer base {\n  body {\n    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white;\n  }\n\n  h1 { @apply text-3xl font-bold mb-4; }\n  h2 { @apply text-2xl font-semibold mb-3; }\n  a { @apply text-blue-600 hover:text-blue-800 underline; }\n}\n\n/* @layer components - Reusable components */\n@layer components {\n  .btn {\n    @apply px-4 py-2 rounded-lg font-medium\n      transition-colors duration-200;\n  }\n\n  .btn-primary {\n    @apply btn bg-blue-600 text-white\n      hover:bg-blue-700 active:bg-blue-800;\n  }\n\n  .btn-outline {\n    @apply btn border-2 border-blue-600 text-blue-600\n      hover:bg-blue-600 hover:text-white;\n  }\n\n  .card {\n    @apply bg-white dark:bg-gray-800 rounded-xl\n      shadow-md p-6 border border-gray-100\n      dark:border-gray-700;\n  }\n\n  .input {\n    @apply w-full px-3 py-2 rounded-lg border\n      border-gray-300 dark:border-gray-600\n      bg-white dark:bg-gray-800\n      focus:ring-2 focus:ring-blue-500\n      focus:border-transparent outline-none;\n  }\n}\n\n/* @layer utilities - Custom utilities */\n@layer utilities {\n  .text-balance {\n    text-wrap: balance;\n  }\n}"
+          }
+        ]
+      },
+      {
+        "id": "tw-plugins",
+        "title": "Official Plugins",
+        "description": "Tailwind có plugins chính thức: @tailwindcss/forms (form styles), @tailwindcss/typography (prose - content formatting), @tailwindcss/aspect-ratio, @tailwindcss/container-queries.",
+        "exampleText": "Cài: npm i @tailwindcss/forms @tailwindcss/typography. Thêm vào plugins trong config.",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "// tailwind.config.js\nmodule.exports = {\n  plugins: [\n    require('@tailwindcss/forms'),\n    require('@tailwindcss/typography'),\n    require('@tailwindcss/aspect-ratio'),\n    require('@tailwindcss/container-queries'),\n  ],\n}\n\n<!-- @tailwindcss/forms - Input styles đẹp mặc định -->\n<input type=\"text\" class=\"rounded-md border-gray-300\n  focus:border-blue-500 focus:ring-blue-500\">\n<select class=\"rounded-md border-gray-300\">\n  <option>Option 1</option>\n</select>\n\n<!-- @tailwindcss/typography - Prose cho content -->\n<article class=\"prose prose-lg dark:prose-invert\n  prose-headings:text-blue-600\n  prose-a:text-blue-500\n  prose-code:bg-gray-100\n  max-w-none\">\n  <h1>Tiêu đề bài viết</h1>\n  <p>Nội dung markdown render ra HTML...</p>\n  <pre><code>console.log('code block')</code></pre>\n</article>\n\n<!-- @tailwindcss/container-queries -->\n<div class=\"@container\">\n  <div class=\"@lg:flex @lg:gap-4\">\n    <div class=\"@lg:w-1/3\">Sidebar</div>\n    <div class=\"@lg:w-2/3\">Content</div>\n  </div>\n</div>"
+          }
+        ]
+      },
+      {
+        "id": "tw-config-detail",
+        "title": "Cấu hình chi tiết",
+        "description": "tailwind.config.js cấu hình colors, fonts, spacing, breakpoints... theme.extend thêm mới (giữ defaults). theme override toàn bộ. safelist giữ classes không bị purge. content chỉ định files cần scan.",
+        "exampleText": "Luôn dùng theme.extend thay vì theme trực tiếp (để giữ default classes).",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "// tailwind.config.js (v3)\nmodule.exports = {\n  // Scan files để tìm classes\n  content: [\n    './src/**/*.{js,jsx,ts,tsx}',\n    './public/index.html',\n  ],\n\n  darkMode: 'class',\n\n  theme: {\n    // Override breakpoints\n    screens: {\n      sm: '640px',\n      md: '768px',\n      lg: '1024px',\n      xl: '1280px',\n    },\n\n    extend: {\n      // Thêm colors (giữ defaults)\n      colors: {\n        brand: {\n          50: '#eff6ff',\n          100: '#dbeafe',\n          500: '#3b82f6',\n          600: '#2563eb',\n          700: '#1d4ed8',\n          900: '#1e3a5f',\n        },\n      },\n\n      fontFamily: {\n        sans: ['Inter', 'system-ui', 'sans-serif'],\n        mono: ['JetBrains Mono', 'monospace'],\n      },\n\n      spacing: {\n        '18': '4.5rem',\n        '88': '22rem',\n      },\n\n      borderRadius: {\n        '4xl': '2rem',\n      },\n\n      animation: {\n        'fade-in': 'fadeIn 0.5s ease-out',\n        'slide-up': 'slideUp 0.3s ease-out',\n      },\n\n      keyframes: {\n        fadeIn: {\n          '0%': { opacity: '0' },\n          '100%': { opacity: '1' },\n        },\n        slideUp: {\n          '0%': { transform: 'translateY(10px)', opacity: '0' },\n          '100%': { transform: 'translateY(0)', opacity: '1' },\n        },\n      },\n    },\n  },\n\n  // Giữ classes luôn có (không bị purge)\n  safelist: [\n    'bg-red-500',\n    'bg-green-500',\n    { pattern: /^bg-(red|green|blue)-(100|500)$/ },\n  ],\n};"
+          }
+        ]
+      }
+    ]
   }
 ];

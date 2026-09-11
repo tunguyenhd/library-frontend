@@ -484,5 +484,47 @@ export const nextGroups: KnowledgeGroup[] = [
         ]
       }
     ]
+  },
+  {
+    "label": "Nhóm 7",
+    "title": "API Routes, Metadata & Middleware",
+    "cards": [
+      {
+        "id": "next-api-route",
+        "title": "Route Handlers (API Routes)",
+        "description": "Route Handlers tạo API endpoints trong App Router. File route.ts trong thư mục app/api/. Export hàm GET, POST, PUT, DELETE, PATCH. Nhận Request object, trả về Response. Thay thế pages/api/ cũ.",
+        "exampleText": "Route handlers chạy trên server. Có thể đọc cookies, headers, query params.",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "// app/api/users/route.ts\nimport { NextRequest, NextResponse } from 'next/server';\nimport { db } from '@/lib/db';\n\n// GET /api/users?page=1&limit=10\nexport async function GET(request: NextRequest) {\n  const { searchParams } = new URL(request.url);\n  const page = Number(searchParams.get('page')) || 1;\n  const limit = Number(searchParams.get('limit')) || 10;\n\n  const users = await db.user.findMany({\n    skip: (page - 1) * limit,\n    take: limit,\n  });\n\n  return NextResponse.json({ data: users, page, limit });\n}\n\n// POST /api/users\nexport async function POST(request: NextRequest) {\n  const body = await request.json();\n\n  const user = await db.user.create({ data: body });\n  return NextResponse.json(user, { status: 201 });\n}\n\n// app/api/users/[id]/route.ts\n// GET /api/users/123\nexport async function GET(\n  request: NextRequest,\n  { params }: { params: { id: string } }\n) {\n  const user = await db.user.findUnique({\n    where: { id: params.id },\n  });\n\n  if (!user) {\n    return NextResponse.json(\n      { error: 'User not found' },\n      { status: 404 }\n    );\n  }\n  return NextResponse.json(user);\n}\n\n// DELETE /api/users/123\nexport async function DELETE(\n  request: NextRequest,\n  { params }: { params: { id: string } }\n) {\n  await db.user.delete({ where: { id: params.id } });\n  return new NextResponse(null, { status: 204 });\n}"
+          }
+        ]
+      },
+      {
+        "id": "next-metadata",
+        "title": "Metadata API (SEO)",
+        "description": "Metadata API quản lý SEO cho từng page. 2 cách: static metadata (export const metadata) hoặc dynamic (export generateMetadata function). Tự động merge metadata từ layout → page. Hỗ trợ title, description, og, twitter.",
+        "exampleText": "metadata trong layout là mặc định. Page metadata override layout metadata.",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "// app/layout.tsx - Default metadata\nimport type { Metadata } from 'next';\n\nexport const metadata: Metadata = {\n  title: {\n    default: 'My App',\n    template: '%s | My App', // \"About | My App\"\n  },\n  description: 'A modern web application',\n  metadataBase: new URL('https://myapp.com'),\n  openGraph: {\n    type: 'website',\n    locale: 'vi_VN',\n    siteName: 'My App',\n    images: ['/og-image.jpg'],\n  },\n  twitter: {\n    card: 'summary_large_image',\n    creator: '@myapp',\n  },\n  robots: {\n    index: true,\n    follow: true,\n  },\n};\n\n// app/products/[id]/page.tsx - Dynamic metadata\nexport async function generateMetadata(\n  { params }: { params: { id: string } }\n): Promise<Metadata> {\n  const product = await getProduct(params.id);\n\n  return {\n    title: product.name,                    // \"iPhone | My App\"\n    description: product.description,\n    openGraph: {\n      title: product.name,\n      description: product.description,\n      images: [product.image],\n    },\n  };\n}\n\n// app/blog/page.tsx - Static metadata\nexport const metadata: Metadata = {\n  title: 'Blog',\n  description: 'Bài viết mới nhất',\n};"
+          }
+        ]
+      },
+      {
+        "id": "next-middleware-detail",
+        "title": "Middleware chi tiết",
+        "description": "Middleware chạy TRƯỚC mỗi request. File middleware.ts ở root. Dùng cho: auth check, redirect, rewrite, set headers/cookies, i18n, A/B testing. Config matcher chỉ định routes cần middleware.",
+        "exampleText": "Middleware chạy ở Edge Runtime. Không dùng Node.js APIs (fs, path...). Chỉ 1 file middleware.",
+        "codeBlocks": [
+          {
+            "title": "Ví dụ",
+            "code": "// middleware.ts (root project)\nimport { NextResponse } from 'next/server';\nimport type { NextRequest } from 'next/server';\n\nexport function middleware(request: NextRequest) {\n  const { pathname } = request.nextUrl;\n  const token = request.cookies.get('token')?.value;\n\n  // 1. Auth check - redirect nếu chưa login\n  const protectedPaths = ['/dashboard', '/profile', '/settings'];\n  if (protectedPaths.some(p => pathname.startsWith(p))) {\n    if (!token) {\n      const loginUrl = new URL('/login', request.url);\n      loginUrl.searchParams.set('from', pathname);\n      return NextResponse.redirect(loginUrl);\n    }\n  }\n\n  // 2. Đã login thì không vào /login nữa\n  if (pathname === '/login' && token) {\n    return NextResponse.redirect(new URL('/dashboard', request.url));\n  }\n\n  // 3. Rewrite (URL giữ nguyên, content khác)\n  if (pathname === '/old-page') {\n    return NextResponse.rewrite(new URL('/new-page', request.url));\n  }\n\n  // 4. Set headers\n  const response = NextResponse.next();\n  response.headers.set('x-request-id', crypto.randomUUID());\n  return response;\n}\n\n// Config: chỉ chạy middleware cho paths này\nexport const config = {\n  matcher: [\n    '/dashboard/:path*',\n    '/profile/:path*',\n    '/settings/:path*',\n    '/login',\n    '/old-page',\n  ],\n};"
+          }
+        ]
+      }
+    ]
   }
 ];

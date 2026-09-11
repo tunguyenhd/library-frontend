@@ -233,4 +233,253 @@ export const goGroups: KnowledgeGroup[] = [
       ]
     }
   ]
+},
+{
+  label: "Nhóm 5",
+  title: "Generics, Error Handling & Packages",
+  cards: [
+    {
+      id: "go-generics",
+      title: "Generics (Go 1.18+)",
+      description: "Generics cho phép viết function/struct hoạt động với nhiều kiểu dữ liệu. Dùng type parameters [T any] hoặc constraints [T comparable]. Go 1.18+ (2022). Giúp tránh duplicate code cho các kiểu khác nhau.",
+      exampleText: "any = interface{}. comparable = kiểu có thể so sánh ==. Constraints giới hạn kiểu cho phép.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `// Generic function
+func Filter[T any](slice []T, predicate func(T) bool) []T {
+    var result []T
+    for _, v := range slice {
+        if predicate(v) {
+            result = append(result, v)
+        }
+    }
+    return result
+}
+
+// Sử dụng
+evens := Filter([]int{1,2,3,4,5}, func(n int) bool {
+    return n%2 == 0
+}) // [2, 4]
+
+// Constraint
+type Number interface {
+    int | int64 | float64
+}
+
+func Sum[T Number](nums []T) T {
+    var total T
+    for _, n := range nums {
+        total += n
+    }
+    return total
+}
+
+// Generic struct
+type Stack[T any] struct {
+    items []T
+}
+
+func (s *Stack[T]) Push(item T) {
+    s.items = append(s.items, item)
+}
+
+func (s *Stack[T]) Pop() (T, bool) {
+    if len(s.items) == 0 {
+        var zero T
+        return zero, false
+    }
+    item := s.items[len(s.items)-1]
+    s.items = s.items[:len(s.items)-1]
+    return item, true
+}` }
+      ]
+    },
+    {
+      id: "go-error-wrapping",
+      title: "Error Wrapping",
+      description: "Go 1.13+ hỗ trợ wrap errors bằng fmt.Errorf(\"%w\", err). errors.Is() kiểm tra error chain. errors.As() unwrap thành type cụ thể. Custom error type implement Error() method.",
+      exampleText: "Luôn wrap error với context thay vì chỉ return err. Giúp debug dễ hơn.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `import (
+    "errors"
+    "fmt"
+)
+
+// Custom error type
+type NotFoundError struct {
+    Entity string
+    ID     int
+}
+
+func (e *NotFoundError) Error() string {
+    return fmt.Sprintf("%s #%d not found", e.Entity, e.ID)
+}
+
+// Sentinel errors
+var (
+    ErrNotFound     = errors.New("not found")
+    ErrUnauthorized = errors.New("unauthorized")
+)
+
+// Wrap error với context
+func getUser(id int) (*User, error) {
+    user, err := db.FindByID(id)
+    if err != nil {
+        // Wrap error - giữ original + thêm context
+        return nil, fmt.Errorf("getUser(%d): %w", id, err)
+    }
+    return user, nil
+}
+
+// Check error chain
+err := getUser(123)
+if errors.Is(err, ErrNotFound) {
+    // Handle not found
+}
+
+// Unwrap custom error type
+var notFound *NotFoundError
+if errors.As(err, &notFound) {
+    fmt.Println(notFound.Entity, notFound.ID)
+}` }
+      ]
+    },
+    {
+      id: "go-embedding",
+      title: "Struct Embedding",
+      description: "Go không có inheritance. Thay vào đó dùng embedding (nhúng struct). Struct nhúng sẽ 'thừa kế' tất cả fields và methods. Composition over inheritance. Có thể nhúng nhiều struct.",
+      exampleText: "Embedding giống has-a nhưng các fields/methods được promote lên struct cha.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `// Base struct
+type Animal struct {
+    Name string
+    Age  int
+}
+
+func (a Animal) Speak() string {
+    return fmt.Sprintf("I'm %s, age %d", a.Name, a.Age)
+}
+
+// Embedding (nhúng Animal vào Dog)
+type Dog struct {
+    Animal       // Embedded struct (không tên)
+    Breed string
+}
+
+func main() {
+    d := Dog{
+        Animal: Animal{Name: "Buddy", Age: 3},
+        Breed:  "Golden",
+    }
+
+    // Truy cập trực tiếp fields của Animal
+    fmt.Println(d.Name)    // "Buddy" (promoted)
+    fmt.Println(d.Speak()) // "I'm Buddy, age 3"
+    fmt.Println(d.Breed)   // "Golden"
+}
+
+// Nhúng interface
+type ReadWriter interface {
+    Reader
+    Writer
+}` }
+      ]
+    },
+    {
+      id: "go-packages",
+      title: "Packages & Go Modules",
+      description: "Package tổ chức code thành nhóm. Tên package = tên thư mục. Exported names bắt đầu bằng chữ HOA. Go Modules (go.mod) quản lý dependencies. internal/ package chỉ dùng nội bộ.",
+      exampleText: "go mod init myapp tạo module. go mod tidy dọn dependencies thừa.",
+      codeBlocks: [
+        { title: "Cấu trúc", code: `# Cấu trúc project phổ biến
+myapp/
+├── go.mod
+├── go.sum
+├── main.go              # Entry point
+├── cmd/
+│   └── server/
+│       └── main.go      # CLI entry points
+├── internal/            # Private packages
+│   ├── handlers/
+│   │   └── user.go
+│   ├── models/
+│   │   └── user.go
+│   └── services/
+│       └── user.go
+├── pkg/                 # Public packages (reusable)
+│   └── validator/
+│       └── email.go
+└── config/
+    └── config.go
+
+# Package rules
+# - Tên package = tên thư mục
+# - Chữ HOA đầu = exported (public)
+# - Chữ thường đầu = unexported (private)
+# - internal/ chỉ dùng trong project
+
+# Commands
+go mod init github.com/user/myapp
+go mod tidy
+go get github.com/gin-gonic/gin@latest
+go list -m all  # List all dependencies` }
+      ]
+    },
+    {
+      id: "go-panic-recover",
+      title: "Defer, Panic & Recover",
+      description: "defer: trì hoãn thực thi đến khi function return (LIFO). panic: dừng chương trình ngay lập tức (giống throw). recover: bắt panic trong defer (giống catch). Pattern: defer + recover để xử lý panic gracefully.",
+      exampleText: "Chỉ dùng panic cho lỗi không thể phục hồi. Hầu hết nên return error thay vì panic.",
+      codeBlocks: [
+        { title: "Ví dụ", code: `// Defer - dọn dẹp tài nguyên
+func readFile(path string) error {
+    f, err := os.Open(path)
+    if err != nil {
+        return err
+    }
+    defer f.Close() // Luôn đóng file dù có lỗi
+
+    // Đọc file...
+    return nil
+}
+
+// Defer LIFO
+func example() {
+    defer fmt.Println("1")
+    defer fmt.Println("2")
+    defer fmt.Println("3")
+    // Output: 3, 2, 1
+}
+
+// Panic & Recover
+func safeDiv(a, b int) (result int, err error) {
+    defer func() {
+        if r := recover(); r != nil {
+            err = fmt.Errorf("recovered: %v", r)
+        }
+    }()
+
+    if b == 0 {
+        panic("division by zero!")
+    }
+    return a / b, nil
+}
+
+result, err := safeDiv(10, 0)
+// err = "recovered: division by zero!"
+
+// HTTP server recovery middleware
+func recoveryMiddleware(next http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        defer func() {
+            if err := recover(); err != nil {
+                http.Error(w, "Internal Error", 500)
+                log.Printf("Panic: %v", err)
+            }
+        }()
+        next.ServeHTTP(w, r)
+    })
+}` }
+      ]
+    }
+  ]
 }];
