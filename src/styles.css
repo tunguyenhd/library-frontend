@@ -1530,3 +1530,9 @@ html {
 .hljs {
    background: transparent !important;
 }
+
+/* ─── Override highlight.js comment color for better contrast ─── */
+.hljs-comment,
+.hljs-quote {
+   color: #8b949e !important;
+}
