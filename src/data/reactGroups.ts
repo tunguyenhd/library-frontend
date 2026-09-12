@@ -8,7 +8,7 @@ export const reactGroups: KnowledgeGroup[] = [
       {
         "id": "react-introduction",
         "title": "React là gì",
-        "description": "React là thư viện JavaScript dùng để xây dựng giao diện người dùng. React giúp chia giao diện thành nhiều component nhỏ, dễ quản lý và tái sử dụng.",
+        "description": "React là thư viện JavaScript xây dựng UI theo cách khai báo (declarative). 3 ý tưởng cốt lõi: (1) Component-based — chia UI thành các khối nhỏ độc lập, tái sử dụng. (2) Virtual DOM — React so sánh DOM ảo với DOM thật, chỉ cập nhật phần thay đổi (nhanh hơn thao tác DOM trực tiếp). (3) One-way data flow — dữ liệu chảy từ cha → con qua props, giúp debug dễ hơn.",
         "exampleText": "Một website lưu kiến thức code có thể chia thành các component như Header, Sidebar, KnowledgeCard, Button và Content.",
         "codeBlocks": [
           {

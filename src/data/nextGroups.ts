@@ -46,13 +46,17 @@ export const nextGroups: KnowledgeGroup[] = [
       {
         "id": "f8-next-dynamic-routes",
         "title": "Dynamic Routes",
-        "description": "Dynamic routes cho phép tạo các URL động dựa trên thư mục có tên được bao bọc bởi ngoặc vuông (ví dụ: [id]). Tham số sẽ được truyền vào component qua thuộc tính params.",
-        "exampleText": "Tạo trang chi tiết bài viết với URL dạng /posts/:id.",
+        "description": "Dynamic routes tạo URL động bằng thư mục [tên_param]. Next.js tự map URL → params: /posts/5 → params.id = '5'. Folder name = param name. Dùng cho trang chi tiết (bài viết, sản phẩm, user profile) — bất kỳ trang nào mà URL phụ thuộc vào dữ liệu.",
+        "exampleText": "Quy tắc: tên folder [id] → params.id. Tên folder [slug] → params.slug. Luôn là string, cần parseInt() nếu muốn number.",
         "codeBlocks": [
           {
-            "title": "Ví dụ",
-            "code": "const PostDetail = async ({ params }) => {\n  const { id } = params;\n  const post = await getPost(id);\n  return <h1>{post.title}</h1>;\n};\nexport default PostDetail;",
-            "codeTsx": "interface PageProps {\n  params: { id: string };\n}\n\ninterface Post {\n  title: string;\n}\n\nconst PostDetail = async ({ params }: PageProps): Promise<JSX.Element> => {\n  const { id } = params;\n  const post: Post = await getPost(id);\n  return <h1>{post.title}</h1>;\n};\nexport default PostDetail;"
+            "title": "📁 Cấu trúc thư mục → URL",
+            "code": "app/\n ┣ posts/\n ┃ ┗ [id]/\n ┃   ┗ page.tsx        ← /posts/1, /posts/abc\n ┣ users/\n ┃ ┗ [userId]/\n ┃   ┣ page.tsx        ← /users/123\n ┃   ┗ settings/\n ┃     ┗ page.tsx      ← /users/123/settings\n ┗ products/\n   ┗ [category]/\n     ┗ [productId]/\n       ┗ page.tsx      ← /products/phone/iphone-15\n                          params = { category: 'phone', productId: 'iphone-15' }"
+          },
+          {
+            "title": "Component nhận params",
+            "code": "// app/posts/[id]/page.tsx\nconst PostDetail = async ({ params }) => {\n  const { id } = params;\n  // URL /posts/5 → id = '5' (luôn là string!)\n  const post = await getPost(id);\n  return <h1>{post.title}</h1>;\n};\nexport default PostDetail;",
+            "codeTsx": "// app/posts/[id]/page.tsx\ninterface PageProps {\n  params: { id: string };\n}\n\nconst PostDetail = async ({ params }: PageProps): Promise<JSX.Element> => {\n  const { id } = params;\n  const post = await getPost(id);\n  return <h1>{post.title}</h1>;\n};\nexport default PostDetail;"
           }
         ]
       },
@@ -83,25 +87,33 @@ export const nextGroups: KnowledgeGroup[] = [
       {
         "id": "f8-next-middleware",
         "title": "Middleware",
-        "description": "Middleware cho phép chạy code trước khi request hoàn tất (thường dùng để kiểm tra đăng nhập, phân quyền). Trả về NextResponse.redirect hoặc rewrite.",
-        "exampleText": "Tạo file middleware.js ở thư mục gốc (cùng cấp với cấu hình) và định nghĩa config.matcher để lọc các URL cần áp dụng.",
+        "description": "Middleware chạy TRƯỚC mỗi request đến server. Dùng để: kiểm tra đăng nhập (redirect về /login nếu chưa auth), phân quyền, rewrite URL, set headers. Chạy trên Edge Runtime (nhẹ, nhanh, nhưng KHÔNG dùng được Node.js APIs như fs, path). Chỉ có 1 file middleware duy nhất cho cả project.",
+        "exampleText": "config.matcher chọn route cần middleware. Không có matcher → chạy cho TẤT CẢ routes (kể cả _next, favicon).",
         "codeBlocks": [
           {
+            "title": "📁 Vị trí file (project root)",
+            "code": "my-next-app/\n ┣ app/\n ┃ ┣ layout.tsx\n ┃ ┣ page.tsx\n ┃ ┗ dashboard/\n ┃   ┗ page.tsx\n ┣ middleware.ts       ← ĐẶT Ở ĐÂY (cùng cấp với app/)\n ┣ next.config.js\n ┣ package.json\n ┗ .env"
+          },
+          {
             "title": "Ví dụ",
-            "code": "import { NextResponse } from 'next/server';\n\nexport const middleware = (request) => {\n  if (!isLogin) return NextResponse.redirect(new URL('/auth', request.url));\n};\nexport const config = { matcher: ['/products/:path*'] };",
-            "codeTsx": "import { NextResponse, NextRequest } from 'next/server';\n\nexport const middleware = (request: NextRequest): NextResponse | void => {\n  if (!isLogin) return NextResponse.redirect(new URL('/auth', request.url));\n};\n\nexport const config = { matcher: ['/products/:path*'] };"
+            "code": "// middleware.ts\nimport { NextResponse } from 'next/server';\n\nexport const middleware = (request) => {\n  const token = request.cookies.get('token');\n  if (!token) {\n    return NextResponse.redirect(new URL('/auth', request.url));\n  }\n  return NextResponse.next(); // Cho đi tiếp\n};\n\n// Chỉ chạy middleware cho các route này\nexport const config = {\n  matcher: ['/dashboard/:path*', '/profile/:path*']\n};",
+            "codeTsx": "// middleware.ts\nimport { NextResponse, NextRequest } from 'next/server';\n\nexport const middleware = (request: NextRequest): NextResponse => {\n  const token = request.cookies.get('token');\n  if (!token) {\n    return NextResponse.redirect(new URL('/auth', request.url));\n  }\n  return NextResponse.next();\n};\n\nexport const config = {\n  matcher: ['/dashboard/:path*', '/profile/:path*']\n};"
           }
         ]
       },
       {
         "id": "f8-next-catch-all-routes",
         "title": "Catch-all & Optional Catch-all Segments",
-        "description": "Dynamic route bắt mọi segment con: [...slug] bắt /a/b/c (nhưng không bắt /). Optional catch-all [[...slug]] bắt /a/b/c và cả /.",
-        "exampleText": "Thường dùng để xây dựng doc pages, blogs với path lồng nhau sâu.",
+        "description": "Catch-all bắt TẤT CẢ segment con thành 1 mảng. [...slug] bắt buộc ít nhất 1 segment (không match /). [[...slug]] là optional — match cả / (không có segment nào). params trả về mảng string.",
+        "exampleText": "Dùng cho: doc pages (/docs/getting-started/install), breadcrumb navigation, blog categories (/blog/2024/react/hooks).",
         "codeBlocks": [
           {
-            "title": "Ví dụ [[...id]]",
-            "code": "const PostsPage = ({ params }) => {\n  const ids = params.id; // Array ['chuyen-muc', 'bai-viet']\n  if (!ids) return <h1>Danh sách bài viết</h1>;\n  return <h2>{ids[0]} - {ids[1]}</h2>;\n};"
+            "title": "📁 Cấu trúc & URL matching",
+            "code": "app/\n ┣ docs/\n ┃ ┗ [...slug]/\n ┃   ┗ page.tsx      ← Catch-all (bắt buộc)\n ┗ blog/\n   ┗ [[...slug]]/\n     ┗ page.tsx      ← Optional catch-all\n\n// So sánh URL matching:\n// ┌──────────────────┬────────────────┬──────────────────┐\n// │ URL              │ [...slug]      │ [[...slug]]      │\n// ├──────────────────┼────────────────┼──────────────────┤\n// │ /docs            │ ❌ 404         │ ✅ slug = undef  │\n// │ /docs/intro      │ ✅ ['intro']   │ ✅ ['intro']     │\n// │ /docs/a/b/c      │ ✅ ['a','b','c']│ ✅ ['a','b','c'] │\n// └──────────────────┴────────────────┴──────────────────┘"
+          },
+          {
+            "title": "Ví dụ [[...slug]]",
+            "code": "// app/blog/[[...slug]]/page.tsx\nconst BlogPage = ({ params }) => {\n  const slugs = params.slug;\n  // /blog          → slugs = undefined\n  // /blog/react    → slugs = ['react']\n  // /blog/react/hooks → slugs = ['react', 'hooks']\n\n  if (!slugs) return <h1>Tất cả bài viết</h1>;\n  return <h2>Danh mục: {slugs.join(' > ')}</h2>;\n  // 'react > hooks'\n};"
           }
         ]
       },
@@ -151,18 +163,17 @@ export const nextGroups: KnowledgeGroup[] = [
       {
         "id": "f8-next-route-handlers",
         "title": "Route Handlers (API Routes)",
-        "description": "Route Handlers cho phép tạo API RESTful ngay trong Next.js thông qua file route.js. Hỗ trợ các HTTP method (GET, POST, PUT, DELETE).",
-        "exampleText": "Nhận params, headers hoặc body json từ request và trả về dữ liệu dùng Response.json().",
+        "description": "Route Handlers tạo API endpoints bằng file route.ts (KHÔNG phải page.tsx). Đặt trong app/api/. Export các hàm GET, POST, PUT, DELETE — mỗi hàm xử lý 1 HTTP method. Thay thế pages/api/ của Pages Router cũ.",
+        "exampleText": "Lưu ý: route.ts và page.tsx KHÔNG được ở cùng thư mục. route.ts dùng Response.json() để trả JSON.",
         "codeBlocks": [
           {
-            "title": "GET",
-            "code": "export function GET(request) {\n  const apiKey = request.headers.get('x-api-key');\n  return Response.json({ message: 'Success' });\n}",
-            "codeTsx": "import { NextRequest } from 'next/server';\n\nexport function GET(request: NextRequest): Response {\n  const apiKey = request.headers.get('x-api-key');\n  return Response.json({ message: 'Success' });\n}"
+            "title": "📁 Cấu trúc API routes",
+            "code": "app/\n ┗ api/\n   ┣ users/\n   ┃ ┣ route.ts          ← GET /api/users, POST /api/users\n   ┃ ┗ [id]/\n   ┃   ┗ route.ts        ← GET /api/users/123, DELETE /api/users/123\n   ┣ posts/\n   ┃ ┗ route.ts          ← GET /api/posts\n   ┗ auth/\n     ┗ login/\n       ┗ route.ts        ← POST /api/auth/login"
           },
           {
-            "title": "POST",
-            "code": "export async function POST(request) {\n  const body = await request.json();\n  return Response.json({ body }, { status: 201 });\n}",
-            "codeTsx": "import { NextRequest } from 'next/server';\n\nexport async function POST(request: NextRequest): Promise<Response> {\n  const body = await request.json() as { title: string };\n  return Response.json({ body }, { status: 201 });\n}"
+            "title": "GET & POST",
+            "code": "// app/api/users/route.ts\nexport function GET(request) {\n  const apiKey = request.headers.get('x-api-key');\n  return Response.json({ message: 'Success' });\n}\n\nexport async function POST(request) {\n  const body = await request.json();\n  return Response.json({ data: body }, { status: 201 });\n}",
+            "codeTsx": "// app/api/users/route.ts\nimport { NextRequest } from 'next/server';\n\nexport function GET(request: NextRequest): Response {\n  const apiKey = request.headers.get('x-api-key');\n  return Response.json({ message: 'Success' });\n}\n\nexport async function POST(request: NextRequest): Promise<Response> {\n  const body = await request.json() as { title: string };\n  return Response.json({ data: body }, { status: 201 });\n}"
           }
         ]
       }
@@ -175,13 +186,17 @@ export const nextGroups: KnowledgeGroup[] = [
       {
         "id": "f8-next-server-actions",
         "title": "Server Actions",
-        "description": "Server Actions (có 'use server') là các hàm chạy hoàn toàn trên server, thường được gọi từ form action hoặc event handler. Hỗ trợ thao tác với database hoặc API trực tiếp mà không cần viết Route API.",
-        "exampleText": "Có thể kết hợp với revalidatePath hoặc revalidateTag để xóa cache, rồi dùng redirect để chuyển trang.",
+        "description": "Server Actions là hàm chạy trên server, gọi trực tiếp từ Client Component — KHÔNG cần viết API route trung gian. So với Route Handler: Route Handler = REST API truyền thống (GET/POST/PUT/DELETE), Server Action = gọi hàm server trực tiếp từ form/button (đơn giản hơn, ít boilerplate). Đánh dấu bằng 'use server' ở đầu file hoặc đầu hàm.",
+        "exampleText": "Luồng: Client submit form → Server Action chạy trên server → revalidate cache → redirect. Không cần fetch(), không cần API route.",
         "codeBlocks": [
           {
-            "title": "action.js",
-            "code": "'use server';\nimport { revalidateTag } from 'next/cache';\nimport { redirect } from 'next/navigation';\n\nexport const handleSubmit = async (formData) => {\n  const title = formData.get('title');\n  // Gọi API nội bộ\n  revalidateTag('todo-list');\n  redirect('/');\n};",
-            "codeTsx": "'use server';\nimport { revalidateTag } from 'next/cache';\nimport { redirect } from 'next/navigation';\n\nexport const handleSubmit = async (formData: FormData): Promise<void> => {\n  const title = formData.get('title') as string;\n  // Gọi API nội bộ\n  revalidateTag('todo-list');\n  redirect('/');\n};"
+            "title": "📁 Vị trí file",
+            "code": "app/\n ┣ todos/\n ┃ ┣ page.tsx          ← Server Component (hiển thị list)\n ┃ ┣ TodoForm.tsx      ← Client Component ('use client')\n ┃ ┗ actions.ts        ← Server Actions ('use server')\n ┗ layout.tsx"
+          },
+          {
+            "title": "actions.ts",
+            "code": "'use server';\nimport { revalidateTag } from 'next/cache';\nimport { redirect } from 'next/navigation';\n\nexport const handleSubmit = async (formData) => {\n  const title = formData.get('title');\n  // Gọi DB trực tiếp (đang ở server!)\n  await db.todo.create({ data: { title } });\n  revalidateTag('todo-list'); // Xóa cache\n  redirect('/todos');         // Chuyển trang\n};",
+            "codeTsx": "'use server';\nimport { revalidateTag } from 'next/cache';\nimport { redirect } from 'next/navigation';\n\nexport const handleSubmit = async (formData: FormData): Promise<void> => {\n  const title = formData.get('title') as string;\n  await db.todo.create({ data: { title } });\n  revalidateTag('todo-list');\n  redirect('/todos');\n};"
           }
         ]
       },
@@ -235,13 +250,17 @@ export const nextGroups: KnowledgeGroup[] = [
       {
         "id": "f8-next-custom-not-found",
         "title": "Custom Not Found Page & useRouter",
-        "description": "Tạo file not-found.js trong thư mục app để tùy chỉnh trang 404. Dùng useRouter() từ next/navigation để điều hướng programmatically (router.push, router.refresh).",
-        "exampleText": "Từ next01/not-found.js: Trang 404 tùy chỉnh với hình ảnh và nút quay về trang chủ.",
+        "description": "not-found.tsx hiển thị khi gọi notFound() hoặc truy cập URL không tồn tại. Đặt ở app/ cho toàn app, hoặc trong folder route cho từng phần. Next.js tìm not-found.tsx gần nhất (giống error.tsx). Dùng useRouter() để điều hướng programmatically.",
+        "exampleText": "not-found.tsx CÓ THỂ là Server Component (khác error.tsx bắt buộc 'use client'). Chỉ cần 'use client' khi dùng hooks.",
         "codeBlocks": [
           {
-            "title": "not-found.js",
-            "code": "'use client';\nimport { useRouter } from 'next/navigation';\n\nconst NotFound = () => {\n  const router = useRouter();\n  return (\n    <div>\n      <h1>PAGE NOT FOUND</h1>\n      <button onClick={() => router.push('/')}>\n        Về trang chủ\n      </button>\n    </div>\n  );\n};",
-            "codeTsx": "'use client';\nimport { useRouter } from 'next/navigation';\nimport type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';\n\nconst NotFound = (): JSX.Element => {\n  const router: AppRouterInstance = useRouter();\n  return (\n    <div>\n      <h1>PAGE NOT FOUND</h1>\n      <button onClick={() => router.push('/')}>\n        Về trang chủ\n      </button>\n    </div>\n  );\n};"
+            "title": "📁 Vị trí file",
+            "code": "app/\n ┣ not-found.tsx        ← 404 mặc định cho toàn app\n ┣ layout.tsx\n ┣ page.tsx\n ┗ posts/\n   ┣ not-found.tsx      ← 404 riêng cho /posts/*\n   ┗ [id]/\n     ┗ page.tsx         ← Gọi notFound() nếu post không tồn tại"
+          },
+          {
+            "title": "not-found.tsx",
+            "code": "'use client';\nimport { useRouter } from 'next/navigation';\n\nexport default function NotFound() {\n  const router = useRouter();\n  return (\n    <div>\n      <h1>PAGE NOT FOUND</h1>\n      <p>Trang bạn tìm không tồn tại hoặc đã bị xóa.</p>\n      <button onClick={() => router.push('/')}>\n        Về trang chủ\n      </button>\n    </div>\n  );\n}",
+            "codeTsx": "'use client';\nimport { useRouter } from 'next/navigation';\n\nexport default function NotFound(): JSX.Element {\n  const router = useRouter();\n  return (\n    <div>\n      <h1>PAGE NOT FOUND</h1>\n      <p>Trang bạn tìm không tồn tại hoặc đã bị xóa.</p>\n      <button onClick={() => router.push('/')}>\n        Về trang chủ\n      </button>\n    </div>\n  );\n}"
           }
         ]
       },
@@ -284,27 +303,34 @@ export const nextGroups: KnowledgeGroup[] = [
       {
         "id": "next-loading-ui",
         "title": "loading.tsx (Loading UI)",
-        "description": "Đặt file loading.tsx trong bất kỳ thư mục route nào để tự động tạo Suspense boundary. Next.js sẽ hiển thị UI này trong khi Server Component đang fetch dữ liệu. Mỗi segment route có thể có loading riêng.",
-        "exampleText": "Khi user chuyển trang, loading UI hiển thị ngay lập tức trong khi nội dung đang được server render (streaming).",
+        "description": "Đặt loading.tsx trong thư mục route → Next.js TỰ ĐỘNG bọc page.tsx bằng <Suspense>. Khi user chuyển trang, loading UI hiển thị NGAY LẬP TỨC (instant) trong khi server đang render page (streaming). Mỗi route segment có thể có loading riêng → loading chi tiết cho từng phần.",
+        "exampleText": "loading.tsx = Suspense tự động. Muốn loading cho 1 phần nhỏ trong page (không phải cả trang) → dùng <Suspense> thủ công.",
         "codeBlocks": [
+          {
+            "title": "📁 Vị trí & cách hoạt động",
+            "code": "app/\n ┣ layout.tsx\n ┣ page.tsx\n ┣ loading.tsx          ← Loading cho trang chủ /\n ┗ posts/\n   ┣ loading.tsx        ← Loading riêng cho /posts\n   ┣ page.tsx\n   ┗ [id]/\n     ┣ loading.tsx      ← Loading riêng cho /posts/123\n     ┗ page.tsx\n\n// Next.js tự chuyển thành:\n// <Suspense fallback={<Loading />}>\n//   <Page />\n// </Suspense>"
+          },
           {
             "title": "loading.tsx",
             "code": "// app/posts/loading.tsx\nexport default function Loading() {\n  return (\n    <div className=\"loading-skeleton\">\n      <div className=\"skeleton-title\" />\n      <div className=\"skeleton-content\" />\n    </div>\n  );\n}",
             "codeTsx": "// app/posts/loading.tsx\nexport default function Loading(): JSX.Element {\n  return (\n    <div className=\"loading-skeleton\">\n      <div className=\"skeleton-title\" />\n      <div className=\"skeleton-content\" />\n    </div>\n  );\n}"
           },
           {
-            "title": "Suspense thủ công",
-            "code": "import { Suspense } from 'react';\n\nexport default function Page() {\n  return (\n    <>\n      <h1>Bài viết</h1>\n      <Suspense fallback={<p>Đang tải...</p>}>\n        <PostList /> {/* Server Component async */}\n      </Suspense>\n    </>\n  );\n}",
-            "codeTsx": "import { Suspense } from 'react';\n\nexport default function Page(): JSX.Element {\n  return (\n    <>\n      <h1>Bài viết</h1>\n      <Suspense fallback={<p>Đang tải...</p>}>\n        <PostList /> {/* Server Component async */}\n      </Suspense>\n    </>\n  );\n}"
+            "title": "Suspense thủ công (loading 1 phần)",
+            "code": "// Khi muốn loading cho 1 component cụ thể, không phải cả trang\nimport { Suspense } from 'react';\n\nexport default function Page() {\n  return (\n    <>\n      <h1>Bài viết</h1>  {/* Hiển thị ngay */}\n      <Suspense fallback={<p>Đang tải danh sách...</p>}>\n        <PostList />     {/* Chờ fetch xong mới hiện */}\n      </Suspense>\n    </>\n  );\n}"
           }
         ]
       },
       {
         "id": "next-error-ui",
         "title": "error.tsx (Error Boundary)",
-        "description": "File error.tsx định nghĩa error boundary cho route segment. Phải là Client Component ('use client'). Nhận props error (Error object) và reset (function gọi để thử lại). Lỗi ở segment con sẽ được bắt bởi error.tsx của segment cha gần nhất.",
-        "exampleText": "Khi fetch data thất bại, error.tsx hiển thị thông báo lỗi + nút 'Thử lại' mà không crash toàn bộ app.",
+        "description": "error.tsx bắt lỗi runtime trong route segment. BẮT BUỘC 'use client'. Nhận 2 props: error (Error object) và reset (gọi để thử lại). Lỗi 'nổi bọt' lên: lỗi ở segment con → bị bắt bởi error.tsx của segment CHA gần nhất. Lưu ý: error.tsx KHÔNG bắt lỗi của layout.tsx CÙNG CẤP (dùng global-error.tsx cho root layout).",
+        "exampleText": "error.tsx giống React Error Boundary nhưng tự động. App không crash, chỉ phần bị lỗi hiển thị fallback + nút thử lại.",
         "codeBlocks": [
+          {
+            "title": "📁 Error bubbling (nổi bọt)",
+            "code": "app/\n ┣ layout.tsx\n ┣ error.tsx             ← Bắt lỗi của page.tsx + segment con\n ┣ global-error.tsx      ← Bắt lỗi của ROOT layout.tsx\n ┣ page.tsx\n ┗ posts/\n   ┣ error.tsx           ← Bắt lỗi /posts và /posts/[id]\n   ┣ page.tsx\n   ┗ [id]/\n     ┗ page.tsx          ← Lỗi ở đây → nổi lên posts/error.tsx\n\n// Thứ tự bắt lỗi (gần nhất trước):\n// posts/[id]/page.tsx lỗi\n//   → tìm posts/[id]/error.tsx (không có)\n//   → tìm posts/error.tsx ✅ (bắt ở đây)"
+          },
           {
             "title": "error.tsx",
             "code": "'use client';\n\nexport default function Error({\n  error,\n  reset,\n}: {\n  error: Error;\n  reset: () => void;\n}) {\n  return (\n    <div>\n      <h2>Có lỗi xảy ra!</h2>\n      <p>{error.message}</p>\n      <button onClick={() => reset()}>Thử lại</button>\n    </div>\n  );\n}",
@@ -340,16 +366,20 @@ export const nextGroups: KnowledgeGroup[] = [
       {
         "id": "next-env-variables",
         "title": "Environment Variables",
-        "description": "Biến môi trường trong .env chỉ có sẵn trên server. Để dùng ở client (trình duyệt), phải thêm prefix NEXT_PUBLIC_. Biến NEXT_PUBLIC_ được inline vào JS bundle lúc build → không để secret ở đây.",
-        "exampleText": "SERVER_API chỉ dùng trong Server Component/Route Handler. NEXT_PUBLIC_SERVER_API dùng được ở cả Client Component.",
+        "description": "Biến môi trường trong .env chỉ server đọc được (an toàn cho secret). Muốn client (trình duyệt) đọc được → PHẢI thêm prefix NEXT_PUBLIC_. Lưu ý: NEXT_PUBLIC_ được inline vào JS bundle lúc build → user có thể thấy trong DevTools → KHÔNG để API key, password ở đây!",
+        "exampleText": "Next.js hỗ trợ nhiều file .env: .env (mặc định), .env.local (local override, git ignore), .env.production, .env.development. Thứ tự ưu tiên: .env.local > .env.[mode] > .env",
         "codeBlocks": [
           {
-            "title": ".env",
-            "code": "# Chỉ server (an toàn)\nSERVER_API=http://localhost:3001\nDATABASE_URL=postgresql://...\n\n# Client + Server (công khai)\nNEXT_PUBLIC_SERVER_API=http://localhost:3001\nNEXT_PUBLIC_APP_NAME=MyApp"
+            "title": "📁 Vị trí file .env",
+            "code": "my-next-app/\n ┣ app/\n ┣ .env                  ← Mặc định (commit vào git)\n ┣ .env.local             ← Override local (GIT IGNORE!)\n ┣ .env.development       ← Chỉ dùng khi npm run dev\n ┣ .env.production        ← Chỉ dùng khi npm run build\n ┣ next.config.js\n ┗ package.json"
+          },
+          {
+            "title": ".env.local",
+            "code": "# ✅ Chỉ server (an toàn — KHÔNG lộ ra client)\nSERVER_API=http://localhost:3001\nDATABASE_URL=postgresql://user:pass@localhost:5432/mydb\nJWT_SECRET=super-secret-key\n\n# ⚠️ Client + Server (công khai — AI CŨNG THẤY!)\nNEXT_PUBLIC_API_URL=http://localhost:3001\nNEXT_PUBLIC_APP_NAME=MyApp"
           },
           {
             "title": "Sử dụng",
-            "code": "// Server Component / Route Handler\nprocess.env.SERVER_API // ✅\nprocess.env.DATABASE_URL // ✅\n\n// Client Component\nprocess.env.NEXT_PUBLIC_SERVER_API // ✅\nprocess.env.SERVER_API // ❌ undefined"
+            "code": "// Server Component / Route Handler / Server Action\nprocess.env.SERVER_API      // ✅ 'http://localhost:3001'\nprocess.env.DATABASE_URL    // ✅ 'postgresql://...'\nprocess.env.JWT_SECRET      // ✅ 'super-secret-key'\n\n// Client Component ('use client')\nprocess.env.NEXT_PUBLIC_API_URL  // ✅ 'http://localhost:3001'\nprocess.env.SERVER_API           // ❌ undefined (bảo mật!)\nprocess.env.JWT_SECRET           // ❌ undefined"
           }
         ]
       }
