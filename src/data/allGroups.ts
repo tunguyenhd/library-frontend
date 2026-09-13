@@ -8,10 +8,14 @@ import { jsGroups } from "./jsGroups";
 import { tsGroups } from "./tsGroups";
 import { reactGroups } from "./reactGroups";
 import { nextGroups } from "./nextGroups";
+import { reactNativeGroups } from "./reactNativeGroups";
+import { flutterGroups } from "./flutterGroups";
 import { nodeGroups } from "./nodeGroups";
 import { nestGroups } from "./nestGroups";
 import { goGroups } from "./goGroups";
 import { pythonGroups } from "./pythonGroups";
+import { gitGroups } from "./gitGroups";
+import { aiGroups } from "./aiGroups";
 import { dbGroups } from "./dbGroups";
 
 export interface TopicData {
@@ -29,10 +33,14 @@ export const allTopics: TopicData[] = [
   { slug: "ts", label: "TypeScript", groups: tsGroups },
   { slug: "react", label: "ReactJS", groups: reactGroups },
   { slug: "next", label: "NextJS", groups: nextGroups },
+  { slug: "react-native", label: "React Native", groups: reactNativeGroups },
+  { slug: "flutter", label: "Flutter", groups: flutterGroups },
   { slug: "node", label: "Node.js", groups: nodeGroups },
   { slug: "nest", label: "NestJS", groups: nestGroups },
   { slug: "go", label: "Go", groups: goGroups },
   { slug: "python", label: "Python", groups: pythonGroups },
+  { slug: "git", label: "Git", groups: gitGroups },
+  { slug: "ai", label: "AI Training", groups: aiGroups },
   { slug: "database", label: "Database", groups: dbGroups },
 ];
 

@@ -1,4 +1,4 @@
-export type Page = "home" | "html" | "css" | "scss" | "tailwind" | "js" | "ts" | "react" | "next" | "node" | "nest" | "go" | "python"  | "database"
+export type Page = "home" | "html" | "css" | "scss" | "tailwind" | "js" | "ts" | "react" | "next" | "react-native" | "flutter" | "node" | "nest" | "go" | "python" | "git" | "ai" | "database"
   | "projects"
   | "exercises";
 

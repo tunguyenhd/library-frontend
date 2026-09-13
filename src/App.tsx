@@ -6,10 +6,14 @@ import JsKnowledgePage from "./pages/JsKnowledgePage";
 import TsKnowledgePage from "./pages/TsKnowledgePage";
 import ReactKnowledgePage from "./pages/ReactKnowledgePage";
 import NextKnowledgePage from "./pages/NextKnowledgePage";
+import ReactNativeKnowledgePage from "./pages/ReactNativeKnowledgePage";
+import FlutterKnowledgePage from "./pages/FlutterKnowledgePage";
 import NodeKnowledgePage from "./pages/NodeKnowledgePage";
 import NestKnowledgePage from "./pages/NestKnowledgePage";
 import GoKnowledgePage from "./pages/GoKnowledgePage";
 import PythonKnowledgePage from "./pages/PythonKnowledgePage";
+import GitKnowledgePage from "./pages/GitKnowledgePage";
+import AiKnowledgePage from "./pages/AiKnowledgePage";
 import ScssKnowledgePage from "./pages/ScssKnowledgePage";
 import TailwindKnowledgePage from "./pages/TailwindKnowledgePage";
 import DbKnowledgePage from "./pages/DbKnowledgePage";
@@ -28,10 +32,14 @@ const pageTitles: Record<Page, string> = {
   ts: "TypeScript Knowledge",
   react: "ReactJS Knowledge",
   next: "NextJS Knowledge",
+  "react-native": "React Native Knowledge",
+  flutter: "Flutter Knowledge",
   node: "Node.js Knowledge",
   nest: "NestJS Knowledge",
   go: "Go Knowledge",
   python: "Python Knowledge",
+  git: "Git Knowledge",
+  ai: "AI Training Knowledge",
   scss: "SCSS Knowledge",
   tailwind: "Tailwind CSS Knowledge",
   database: "Database Knowledge",
@@ -107,6 +115,14 @@ export default function App() {
     return <NextKnowledgePage onBack={() => navigate("home")} />;
   }
 
+  if (page === "react-native") {
+    return <ReactNativeKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "flutter") {
+    return <FlutterKnowledgePage onBack={() => navigate("home")} />;
+  }
+
   if (page === "node") {
     return <NodeKnowledgePage onBack={() => navigate("home")} />;
   }
@@ -133,6 +149,14 @@ export default function App() {
 
   if (page === "database") {
     return <DbKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "git") {
+    return <GitKnowledgePage onBack={() => navigate("home")} />;
+  }
+
+  if (page === "ai") {
+    return <AiKnowledgePage onBack={() => navigate("home")} />;
   }
 
   if (page === "projects") {

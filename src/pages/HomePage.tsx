@@ -21,10 +21,14 @@ const topics: Topic[] = [
   { slug: "ts", label: "TypeScript", className: "ts" },
   { slug: "react", label: "ReactJS", className: "react" },
   { slug: "next", label: "NextJS", className: "next" },
+  { slug: "react-native", label: "React Native", className: "react-native" },
+  { slug: "flutter", label: "Flutter", className: "flutter" },
   { slug: "node", label: "Node.js", className: "node" },
   { slug: "nest", label: "NestJS", className: "nest" },
   { slug: "go", label: "Go", className: "go" },
   { slug: "python", label: "Python", className: "python" },
+  { slug: "git", label: "Git", className: "git" },
+  { slug: "ai", label: "AI Training", className: "ai" },
   { slug: "database", label: "Database", className: "database" },
   { slug: "exercises", label: "Bài tập", className: "exercises" },
   { slug: "projects", label: "Dự án", className: "projects" },
@@ -40,10 +44,14 @@ const topicColors: Record<string, string> = {
   ts: "#3178c6",
   react: "#61dafb",
   next: "#111827",
+  "react-native": "#61dafb",
+  flutter: "#02569B",
   node: "#339933",
   nest: "#e0234e",
   go: "#00add8",
   python: "#3776ab",
+  git: "#f05032",
+  ai: "#8b5cf6",
   database: "#f59e0b",
 };
 
@@ -181,7 +189,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               {results.length > 0 ? (
                 results.map((r, i) => {
                   const color = topicColors[r.topicSlug] ?? "#6b7280";
-                  const isDarkText = ["js", "react", "database"].includes(r.topicSlug);
+                  const isDarkText = ["js", "react", "react-native", "database"].includes(r.topicSlug);
 
                   return (
                     <button

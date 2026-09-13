@@ -195,6 +195,23 @@ body {
    background: #06b6d4;
 }
 
+.topic-btn.react-native {
+   background: #61dafb;
+   color: #111827;
+}
+
+.topic-btn.flutter {
+   background: #02569B;
+}
+
+.topic-btn.git {
+   background: #f05032;
+}
+
+.topic-btn.ai {
+   background: #8b5cf6;
+}
+
 .topic-btn.database {
    background: #f59e0b;
    color: #111827;
@@ -1184,6 +1201,78 @@ html {
 
 .db-knowledge-page .html-menu a.menu-link-active::before {
    background: #f59e0b;
+}
+
+/* ─── Theme: React Native ─── */
+.rn-knowledge-page .html-sidebar h2,
+.rn-knowledge-page .html-menu-title,
+.rn-knowledge-page .html-group > span,
+.rn-knowledge-page .back-btn:hover {
+   color: #0ea5e9;
+}
+
+.rn-knowledge-page .html-menu a:hover,
+.rn-knowledge-page .html-menu a.menu-link-active {
+   background: #e0f2fe;
+   color: #0284c7;
+}
+
+.rn-knowledge-page .html-menu a.menu-link-active::before {
+   background: #0ea5e9;
+}
+
+/* ─── Theme: Flutter ─── */
+.flutter-knowledge-page .html-sidebar h2,
+.flutter-knowledge-page .html-menu-title,
+.flutter-knowledge-page .html-group > span,
+.flutter-knowledge-page .back-btn:hover {
+   color: #0277BD;
+}
+
+.flutter-knowledge-page .html-menu a:hover,
+.flutter-knowledge-page .html-menu a.menu-link-active {
+   background: #e1f5fe;
+   color: #01579B;
+}
+
+.flutter-knowledge-page .html-menu a.menu-link-active::before {
+   background: #02569B;
+}
+
+/* ─── Theme: Git ─── */
+.git-knowledge-page .html-sidebar h2,
+.git-knowledge-page .html-menu-title,
+.git-knowledge-page .html-group > span,
+.git-knowledge-page .back-btn:hover {
+   color: #f05032;
+}
+
+.git-knowledge-page .html-menu a:hover,
+.git-knowledge-page .html-menu a.menu-link-active {
+   background: #fde8e3;
+   color: #d4391c;
+}
+
+.git-knowledge-page .html-menu a.menu-link-active::before {
+   background: #f05032;
+}
+
+/* ─── Theme: AI Training ─── */
+.ai-knowledge-page .html-sidebar h2,
+.ai-knowledge-page .html-menu-title,
+.ai-knowledge-page .html-group > span,
+.ai-knowledge-page .back-btn:hover {
+   color: #7c3aed;
+}
+
+.ai-knowledge-page .html-menu a:hover,
+.ai-knowledge-page .html-menu a.menu-link-active {
+   background: #ede9fe;
+   color: #6d28d9;
+}
+
+.ai-knowledge-page .html-menu a.menu-link-active::before {
+   background: #8b5cf6;
 }
 
 /* ─── Specialized Pages (Projects, Exercises) ─── */
