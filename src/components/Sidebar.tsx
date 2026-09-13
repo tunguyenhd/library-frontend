@@ -17,8 +17,6 @@ export default function Sidebar({
   groups,
   onBack,
   activeId,
-  searchQuery,
-  onSearchChange,
   themeToggle,
 }: SidebarProps) {
   const activeLinkRef = useRef<HTMLAnchorElement | null>(null);

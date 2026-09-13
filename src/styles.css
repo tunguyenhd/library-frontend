@@ -22,6 +22,7 @@
    --code-header: #2d2d2d;
    --code-text: #d4d4d4;
    --code-border: #3c3c3c;
+   --code-comment: #7ee787;
    --menu-hover-bg: #fff1ed;
    --tag-bg: #f3f4f6;
    --tag-text: #4b5563;
@@ -46,6 +47,7 @@
    --code-header: #0b2942;
    --code-text: #d6deeb;
    --code-border: #1d3b53;
+   --code-comment: #7ee787;
    --menu-hover-bg: rgba(255, 255, 255, 0.06);
    --tag-bg: #334155;
    --tag-text: #cbd5e1;
@@ -1806,5 +1808,7 @@ html {
 /* ─── Override highlight.js comment color for better contrast ─── */
 .hljs-comment,
 .hljs-quote {
-   color: #8b949e !important;
+   color: var(--code-comment, #7ee787) !important;
+   font-style: italic;
+   opacity: 1 !important;
 }

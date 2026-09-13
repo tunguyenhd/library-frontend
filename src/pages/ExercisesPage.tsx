@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { exercisesGroups } from "../data/exercisesGroups";
 import CodeBox from "../components/CodeBox";
 
