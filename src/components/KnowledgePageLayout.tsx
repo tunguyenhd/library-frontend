@@ -36,15 +36,22 @@ export default function KnowledgePageLayout({
       const id = decodeURIComponent(window.location.hash.slice(1));
 
       if (id) {
-        document.getElementById(id)?.scrollIntoView();
+        const el = document.getElementById(id);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
       }
     };
 
-    const frameId = window.requestAnimationFrame(scrollToCurrentHash);
+    // Use multiple timeouts to handle pages that render progressively
+    const t1 = window.setTimeout(scrollToCurrentHash, 100);
+    const t2 = window.setTimeout(scrollToCurrentHash, 400);
     window.addEventListener("hashchange", scrollToCurrentHash);
 
     return () => {
-      window.cancelAnimationFrame(frameId);
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
       window.removeEventListener("hashchange", scrollToCurrentHash);
     };
   }, []);

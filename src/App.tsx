@@ -71,19 +71,30 @@ export default function App() {
     document.title = pageTitles[page];
   }, [page]);
 
-  const navigate: Navigate = (nextPage) => {
+  const navigate: Navigate = (nextPage, scrollToId) => {
     const url = new URL(window.location.href);
 
-    url.hash = "";
+    if (scrollToId) {
+      url.hash = scrollToId;
+    } else {
+      url.hash = "";
+    }
+
     if (nextPage === "home") {
       url.searchParams.delete("page");
     } else {
       url.searchParams.set("page", nextPage);
     }
 
-    window.history.pushState({}, "", `${url.pathname}${url.search}`);
+    const urlStr = scrollToId
+      ? `${url.pathname}${url.search}#${scrollToId}`
+      : `${url.pathname}${url.search}`;
+    window.history.pushState({}, "", urlStr);
     setPage(nextPage);
-    window.scrollTo({ top: 0, behavior: "auto" });
+
+    if (!scrollToId) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
   };
 
   const renderPage = () => {

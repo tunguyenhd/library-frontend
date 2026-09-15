@@ -105,13 +105,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
     (result: SearchResult) => {
       setQuery("");
       setIsFocused(false);
-      // Navigate to the topic page. After the page renders, the card ID
-      // will be in the URL hash so the KnowledgePageLayout can scroll to it.
-      const url = new URL(window.location.href);
-      url.searchParams.set("page", result.topicSlug);
-      url.hash = result.cardId;
-      window.history.pushState({}, "", `${url.pathname}${url.search}#${result.cardId}`);
-      onNavigate(result.topicSlug as Page);
+      onNavigate(result.topicSlug as Page, result.cardId);
     },
     [onNavigate]
   );

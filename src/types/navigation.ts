@@ -2,4 +2,4 @@ export type Page = "home" | "html" | "css" | "scss" | "tailwind" | "js" | "ts" |
   | "projects"
   | "exercises";
 
-export type Navigate = (page: Page) => void;
+export type Navigate = (page: Page, scrollToId?: string) => void;
